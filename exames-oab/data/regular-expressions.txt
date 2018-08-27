@@ -1,0 +1,34 @@
+Home
+Excluir até localizar "Questão <X>"
+Substituir " \n\n \n" por "\n\n"
+Manter "\n
+
+mutool.exe
+
+
+1. Remover cabeçalho
+
+(\A)(.*?)(?=Questão \d+)
+
+2. Remover rodapé de páginas
+
+Ordem dos Advogados do Brasil
+Tipo 1 - BRANCA
+‘‘Qualquer semelhança nominal e/ ou situacional presente nos enunciados das questões é mera coincidência’’
+XXVI EXAME DE ORDEM UNIFICADO
+2
+XXVI EXAME DE ORDEM UNIFICADO – TIPO 01 – BRANCA 
+PROVA APLICADA EM 05/08/2018 
+
+3. Isolar questões
+
+(Questão \d+)(.*?)(?=Questão \d+)
+
+4. Isolar enunciado
+
+5. Isolar alternativas
+
+A)
+B)
+C)
+D)

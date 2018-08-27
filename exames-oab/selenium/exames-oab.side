@@ -1,0 +1,279 @@
+{
+  "id": "748c5b62-8e9a-49cc-9507-b3ebb8740cee",
+  "name": "Untitled Project",
+  "url": "http://oab.fgv.br",
+  "tests": [{
+    "id": "4ed51d8e-ce6c-4b72-8b9c-3841d114d7fc",
+    "name": "Untitled",
+    "commands": [{
+      "id": "c5614e54-4761-4ecd-9483-4371c87f8408",
+      "comment": "",
+      "command": "open",
+      "target": "/home.aspx",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "94ed1b3d-b385-41fc-9321-d93829c231ab",
+      "comment": "",
+      "command": "click",
+      "target": "id=ContentPlaceHolder1_listSeccional",
+      "targets": [
+        ["id=ContentPlaceHolder1_listSeccional", "id"],
+        ["name=ctl00$ContentPlaceHolder1$listSeccional", "name"],
+        ["css=#ContentPlaceHolder1_listSeccional", "css"],
+        ["xpath=//select[@id='ContentPlaceHolder1_listSeccional']", "xpath:attributes"],
+        ["xpath=//form[@id='form1']/div[5]/div/div[2]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4cbc0134-f03c-4307-9aba-4e71b58fd474",
+      "comment": "",
+      "command": "select",
+      "target": "id=ContentPlaceHolder1_listSeccional",
+      "targets": [
+        ["id=ContentPlaceHolder1_listSeccional", "id"],
+        ["name=ctl00$ContentPlaceHolder1$listSeccional", "name"],
+        ["css=#ContentPlaceHolder1_listSeccional", "css"],
+        ["xpath=//select[@id='ContentPlaceHolder1_listSeccional']", "xpath:attributes"],
+        ["xpath=//form[@id='form1']/div[5]/div/div[2]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "label=OAB / RS"
+    }, {
+      "id": "17b8fbe6-bce5-4843-88e6-e0216fb8d025",
+      "comment": "",
+      "command": "click",
+      "target": "id=ContentPlaceHolder1_listSeccional",
+      "targets": [
+        ["id=ContentPlaceHolder1_listSeccional", "id"],
+        ["name=ctl00$ContentPlaceHolder1$listSeccional", "name"],
+        ["css=#ContentPlaceHolder1_listSeccional", "css"],
+        ["xpath=//select[@id='ContentPlaceHolder1_listSeccional']", "xpath:attributes"],
+        ["xpath=//form[@id='form1']/div[5]/div/div[2]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7247e572-1b39-41e8-859f-5bb740b1dfdd",
+      "comment": "",
+      "command": "click",
+      "target": "id=ContentPlaceHolder1_gvProva1_linkTeste_1",
+      "targets": [
+        ["id=ContentPlaceHolder1_gvProva1_linkTeste_1", "id"],
+        ["linkText=Caderno de Prova - Tipo 1", "linkText"],
+        ["css=#ContentPlaceHolder1_gvProva1_linkTeste_1", "css"],
+        ["xpath=//a[contains(text(),'Caderno de Prova - Tipo 1')]", "xpath:link"],
+        ["xpath=//a[@id='ContentPlaceHolder1_gvProva1_linkTeste_1']", "xpath:attributes"],
+        ["xpath=//table[@id='ContentPlaceHolder1_gvProva1']/tbody/tr[2]/td[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'https://dpmzos25m8ivg.cloudfront.net/629/882160_CADERNO_TIPO_1_XXVI_EXAME.pdf')]", "xpath:href"],
+        ["xpath=//div[2]/div/table/tbody/tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c8f59a39-8a2f-4883-8e3c-a38572b34972",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "win_ser_1",
+      "targets": [
+        ["win_ser_1", null]
+      ],
+      "value": ""
+    }, {
+      "id": "f42a0b3c-7fe4-4c30-a6de-62ba181f855d",
+      "comment": "",
+      "command": "close",
+      "target": "win_ser_1",
+      "targets": [
+        ["win_ser_1", null]
+      ],
+      "value": ""
+    }, {
+      "id": "f4d863d8-450d-40f9-9cd0-ef97d5cdba0e",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "win_ser_local",
+      "targets": [
+        ["win_ser_local", null]
+      ],
+      "value": ""
+    }, {
+      "id": "cc3620a8-267d-4a9b-8b64-640058e915ca",
+      "comment": "",
+      "command": "click",
+      "target": "id=ContentPlaceHolder1_gvProva1_linkTeste_0",
+      "targets": [
+        ["id=ContentPlaceHolder1_gvProva1_linkTeste_0", "id"],
+        ["linkText=Gabaritos Preliminares da Prova Objetiva (1ª fase) - Atualizado em 06.08.2018", "linkText"],
+        ["css=#ContentPlaceHolder1_gvProva1_linkTeste_0", "css"],
+        ["xpath=//a[contains(text(),'Gabaritos Preliminares da Prova Objetiva (1ª fase) - Atualizado em 06.08.2018')]", "xpath:link"],
+        ["xpath=//a[@id='ContentPlaceHolder1_gvProva1_linkTeste_0']", "xpath:attributes"],
+        ["xpath=//table[@id='ContentPlaceHolder1_gvProva1']/tbody/tr/td[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'https://dpmzos25m8ivg.cloudfront.net/629/85363_GABARITOS%20PRELIMIARES_XXVI_EXAME_DE_ORDEM%20(1).pdf')]", "xpath:href"],
+        ["xpath=//div[2]/div/table/tbody/tr/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2baf6776-7bb9-47e6-96c3-f88270ad1f2a",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "win_ser_2",
+      "targets": [
+        ["win_ser_2", null]
+      ],
+      "value": ""
+    }, {
+      "id": "73f1c503-519a-4297-bdde-f9af25efc23a",
+      "comment": "",
+      "command": "close",
+      "target": "win_ser_2",
+      "targets": [
+        ["win_ser_2", null]
+      ],
+      "value": ""
+    }, {
+      "id": "6a077da3-1296-495c-822a-d554e7da0625",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "win_ser_local",
+      "targets": [
+        ["win_ser_local", null]
+      ],
+      "value": ""
+    }, {
+      "id": "d8ee0792-8240-4e87-993b-759391767185",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Clique aqui para acessar informações relativas ao XXV EXAME DE ORDEM UNIFICADO",
+      "targets": [
+        ["linkText=Clique aqui para acessar informações relativas ao XXV EXAME DE ORDEM UNIFICADO", "linkText"],
+        ["xpath=//a[contains(text(),'Clique aqui para acessar informações relativas ao XXV EXAME DE ORDEM UNIFICADO')]", "xpath:link"],
+        ["xpath=//form[@id='form1']/div[5]/div/div[2]/div/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'home.aspx?key=628')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c55d33fc-2a0f-4596-8fb5-2007c98d1adf",
+      "comment": "",
+      "command": "click",
+      "target": "id=ContentPlaceHolder1_listSeccional",
+      "targets": [
+        ["id=ContentPlaceHolder1_listSeccional", "id"],
+        ["name=ctl00$ContentPlaceHolder1$listSeccional", "name"],
+        ["css=#ContentPlaceHolder1_listSeccional", "css"],
+        ["xpath=//select[@id='ContentPlaceHolder1_listSeccional']", "xpath:attributes"],
+        ["xpath=//form[@id='form1']/div[5]/div/div[2]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e47fda91-bd11-421b-b7c8-1210633d6f19",
+      "comment": "",
+      "command": "select",
+      "target": "id=ContentPlaceHolder1_listSeccional",
+      "targets": [
+        ["id=ContentPlaceHolder1_listSeccional", "id"],
+        ["name=ctl00$ContentPlaceHolder1$listSeccional", "name"],
+        ["css=#ContentPlaceHolder1_listSeccional", "css"],
+        ["xpath=//select[@id='ContentPlaceHolder1_listSeccional']", "xpath:attributes"],
+        ["xpath=//form[@id='form1']/div[5]/div/div[2]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "label=OAB / RS"
+    }, {
+      "id": "359c9efd-6606-40fb-874b-da642d6c08d0",
+      "comment": "",
+      "command": "click",
+      "target": "id=ContentPlaceHolder1_listSeccional",
+      "targets": [
+        ["id=ContentPlaceHolder1_listSeccional", "id"],
+        ["name=ctl00$ContentPlaceHolder1$listSeccional", "name"],
+        ["css=#ContentPlaceHolder1_listSeccional", "css"],
+        ["xpath=//select[@id='ContentPlaceHolder1_listSeccional']", "xpath:attributes"],
+        ["xpath=//form[@id='form1']/div[5]/div/div[2]/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f3ffd57d-41e9-4598-b8a7-db06335af7e2",
+      "comment": "",
+      "command": "click",
+      "target": "id=ContentPlaceHolder1_gvProva1_linkTeste_1",
+      "targets": [
+        ["id=ContentPlaceHolder1_gvProva1_linkTeste_1", "id"],
+        ["linkText=Caderno de Prova - Tipo 1", "linkText"],
+        ["css=#ContentPlaceHolder1_gvProva1_linkTeste_1", "css"],
+        ["xpath=//a[contains(text(),'Caderno de Prova - Tipo 1')]", "xpath:link"],
+        ["xpath=//a[@id='ContentPlaceHolder1_gvProva1_linkTeste_1']", "xpath:attributes"],
+        ["xpath=//table[@id='ContentPlaceHolder1_gvProva1']/tbody/tr[2]/td[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'https://dpmzos25m8ivg.cloudfront.net/628/1299791_CADERNO_TIPO_1_XXV_EXAME.pdf')]", "xpath:href"],
+        ["xpath=//div[2]/div/table/tbody/tr[2]/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5b81f6c9-a28f-474b-b570-1b74dcbddf71",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "win_ser_3",
+      "targets": [
+        ["win_ser_3", null]
+      ],
+      "value": ""
+    }, {
+      "id": "388d19f1-7fc4-4e57-aa64-13acaaabee4e",
+      "comment": "",
+      "command": "close",
+      "target": "win_ser_3",
+      "targets": [
+        ["win_ser_3", null]
+      ],
+      "value": ""
+    }, {
+      "id": "ce5f0938-df9f-4382-b42a-771871f6fa6e",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "win_ser_local",
+      "targets": [
+        ["win_ser_local", null]
+      ],
+      "value": ""
+    }, {
+      "id": "4570aeba-df28-46d9-b367-f6297c8c5c6e",
+      "comment": "",
+      "command": "click",
+      "target": "id=ContentPlaceHolder1_gvProva1_linkTeste_0",
+      "targets": [
+        ["id=ContentPlaceHolder1_gvProva1_linkTeste_0", "id"],
+        ["linkText=Gabaritos Preliminares da Prova Objetiva (1ª fase)", "linkText"],
+        ["css=#ContentPlaceHolder1_gvProva1_linkTeste_0", "css"],
+        ["xpath=//a[contains(text(),'Gabaritos Preliminares da Prova Objetiva (1ª fase)')]", "xpath:link"],
+        ["xpath=//a[@id='ContentPlaceHolder1_gvProva1_linkTeste_0']", "xpath:attributes"],
+        ["xpath=//table[@id='ContentPlaceHolder1_gvProva1']/tbody/tr/td[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'https://dpmzos25m8ivg.cloudfront.net/628/85182_GABARITOS%20PRELIMIARES_XXV_EXAME_DE_ORDEM.pdf')]", "xpath:href"],
+        ["xpath=//div[2]/div/table/tbody/tr/td[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "64684264-158c-45af-884b-37f5b593bd11",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "win_ser_4",
+      "targets": [
+        ["win_ser_4", null]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "b20d3b52-2ef9-4070-a13e-49f11ab4935c",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["4ed51d8e-ce6c-4b72-8b9c-3841d114d7fc"]
+  }],
+  "urls": ["http://oab.fgv.br/"],
+  "plugins": [],
+  "version": "1.0"
+}

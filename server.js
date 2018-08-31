@@ -1,19 +1,31 @@
-var express = require('express');
-var models = require("./app/models");
-var app = express();
+var express = require('express')
+var app = express()
+var passport = require('passport')
+var session = require('express-session')
+var bodyParser = require('body-parser')
 
-//Sync database
-models.sequelize.sync().then(() => {
-    console.log("Simulados database is ready.");
-})
-.catch(function (err) {
-    console.log(err, "Something went wrong while creating simulados_database.")
-});
+//For BodyParser
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-    res.send('Simulados API');
+    res.send('Welcome stranger');
 });
 
-app.listen(3000, function () {
-    console.log('Simulados API rodando na porta 3000!');
+//Models
+var models = require("./app/models");
+
+//Routes
+var authRoute = require('./app/routes/auth.js')(app);
+var userRoute = require('./app/routes/user.js')(app);
+
+//Sync Database
+models.sequelize.sync().then(function () {
+    console.log('You\'re pretty good. Database looks fine')
+}).catch(function (err) {
+    console.log(err, "Something wrong is not right with the Database Update!")
+});
+
+app.listen(3000, function (err) {
+    if (!err) console.log("It's alive!!!"); else console.log(err)
 });

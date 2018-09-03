@@ -1,5 +1,5 @@
 const { ExtractJwt, Strategy } = require('passport-jwt');
-const db = require('../models/index.js');
+const db = require('../config/datasource.js');
 const User = require('../models/user.js')(db.sequelize, db.Sequelize);
 const CONFIG        = require('../config/config');
 

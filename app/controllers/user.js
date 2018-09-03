@@ -1,5 +1,5 @@
 var exports = module.exports = {}
-var db = require('../models/index.js');
+var db = require('../config/datasource.js');
 var User = require('../models/user.js')(db.sequelize, db.Sequelize);
 var bCrypt = require('bcrypt-nodejs');
 var validator = require('validator');

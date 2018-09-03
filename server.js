@@ -1,5 +1,5 @@
 var express = require('express')
-var app = express()
+var app = module.exports = express();
 var passport = require('passport')
 var session = require('express-session')
 var bodyParser = require('body-parser')

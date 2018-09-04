@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 });
 
 //Models
-var models = require("./app/models");
+var models = require("./app/config/datasource");
 
 //Routes
 var authRoute = require('./app/routes/auth.js')(app);

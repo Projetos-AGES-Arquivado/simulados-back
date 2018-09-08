@@ -1,0 +1,45 @@
+{
+  "user": [
+    {
+      "name": "Admin",
+      "username": "admin",
+      "about": "about me",
+      "email": "admin@simulados.com",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "last_login": null,
+      "status": "active"
+    }
+  ],
+  "question": [
+    {
+      "userId": 1,
+      "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "approved": 1
+    },
+    {
+      "userId": 1,
+      "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "approved": 1
+    },
+    {
+      "userId": 1,
+      "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "approved": 1
+    },
+    {
+      "userId": 1,
+      "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "approved": 1
+    },
+    {
+      "userId": 1,
+      "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "approved": 1
+    },
+    {
+      "userId": 1,
+      "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "approved": 1
+    }
+  ]
+}

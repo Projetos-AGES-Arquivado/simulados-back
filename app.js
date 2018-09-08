@@ -21,8 +21,11 @@ const userRoute = require('./app/routes/user.js')(app);
 require('./app/routes/answer.js')(app);
 
 //Sync Database
-models.sequelize.sync().then(function () {
+/*models.sequelize.sync().then(function () {
+    //Populate database
+    var populate = require('./app/config/populate')
+    populate.run()
     console.log('You\'re pretty good. Database looks fine')
 }).catch(function (err) {
     console.log(err, "Something wrong is not right with the Database Update!")
-});
+});*/

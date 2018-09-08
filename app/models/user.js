@@ -1,5 +1,7 @@
 const jwt           	= require('jsonwebtoken');
-const CONFIG            = require('../config/config');
+const config = require('../config/config');
+const Sequelize = require("sequelize");
+const sequelize = new Sequelize(config.database, config.username, config.password, {'dialect':config.production.dialect});
 
 module.exports = (sequelize, Sequelize) => {
 
@@ -15,7 +17,7 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     User.prototype.getJWT = function () {
-        return "Bearer "+jwt.sign({user_id:this.id}, CONFIG.auth.secret, {expiresIn: CONFIG.auth.expiration_time});
+        return "Bearer "+jwt.sign({user_id:this.id}, config.auth.secret, {expiresIn: config.auth.expiration_time});
     };
 
     User.prototype.toWeb = function (pw) {

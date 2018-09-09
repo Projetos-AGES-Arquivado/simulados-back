@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha",
+    "test": "npm run test-integration",
     "start": "node server.js",
     "test-integration": "mocha --opts test/integration/mocha.opts test/integration/*.js"
   },

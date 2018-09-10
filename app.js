@@ -18,6 +18,7 @@ var models = require("./app/config/datasource");
 //Routes
 var authRoute = require('./app/routes/auth.js')(app);
 var userRoute = require('./app/routes/user.js')(app);
+var examRoute = require('./app/routes/exam.js')(app);
 
 //Sync Database
 /*
@@ -30,7 +31,5 @@ models.sequelize.sync().then(function () {
     console.log('You\'re pretty good. Database looks fine')
 }).catch(function (err) {
     console.log(err, "Something wrong is not right with the Database Update!")
-});
-*/
-
+});*/
 

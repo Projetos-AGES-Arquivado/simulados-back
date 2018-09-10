@@ -16,9 +16,10 @@ app.get('/', function (req, res) {
 const models = require("./app/config/datasource");
 
 //Routes
-const authRoute = require('./app/routes/auth.js')(app);
-const userRoute = require('./app/routes/user.js')(app);
+require('./app/routes/auth.js')(app);
+require('./app/routes/user.js')(app);
 require('./app/routes/answer.js')(app);
+require('./app/routes/exam.js')(app);
 
 //Sync Database
 /*models.sequelize.sync().then(function () {

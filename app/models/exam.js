@@ -10,5 +10,8 @@ module.exports = (sequelize, Sequelize) => {
         aob_exam_year: {type: Sequelize.INTEGER}
     });
 
+    //Exam.hasMany(sequelize.import('./question'), {through: 'exam_question'})
+    //Exam.hasMany(sequelize.import('./examQuestion'))
+
     return Exam;
 }

@@ -1,34 +1,33 @@
 module.exports = (sequelize, DataTypes) => {
-    const Participation = sequelize.define('participation', {
+    const Coordinator = sequelize.define('coordinator', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        practise_exam_id: {
+        area_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             notEmpty: true
         },
-        student_id: {
-            type: DataTypes.INTEGER,
+        email: {
+            type: DataTypes.STRING,
             allowNull: false,
             notEmpty: true
         },
-        time_of_conclusion: {
-            type: DataTypes.DATE
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            notEmpty: true
         },
-        numberOfQuestions: {
-            type: DataTypes.INTEGER
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            notEmpty: true
         },
-        numberOfCorrectAnswers: {
-            type: DataTypes.INTEGER
-        },
-        numberOfWrongAnswers: {
-            type: DataTypes.INTEGER
-        },
-        hitRatio: {
-            type: DataTypes.DECIMAL
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         created_at: {
             type: DataTypes.DATE,
@@ -44,5 +43,5 @@ module.exports = (sequelize, DataTypes) => {
         underscored: true
     });
 
-    return Participation;
+    return Coordinator;
 }

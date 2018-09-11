@@ -1,12 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
-    const Profile = sequelize.define('profile', {
+    const Area = sequelize.define('area', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        type: {
+        name: {
             type: DataTypes.STRING,
+            allowNull: false,
             notEmpty: true
         },
         created_at: {
@@ -23,5 +24,5 @@ module.exports = (sequelize, DataTypes) => {
         underscored: true
     });
 
-    return Profile;
+    return Area;
 }

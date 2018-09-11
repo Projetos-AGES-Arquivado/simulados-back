@@ -11,7 +11,8 @@ module.exports = (sequelize, Sequelize) => {
     });
 
     Question.belongsTo(sequelize.import('./user'))
-    Question.belongsToMany(sequelize.import('./exam'), {through: 'exam_question'})
+    //Question.belongsToMany(sequelize.import('./exam'), {through: 'exam_question'})
+    //Question.hasMany(sequelize.import('./examQuestion'), {through: 'exam_question'})
 
     return Question;
 }

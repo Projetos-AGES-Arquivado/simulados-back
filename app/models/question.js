@@ -1,20 +1,39 @@
 module.exports = (sequelize, DataTypes) => {
-    const Administrator = sequelize.define('administrator', {
+    const Question = sequelize.define('question', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        email: {
+        professor_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        coordinator_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        subarea_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        statement: {
             type: DataTypes.STRING,
+            allowNull: false,
             notEmpty: true
         },
-        name: {
-            type: DataTypes.STRING,
-            notEmpty: true
+        approved: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true
         },
-        password: {
+        studyMaterials: {
             type: DataTypes.STRING,
+            allowNull: true,
+            notEmpty: false
+        },
+        comment: {
+            type: DataTypes.STRING,
+            allowNull: false,
             notEmpty: true
         },
         created_at: {
@@ -27,10 +46,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
             defaultValue: DataTypes.NOW
         }
-    },
-    {
+    }, {
         underscored: true
     });
 
-    return Administrator;
+    return Question;
 }

@@ -1,13 +1,17 @@
 module.exports = (sequelize, DataTypes) => {
-    const Profile = sequelize.define('profile', {
+    const Answer = sequelize.define('answer', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        type: {
-            type: DataTypes.STRING,
-            notEmpty: true
+        question_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        participation_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true
         },
         created_at: {
             type: DataTypes.DATE,
@@ -23,5 +27,5 @@ module.exports = (sequelize, DataTypes) => {
         underscored: true
     });
 
-    return Profile;
+    return Answer;
 }

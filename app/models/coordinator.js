@@ -1,21 +1,33 @@
 module.exports = (sequelize, DataTypes) => {
-    const Administrator = sequelize.define('administrator', {
+    const Coordinator = sequelize.define('coordinator', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
+        area_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            notEmpty: true
+        },
         email: {
             type: DataTypes.STRING,
+            allowNull: false,
             notEmpty: true
         },
         name: {
             type: DataTypes.STRING,
+            allowNull: false,
             notEmpty: true
         },
         password: {
             type: DataTypes.STRING,
+            allowNull: false,
             notEmpty: true
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         created_at: {
             type: DataTypes.DATE,
@@ -27,10 +39,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
             defaultValue: DataTypes.NOW
         }
-    },
-    {
+    }, {
         underscored: true
     });
 
-    return Administrator;
+    return Coordinator;
 }

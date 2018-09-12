@@ -3,6 +3,10 @@ const app = module.exports = express();
 const passport = require('passport')
 const session = require('express-session')
 const bodyParser = require('body-parser')
+var cors = require('cors')
+
+//Allow requests from:
+app.use(cors({origin: 'http://localhost:3001'}));
 
 //For BodyParser
 app.use(bodyParser.urlencoded({extended: true}));

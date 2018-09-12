@@ -1,8 +1,8 @@
-var express = require('express')
-var app = module.exports = express();
-var passport = require('passport')
-var session = require('express-session')
-var bodyParser = require('body-parser')
+const express = require('express')
+const app = module.exports = express();
+const passport = require('passport')
+const session = require('express-session')
+const bodyParser = require('body-parser')
 
 //For BodyParser
 app.use(bodyParser.urlencoded({extended: true}));
@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 });
 
 //Models
-var models = require("./app/config/datasource");
+const models = require("./app/config/datasource");
 
 //Routes
 var authRoute = require('./app/routes/auth.js')(app);
@@ -21,6 +21,7 @@ var userRoute = require('./app/routes/user.js')(app);
 var examRoute = require('./app/routes/exam.js')(app);
 
 //Sync Database
+
 /*
 models.sequelize.sync().then(function () {
 
@@ -32,4 +33,3 @@ models.sequelize.sync().then(function () {
 }).catch(function (err) {
     console.log(err, "Something wrong is not right with the Database Update!")
 });*/
-

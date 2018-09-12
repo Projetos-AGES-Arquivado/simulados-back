@@ -1,4 +1,15 @@
 {
+  "area": [
+    {
+      "name": "Area 51"
+    }
+  ],
+  "subarea": [
+    {
+      "name": "Area 51.5",
+      "area_id": 1
+    }
+  ],
   "user": [
     {
       "name": "Admin",
@@ -10,36 +21,87 @@
       "status": "active"
     }
   ],
+  "professor": [
+    {
+      "email": "admin@simulados.com",
+      "name": "professor",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active":true
+    }
+  ],
+  "coordinator": [
+    {
+      "area_id": 1,
+      "email": "admin@simulados.com",
+      "name": "professor",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active":true
+    }
+  ],
+  "profile": [
+    {
+      "type": "Profile 1"
+    }
+  ],
+  "student": [
+    {
+      "profile_id": 1,
+      "email": "admin@simulados.com",
+      "name": "aluno",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active":true
+    }
+  ],
   "question": [
     {
-      "userId": 1,
+      "user_id": 1,
       "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      "approved": 1
+      "approved": 1,
+      "professor_id": 1,
+      "coordinator_id": 1,
+      "subarea_id": 1,
+      "studyMaterials":"Lorem ipsum",
+      "comment":"Lorem ipsum"
     },
     {
-      "userId": 1,
+      "user_id": 1,
       "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      "approved": 1
+      "approved": 1,
+      "professor_id": 1,
+      "coordinator_id": 1,
+      "subarea_id": 1,
+      "studyMaterials":"Lorem ipsum",
+      "comment":"Lorem ipsum"
     },
     {
-      "userId": 1,
+      "user_id": 1,
       "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      "approved": 1
+      "approved": 1,
+      "professor_id": 1,
+      "coordinator_id": 1,
+      "subarea_id": 1,
+      "studyMaterials":"Lorem ipsum",
+      "comment":"Lorem ipsum"
     },
     {
-      "userId": 1,
+      "user_id": 1,
       "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      "approved": 1
+      "approved": 1,
+      "professor_id": 1,
+      "coordinator_id": 1,
+      "subarea_id": 1,
+      "studyMaterials":"Lorem ipsum",
+      "comment":"Lorem ipsum"
     },
     {
-      "userId": 1,
+      "user_id": 1,
       "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      "approved": 1
-    },
-    {
-      "userId": 1,
-      "statement": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-      "approved": 1
+      "approved": 1,
+      "professor_id": 1,
+      "coordinator_id": 1,
+      "subarea_id": 1,
+      "studyMaterials":"Lorem ipsum",
+      "comment":"Lorem ipsum"
     }
   ]
 }

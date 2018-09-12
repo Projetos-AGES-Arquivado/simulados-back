@@ -1,13 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
-    const Profile = sequelize.define('profile', {
+    const Alternative = sequelize.define('alternative', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        type: {
+        question_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        professor_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        description: {
             type: DataTypes.STRING,
+            allowNull: false,
             notEmpty: true
+        },
+        correct: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         },
         created_at: {
             type: DataTypes.DATE,
@@ -23,5 +36,5 @@ module.exports = (sequelize, DataTypes) => {
         underscored: true
     });
 
-    return Profile;
+    return Alternative;
 }

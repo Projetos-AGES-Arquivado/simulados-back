@@ -1,13 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
-    const Profile = sequelize.define('profile', {
+    const Practise_Exam = sequelize.define('practise_exam', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        type: {
-            type: DataTypes.STRING,
-            notEmpty: true
+        aob_exam: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        aob_exam_year: {
+            type: DataTypes.INTEGER
         },
         created_at: {
             type: DataTypes.DATE,
@@ -19,9 +22,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
             defaultValue: DataTypes.NOW
         }
-    }, {
+    },
+    {
         underscored: true
     });
 
-    return Profile;
+    return Practise_Exam;
 }

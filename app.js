@@ -22,7 +22,8 @@ require('./app/routes/answer.js')(app);
 require('./app/routes/exam.js')(app);
 
 //Sync Database
-/*models.sequelize.sync().then(function () {
+/*
+models.sequelize.sync().then(function () {
     //Populate database
     var populate = require('./app/config/populate')
     populate.run()

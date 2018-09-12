@@ -21,7 +21,7 @@ exports.signup = function (req, res) {
                         email: body.email,
                         password: bCrypt.hashSync(body.password, bCrypt.genSaltSync(8), null),
                         name: body.name,
-                        username: body.name
+                        username: body.username
                     };
 
                     User.create(data).then(function (user) {
@@ -35,7 +35,7 @@ exports.signup = function (req, res) {
                 }
             })
         } catch (e) {
-            console.log(e)
+            return res.status(400).json({success: false, error: e.message});
         }
     }
 }
@@ -43,33 +43,33 @@ exports.signup = function (req, res) {
 exports.signin = function (req, res) {
     try {
         const body = req.body
-        //let user = await to(authService.authUser(req.body));
 
-        if(!body.email) throw new Error('Please enter an valid email to login');
+        if(!body.email) {
+            return res.status(400).json({success: false, error: 'Please enter an valid email to login'});
+        } else if(!body.password) {
+            return res.status(400).json({success: false, error: 'Please enter a password to login'});
+        } else {
+            User.findOne({where: {email: body.email}}).then(function (user) {
 
-        if(!body.password) throw new Error('Please enter a password to login');
-
-        User.findOne({where: {email: body.email}}).then(function (user) {
-
-            if (!user)
-                throw new Error('Email does not exist')
-
-            if (!bCrypt.compareSync(body.password, user.password))
-                throw new Error('Incorrect password')
-
-            let data = {
-                success: true,
-                message: 'Successfully login',
-                user: user.toJSON(),
-                token: user.getJWT()
-            }
-
-            res.status(200).json(data)
-
-        }).catch(function (err) {
-            return {'error':err}
-        })
-
+                if (!user)
+                    throw new Error('Email does not exist')
+    
+                if (!bCrypt.compareSync(body.password, user.password))
+                    throw new Error('Incorrect password')
+    
+                let data = {
+                    success: true,
+                    message: 'Successfully login',
+                    user: user.toJSON(),
+                    token: user.getJWT()
+                }
+    
+                res.status(200).json(data)
+    
+            }).catch(function (err) {
+                return {'error':err}
+            })
+        }
     }catch (e) {
         return res.status(400).json({success: false, error: e.message});
     }

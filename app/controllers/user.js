@@ -4,7 +4,7 @@ var User = require('../models/user.js')(db.sequelize, db.Sequelize);
 var bCrypt = require('bcrypt-nodejs');
 var validator = require('validator');
 
-exports.create = async function (req, res) {
+exports.create = function (req, res) {
     const body = req.body;
 
     if (!body.email || !validator.isEmail(body.email)) {
@@ -21,7 +21,7 @@ exports.create = async function (req, res) {
                         email: body.email,
                         password: bCrypt.hashSync(body.password, bCrypt.genSaltSync(8), null),
                         name: body.name,
-                        username: body.name
+                        username: body.username
                     };
 
                     User.create(data).then(function (user) {
@@ -34,7 +34,7 @@ exports.create = async function (req, res) {
                 }
             })
         } catch (e) {
-            console.log(e)
+            return res.status(400).json({success: false, error: e.message});
         }
     }
 };
@@ -45,11 +45,11 @@ exports.findAll = function (req, res) {
             res.status(200).json({
                 success: true,
                 message: 'Users found',
-                users: JSON.stringify(users)
+                users: users
             })
         })
-    }catch (e) {
-        console.log(e)
+    } catch (e) {
+        return res.status(400).json({success: false, error: e.message});
     }
 };
 
@@ -69,8 +69,8 @@ exports.findOne = function (req, res) {
                 })
             }
         })
-    }catch (e) {
-        console.log(e)
+    } catch (e) {
+        return res.status(400).json({success: false, error: e.message});
     }
 };
 
@@ -112,8 +112,8 @@ exports.update = function (req, res) {
                 })
             })
         }
-    }catch (e) {
-        console.log(e)
+    } catch (e) {
+        return res.status(400).json({success: false, error: e.message});
     }
 };
 
@@ -133,7 +133,7 @@ exports.delete = function (req, res) {
                     })
                 }
             })
-    }catch (e) {
-        console.log(e)
+    } catch (e) {
+        return res.status(400).json({success: false, error: e.message});
     }
 };

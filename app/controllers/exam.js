@@ -16,48 +16,49 @@ exports.create = async function (req, res) {
         return res.status(400).json({success: false, error: 'You must inform student id'});
     } else {
         try {
-            Student.findById(body.student_id).then((student) => {
+            Student.findById(body.student_id).then( async (student) => {
                 if (!student) {
                     return res.status(400).json({success: false, error: 'User not found'});
                 } else {
                     let date = new Date()
 
                     //Fetch questions
-                    Question.all({where: {approved: 1}}).then((questions) => {
+                    let questions = await Question.all({where: {approved: 1}}).then((questions) => {
+                        return questions
+                    });
 
-                        //Create exam
-                        Exam.create({aob_exam: true, aob_exam_year: date.getFullYear()}).then((exam) => {
+                    //Create exam
+                    let exam = await Exam.create({aob_exam: true, aob_exam_year: date.getFullYear()}).then((exam) => {
+                        return exam
+                    });
 
-                            //Add questions
-                            Promise.all(
-                                questions.map((q) => {
-                                    return ExamQuestion.create({practise_exam_id: exam.id, question_id: q.id})
-                                })
-                            ).then((data) => {
+                    //Add questions
+                    await Promise.all(
+                        questions.map((q) => {
+                            return ExamQuestion.create({practise_exam_id: exam.id, question_id: q.id})
+                        })
+                    )
 
-                                //Create participation
-                                Participation.create(
-                                    {
-                                        participation_date: date,
-                                        time_of_conclusion: null,
-                                        student_id: student.id,
-                                        practise_exam_id: exam.id,
-                                        numberOfQuestions: questions.length,
-                                        numberOfCorrectAnswers: 0,
-                                        numberOfWrongAnswers: 0,
-                                        hitRatio: 0,
-                                    })
-                                    .then((participation) => {
-                                        res.status(201).json({
-                                            success: true,
-                                            message: 'Successfully created new exam',
-                                            participation: participation.toJSON(),
-                                            exam: exam.toJSON()
-                                        })
-                                    })
+                    //Create participation
+                    Participation.create(
+                        {
+                            participation_date: date,
+                            time_of_conclusion: null,
+                            student_id: student.id,
+                            practise_exam_id: exam.id,
+                            numberOfQuestions: questions.length,
+                            numberOfCorrectAnswers: 0,
+                            numberOfWrongAnswers: 0,
+                            hitRatio: 0,
+                        })
+                        .then((participation) => {
+                            res.status(201).json({
+                                success: true,
+                                message: 'Successfully created new exam',
+                                participation: participation.toJSON(),
+                                exam: exam.toJSON()
                             })
                         })
-                    })
                 }
             })
         } catch (e) {

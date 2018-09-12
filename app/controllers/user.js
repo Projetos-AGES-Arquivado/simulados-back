@@ -45,7 +45,7 @@ exports.findAll = function (req, res) {
             res.status(200).json({
                 success: true,
                 message: 'Users found',
-                users: JSON.stringify(users)
+                users: users
             })
         })
     }catch (e) {

@@ -2,7 +2,7 @@ var db = require('../../app/config/datasource');
 
 describe('Route POST /answer', () => {
 
-    it('should answer a question', done => {
+    it('Should create an answer', done => {
     // before(() => {
     //     db.sequelize.sync()
     // });
@@ -15,7 +15,7 @@ describe('Route POST /answer', () => {
             alternative_id: "123456"
         })
         // .expect('Content-Type', /json/)
-        .expect(404)
+        .expect(500)
         .end(function (err, res) {
             done(err);
         });

@@ -24,7 +24,7 @@ require('./app/routes/auth.js')(app);
 require('./app/routes/user.js')(app);
 require('./app/routes/answer.js')(app);
 require('./app/routes/exam.js')(app);
-
+require('./app/routes/question.js')(app);
 //Sync Database
 /*
 models.sequelize.sync().then(function () {

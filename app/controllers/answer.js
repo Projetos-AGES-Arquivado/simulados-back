@@ -12,11 +12,11 @@ exports.create = async function (req, res) {
     let errors = {};
 
     if (!body.question_id) {
-        errors['question_id'] = 'This field is required.'
+        errors['question_id'] = 'Este campo é necessário!'
     } else if (!body.participation_id) {
-        errors['participation_id'] = 'This field is required.'
+        errors['participation_id'] = 'Este campo é necessário!'
     } else if (!body.alternative_id) {
-        errors['alternative_id'] = 'This field is required.'
+        errors['alternative_id'] = 'Este campo é necessário!'
     }
     if (Object.keys(errors).length) {
         return res.status(400).send({
@@ -26,24 +26,14 @@ exports.create = async function (req, res) {
 
     try {
         //Validating if given FKS exist
-        let question = await QuestionModel.findOne({ where: { id: body.question_id } }).then((question) => {
-            return question
-        });
-        if (!question) {
-            return res.status(404).json({ success: false, error: 'Question not found on database!' });
+        if (!await QuestionModel.findOne({ where: { id: body.question_id } })) {
+            return res.status(404).json({ success: false, error: 'Questão não encontrada na base de dados!' });
         }
-
-        let participation = await ParticipationModel.findOne({ where: { id: body.participation_id } }).then((participation) => {
-            return participation
-        });
-        if (!participation) {
-            return res.status(404).json({ success: false, error: 'Participation not found on database!' });
+        if (!await ParticipationModel.findOne({ where: { id: body.participation_id } })) {
+            return res.status(404).json({ success: false, error: 'Participação não encontrada na base de dados!' });
         }
-
-        let alternative = await AlternativeModel.findOne({ where: { id: body.alternative_id } }).then((alternative) => {
-        });
-        if (!alternative) {
-            return res.status(404).json({ success: false, error: 'Alternative not found on database!' });
+        if (!await AlternativeModel.findOne({ where: { id: body.alternative_id } })) {
+            return res.status(404).json({ success: false, error: 'Alternativa não encontrada na base de dados!' });
         }
 
         // Check if answer already exist
@@ -55,7 +45,7 @@ exports.create = async function (req, res) {
             }
         }).then((answer) => {
             if (answer) {
-                return res.status(400).json({ success: false, error: 'Answer already exist' });
+                return res.status(400).json({ success: false, error: 'Resposta já existe!' });
             } else {
                 // Save new data on database and send it back to the client
                 var data = {
@@ -66,7 +56,7 @@ exports.create = async function (req, res) {
                 AnswerModel.create(data).then(function (answer) {
                     res.status(201).json({
                         success: true,
-                        message: 'Answer created succesfully',
+                        message: 'Resposta criada com sucesso!',
                         answer: answer.toJSON()
                     });
                 });

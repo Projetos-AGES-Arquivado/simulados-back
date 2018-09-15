@@ -2,7 +2,7 @@ describe('Routes Auth', () => {
     //const User = app.datasource.models.Users;
 
     describe('Route GET /signin', () => {
-        it('should return succes, message, user and token', done => {
+        it('should return succes, message and token', done => {
             
             request
             .get('/signin')

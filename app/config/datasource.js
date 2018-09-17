@@ -42,9 +42,9 @@ db.participations.belongsTo(db.practise_exams);
 db.participations.hasMany(db.answers);
 db.questions.hasMany(db.answers);
 db.alternatives.hasMany(db.answers);
-db.answers.belongsTo(db.participations);
-db.answers.belongsTo(db.questions);
-db.answers.belongsTo(db.alternatives);
+db.answers.belongsTo(db.participations, {foreignKey: 'participation_id'});
+db.answers.belongsTo(db.questions, {foreignKey: 'question_id'});
+db.answers.belongsTo(db.alternatives, {foreignKey: 'alternative_id'});
 
 //Alternatives
 db.questions.hasMany(db.alternatives);

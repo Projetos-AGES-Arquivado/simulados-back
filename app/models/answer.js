@@ -7,11 +7,15 @@ module.exports = (sequelize, DataTypes) => {
         },
         question_id: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            allowNull: false
         },
         participation_id: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            allowNull: false
+        },
+        alternative_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         created_at: {
             type: DataTypes.DATE,

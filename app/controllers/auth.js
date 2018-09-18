@@ -54,7 +54,6 @@ exports.signin = async (req, res) => {
         } else if(!body.password) {
             return res.status(400).json({success: false, error: 'Please enter a password to login'});
         } else {
-
             let user = await findUserByEmail(body.email)
 
             if (!user)

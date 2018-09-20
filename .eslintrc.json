@@ -1,7 +1,9 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "node":true,
+        "mocha":true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -11,7 +13,7 @@
     "rules": {
         "indent": [
             "error",
-            "tab"
+            4
         ],
         "linebreak-style": [
             "error",
@@ -25,5 +27,14 @@
             "error",
             "never"
         ]
-    }
+    }/*,
+    "globals": {
+        "describe": true,
+        "it": true,
+        "expect": true,
+        "app": true,
+        "request": true,
+        "beforeEach": true,
+        "require": true
+    }*/
 }

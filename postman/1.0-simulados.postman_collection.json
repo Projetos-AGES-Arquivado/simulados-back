@@ -114,6 +114,32 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "questions",
+			"item": [
+				{
+					"name": "/questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/questions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Return the the questions of exam with pagination"
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

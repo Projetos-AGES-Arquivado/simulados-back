@@ -51,10 +51,10 @@ db.questions.hasMany(db.alternatives);
 db.alternatives.belongsTo(db.questions);
 
 //PractiseExam_Questions
-db.practise_exams.hasMany(db.practiseexam_questions);
-db.questions.hasMany(db.practiseexam_questions);
-db.practiseexam_questions.belongsTo(db.practise_exams);
-db.practiseexam_questions.belongsTo(db.questions);
+db.practise_exams.hasMany(db.practiseexam_questions, {foreignKey: 'practise_exam_id', sourceKey: 'id'});
+db.questions.hasMany(db.practiseexam_questions, {foreignKey: 'question_id', sourceKey: 'id'});
+db.practiseexam_questions.belongsTo(db.practise_exams, {foreignKey: 'practise_exam_id', targetKey: 'id'});
+db.practiseexam_questions.belongsTo(db.questions, {foreignKey: 'question_id', targetKey: 'id'});
 
 //Questions
 db.coordinators.hasMany(db.questions);

@@ -26,7 +26,7 @@ require('./app/routes/answer.js')(app);
 require('./app/routes/exam.js')(app);
 require('./app/routes/question.js')(app);
 //Sync Database
-/*
+
 models.sequelize.sync().then(function () {
     //Populate database
     var populate = require('./app/config/populate')
@@ -34,4 +34,4 @@ models.sequelize.sync().then(function () {
     console.log('You\'re pretty good. Database looks fine')
 }).catch(function (err) {
     console.log(err, "Something wrong is not right with the Database Update!")
-});*/
+});

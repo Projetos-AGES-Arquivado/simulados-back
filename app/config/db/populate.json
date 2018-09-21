@@ -1,13 +1,63 @@
 {
+  "administrator" : [
+	{
+	  "name": "Administrators",
+      "email": "administrators@simulados.com",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq"
+	}
+  ],
   "area": [
     {
       "name": "Area 51"
+    },
+    {
+      "name": "Direito Civil"
+    },
+    {
+      "name": "Direito comercial ou empresarial"
+    },
+	{
+      "name": "Direito do consumidor"
+    },
+	{
+      "name": "Direito da tecnologia da informação"
+    },
+	{
+      "name": "Direito tributário"
+    },
+	{
+      "name": "Direito administrativo"
+    },
+	{
+      "name": "Direito previdenciário"
+    },
+	{
+      "name": "Direito penal ou criminal"
+    },
+	{
+      "name": "Mediação, conciliação e arbitragem"
     }
   ],
   "subarea": [
     {
       "name": "Area 51.5",
       "area_id": 1
+    },
+	{
+      "name": "Direito contratual",
+      "area_id": 2
+    },
+	{
+      "name": "Direito de família",
+      "area_id": 2
+    },
+	{
+      "name": "Direito das coisas",
+      "area_id": 2
+    },
+	{
+      "name": "Responsabilidade Civil",
+      "area_id": 2
     }
   ],
   "user": [
@@ -20,14 +70,51 @@
       "last_login": null,
       "status": "active"
     }
-  ],
+  ],  
   "professor": [
     {
       "email": "admin@simulados.com",
       "name": "professor",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
       "active": true
+    },
+    {
+      "email": "professor@gmail.com",
+      "name": "Professor Familia",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active": true
+    },
+    {
+      "email": "professor2@gmail.com",
+      "name": "Professor Coisas",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active": true
+    },
+    {
+      "email": "professor3@gmail.com",
+      "name": "Professor Responsabilidade",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active": true
     }
+		
+  ],
+  "professor_subareas": [
+	{
+	  "professor_id": 1,
+	  "subarea_id": 1
+	},
+	{
+	  "professor_id": 2,
+	  "subarea_id": 2
+	},
+	{
+	  "professor_id": 3,
+	  "subarea_id": 3
+	},
+	{
+	  "professor_id": 4,
+	  "subarea_id": 4
+	}
   ],
   "coordinator": [
     {
@@ -36,11 +123,41 @@
       "name": "professor",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
       "active": true
-    }
+    },
+	{
+      "area_id": 2,
+      "email": "coordinators1@simulados.com",
+      "name": "Coordenador Civil",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active": true
+    },
+    {
+      "area_id": 3,
+      "email": "coordinators2@simulados.com",
+      "name": "Coordenador Comercial",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active": true
+    },
+    {
+      "area_id": 4,
+      "email": "coordinators3@simulados.com",
+      "name": "Coordenador Consumidor",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active": true
+    }	
   ],
   "profile": [
+	{
+	  "type": "Profile 1"
+	},
     {
-      "type": "Profile 1"
+      "type": "FREE"
+    },
+	{
+      "type": "VIP"
+    },
+	{
+      "type": "PUC"
     }
   ],
   "student": [
@@ -48,6 +165,27 @@
       "profile_id": 1,
       "email": "admin@simulados.com",
       "name": "aluno",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active": true
+    },
+	{
+      "profile_id": 1,
+      "email": "student@simulados.com",
+      "name": "Student 1",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active": true
+    },
+	{
+      "profile_id": 2,
+      "email": "student2@simulados.com",
+      "name": "Student 2",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "active": true
+    },
+	{
+      "profile_id": 3,
+      "email": "student3@simulados.com",
+      "name": "Student 3",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
       "active": true
     }
@@ -792,7 +930,136 @@
       "professor_id": 1,
       "description": "Em nenhuma hipótese pode haver a exploração de riquezas minerais e do subsolo em terras ocupadas por populações indígenas.",
       "correct": 0
+    },
+	{
+      "question_id": 1,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 1
+    },
+	{
+      "question_id": 1,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 1,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 1,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 2,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 1
+    },
+	{
+      "question_id": 2,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 2,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 2,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },{
+      "question_id": 3,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 1
+    },
+	{
+      "question_id": 3,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 3,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 3,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 4,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 1
+    },
+	{
+      "question_id": 4,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 4,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 4,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 5,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 1
+    },
+	{
+      "question_id": 5,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 5,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
+    },
+	{
+      "question_id": 5,
+      "professor_id": 1,
+      "description": "Alternativa 1",
+      "correct": 0
     }
+  ],
+  "practise_exam": [
+	{
+		"aob_exam": 1,
+		"aob_exam_year": 2015
+	},
+	{
+		"aob_exam": 0,
+		"aob_exam_year": 2015
+	}		
   ],
   "practiseexam_questions": [
     {
@@ -894,6 +1161,46 @@
       "id": 20,
       "question_id": 20,
       "practise_exam_id": 20
+    },
+	{
+      "question_id": 1,
+      "practise_exam_id": 1
+    },
+	{
+      "question_id": 2,
+      "practise_exam_id": 1
+    },
+	{
+      "question_id": 3,
+      "practise_exam_id": 1
+    },
+	{
+      "question_id": 4,
+      "practise_exam_id": 1
+    },
+	{
+      "question_id": 5,
+      "practise_exam_id": 1
+    },
+	{
+      "question_id": 1,
+      "practise_exam_id": 2
+    },
+	{
+      "question_id": 2,
+      "practise_exam_id": 2
+    },	
+	{
+      "question_id": 3,
+      "practise_exam_id": 2
+    },
+	{
+      "question_id": 4,
+      "practise_exam_id": 1
+    },	
+	{
+      "question_id": 5,
+      "practise_exam_id": 1
     }
   ],
   "participation": [
@@ -902,6 +1209,53 @@
       "practise_exam_id": 20,
       "student_id": 1,
       "numberOfQuestions": 20
+    },
+	{
+      "practise_exam_id": 1,
+      "student_id": 1,
+      "numberOfQuestions": 5
+    },
+	{
+      "practise_exam_id": 2,
+      "student_id": 1,
+      "numberOfQuestions": 5
+    }
+  ],
+  "answer": [
+	{
+      "question_id": 1,
+      "participation_id": 1,
+      "alternative_id": 1
+    },
+	{
+      "question_id": 1,
+      "participation_id": 1,
+      "alternative_id": 5
+    },
+	{
+      "question_id": 1,
+      "participation_id": 2,
+      "alternative_id": 9
+    },
+	{
+      "question_id": 1,
+      "participation_id": 3,
+      "alternative_id": 13
+    },
+	{
+      "question_id": 1,
+      "participation_id": 4,
+      "alternative_id": 17
+    },
+	{
+      "question_id": 1,
+      "participation_id": 5,
+      "alternative_id": 21
+    },
+	{
+      "question_id": 1,
+      "participation_id": 6,
+      "alternative_id": 25
     }
   ]
 }

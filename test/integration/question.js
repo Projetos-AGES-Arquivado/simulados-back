@@ -22,7 +22,7 @@ describe("Route GET /questions", () => {
   it("Exam not informed", done => {
     request.get("/questions").end((err, res) => {
       expect(res.status).to.equal(400);
-      expect(res.body.error).to.equal("Exam not informed");
+      expect(res.body.error).to.equal("Simulado não informado!");
       done();
     });
   });
@@ -30,7 +30,7 @@ describe("Route GET /questions", () => {
   it("Exam not found", done => {
     request.get("/questions?examId=90").end((err, res) => {
       expect(res.status).to.equal(401);
-      expect(res.body.error).to.equal("Exam not found");
+      expect(res.body.error).to.equal("Simulado não informado!");
       done();
     });
   });

@@ -1229,11 +1229,6 @@
     },
 	{
       "question_id": 1,
-      "participation_id": 1,
-      "alternative_id": 5
-    },
-	{
-      "question_id": 1,
       "participation_id": 2,
       "alternative_id": 9
     },

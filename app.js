@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 var cors = require('cors')
 
 //Allow requests from:
-app.use(cors({origin: 'http://localhost:3001'}));
+app.use(cors({origin: '*'}));
 
 //For BodyParser
 app.use(bodyParser.urlencoded({extended: true}));

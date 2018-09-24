@@ -17,6 +17,8 @@ exports.create = async function (req, res) {
         errors['participation_id'] = 'Este campo é necessário!'
     } else if (!body.alternative_id) {
         errors['alternative_id'] = 'Este campo é necessário!'
+    } else if (!body.time_to_answer) {
+        errors['time_to_answer'] = 'Este campo é necessário!'
     }
     if (Object.keys(errors).length) {
         return res.status(400).send({
@@ -25,27 +27,69 @@ exports.create = async function (req, res) {
     }
 
     try {
-        //Validating if given FKS exist
-        if (!await QuestionModel.findOne({ where: { id: body.question_id } })) {
-            return res.status(404).json({ success: false, error: 'Questão não encontrada na base de dados!' });
-        }
+        // Validating if given FKS exist
         if (!await ParticipationModel.findOne({ where: { id: body.participation_id } })) {
             return res.status(404).json({ success: false, error: 'Participação não encontrada na base de dados!' });
         }
-        if (!await AlternativeModel.findOne({ where: { id: body.alternative_id } })) {
+        // Alternative will be used later to check if it is correct or not
+        let alternative = await AlternativeModel.findOne({ where: { id: body.alternative_id } })
+        if (!alternative) {
             return res.status(404).json({ success: false, error: 'Alternativa não encontrada na base de dados!' });
         }
+        if (!await QuestionModel.findOne({ where: { id: body.question_id } })) {
+            return res.status(404).json({ success: false, error: 'Questão não encontrada na base de dados!' });
+        }
 
+        console.log("Funciona: " + alternative.correct);
         // Check if answer already exist
         AnswerModel.findOne({
             where: {
                 question_id: body.question_id,
-                participation_id: body.participation_id,
-                alternative_id: body.alternative_id
+                participation_id: body.participation_id
             }
         }).then((answer) => {
+            // If the answer exist, it should be updated with new given time_to_answer and alternative_id
             if (answer) {
-                return res.status(400).json({ success: false, error: 'Resposta já existe!' });
+                if (!body.time_to_answer) {
+                    return res.status(400).json({ success: false, error: 'time_to_answer = Este campo é necessário para atualizar uma resposta!' });
+                } else {
+                    // Calling update function
+                    AnswerModel.update(
+                        { time_to_answer: body.time_to_answer, alternative_id: body.alternative_id },
+                        {
+                            where: {
+                                question_id: body.question_id,
+                                participation_id: body.participation_id
+                            }
+                        }
+                    ).then(function (updateStatus) {
+                        // The update function returns 1 if update was successful
+                        if (updateStatus[0] === 1) {
+                            // Since the update function doesn`t return the updated object, we have
+                            // to find it again and return it 
+                            AnswerModel.findOne({
+                                where: {
+                                    question_id: body.question_id,
+                                    participation_id: body.participation_id,
+                                    alternative_id: body.alternative_id,
+                                    time_to_answer: body.time_to_answer
+                                }
+                            }).then(function (updatedAnswer) {
+                                res.status(201).json({
+                                    success: true,
+                                    message: 'Resposta atualizada com sucesso!',
+                                    correct: alternative.correct,
+                                    answer: updatedAnswer.toJSON()
+                                });
+                            });
+                        } else {
+                            // Just in case if the updated response returns anything different than 1
+                            return res.status(500).send({
+                                message: "Algo errado com a atualização de uma resposta "
+                            });
+                        }
+                    });
+                }
             } else {
                 // Save new data on database and send it back to the client
                 var data = {
@@ -57,11 +101,12 @@ exports.create = async function (req, res) {
                     res.status(201).json({
                         success: true,
                         message: 'Resposta criada com sucesso!',
+                        correct: alternative.correct,
                         answer: answer.toJSON()
                     });
                 });
             }
-            });
+        });
     } catch (err) {
         res.status(500).send({
             'Error': err.message

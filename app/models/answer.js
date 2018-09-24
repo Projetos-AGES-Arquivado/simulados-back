@@ -26,6 +26,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: true,
             defaultValue: DataTypes.NOW
+        },
+        time_to_answer: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            defaultValue: 0
         }
     }, {
         underscored: true

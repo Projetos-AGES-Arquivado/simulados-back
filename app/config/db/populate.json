@@ -1,9 +1,48 @@
 {
+  "user": [
+    {
+      "name": "Admin",
+      "username": "admin",
+      "about": "about me",
+      "email": "admin@simulados.com",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "last_login": null,
+      "status": "active"
+    },
+    {
+      "name": "User2",
+      "username": "admin",
+      "about": "about me",
+      "email": "user2@simulados.com",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "last_login": null,
+      "status": "active"
+    },
+    {
+      "name": "User3",
+      "username": "admin",
+      "about": "about me",
+      "email": "user3@simulados.com",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "last_login": null,
+      "status": "active"
+    },
+    {
+      "name": "User4",
+      "username": "admin",
+      "about": "about me",
+      "email": "user4@simulados.com",
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "last_login": null,
+      "status": "active"
+    }
+  ],
   "administrator" : [
 	{
 	  "name": "Administrators",
       "email": "administrators@simulados.com",
-      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq"
+      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
+      "user_id":1
 	}
   ],
   "area": [
@@ -60,41 +99,34 @@
       "area_id": 2
     }
   ],
-  "user": [
-    {
-      "name": "Admin",
-      "username": "admin",
-      "about": "about me",
-      "email": "admin@simulados.com",
-      "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "last_login": null,
-      "status": "active"
-    }
-  ],  
   "professor": [
     {
       "email": "admin@simulados.com",
       "name": "professor",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":1
     },
     {
       "email": "professor@gmail.com",
       "name": "Professor Familia",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":2
     },
     {
       "email": "professor2@gmail.com",
       "name": "Professor Coisas",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":3
     },
     {
       "email": "professor3@gmail.com",
       "name": "Professor Responsabilidade",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":4
     }
 		
   ],
@@ -122,28 +154,32 @@
       "email": "admin@simulados.com",
       "name": "professor",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":1
     },
 	{
       "area_id": 2,
       "email": "coordinators1@simulados.com",
       "name": "Coordenador Civil",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":2
     },
     {
       "area_id": 3,
       "email": "coordinators2@simulados.com",
       "name": "Coordenador Comercial",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":3
     },
     {
       "area_id": 4,
       "email": "coordinators3@simulados.com",
       "name": "Coordenador Consumidor",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":4
     }	
   ],
   "profile": [
@@ -166,28 +202,32 @@
       "email": "admin@simulados.com",
       "name": "aluno",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":1
     },
 	{
       "profile_id": 1,
       "email": "student@simulados.com",
       "name": "Student 1",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":2
     },
 	{
       "profile_id": 2,
       "email": "student2@simulados.com",
       "name": "Student 2",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":3
     },
 	{
       "profile_id": 3,
       "email": "student3@simulados.com",
       "name": "Student 3",
       "password": "$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq",
-      "active": true
+      "active": true,
+      "user_id":4
     }
   ],
   "question": [

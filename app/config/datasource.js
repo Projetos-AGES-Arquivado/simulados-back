@@ -16,6 +16,7 @@ db.profiles = require("../models/profile")(sequelize, Sequelize);
 db.professors = require("../models/professor.js")(sequelize, Sequelize);
 db.areas = require("../models/area.js")(sequelize, Sequelize);
 db.practise_exams = require("../models/practise_exam.js")(sequelize, Sequelize);
+db.user = require("../models/user.js")(sequelize, Sequelize);
 
 // Load modules with dependencies
 db.students = require("../models/student.js")(sequelize, Sequelize);
@@ -77,5 +78,11 @@ db.professors.hasMany(db.professor_subareas);
 db.subareas.hasMany(db.professor_subareas);
 db.professor_subareas.belongsTo(db.professors);
 db.professor_subareas.belongsTo(db.subareas);
+
+//Users
+db.user.hasMany(db.administrators, {foreignKey: {name: 'user_id', allowNull: false}})
+db.user.hasMany(db.coordinators, {foreignKey: {name: 'user_id', allowNull: false}})
+db.user.hasMany(db.professors, {foreignKey: {name: 'user_id', allowNull: false}})
+db.user.hasMany(db.students, {foreignKey: {name: 'user_id', allowNull: false}})
 
 module.exports = db;

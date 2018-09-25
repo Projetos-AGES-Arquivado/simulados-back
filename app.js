@@ -34,4 +34,5 @@ models.sequelize.sync().then(function () {
     console.log('You\'re pretty good. Database looks fine')
 }).catch(function (err) {
     console.log(err, "Something wrong is not right with the Database Update!")
-});*/
+});
+*/

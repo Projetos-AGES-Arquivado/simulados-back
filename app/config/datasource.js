@@ -32,6 +32,7 @@ db.practiseexam_questions = require("../models/practiseexam_questions.js")(seque
 //Student
 db.profiles.hasMany(db.students);
 db.students.belongsTo(db.profiles);
+db.students.belongsTo(db.user)
 
 //Participations
 db.students.hasMany(db.participations);
@@ -68,6 +69,7 @@ db.questions.belongsTo(db.subareas);
 //Coordinators
 db.areas.hasMany(db.coordinators);
 db.coordinators.belongsTo(db.areas);
+db.coordinators.belongsTo(db.user)
 
 //Subareas
 db.areas.hasMany(db.subareas);
@@ -78,11 +80,14 @@ db.professors.hasMany(db.professor_subareas);
 db.subareas.hasMany(db.professor_subareas);
 db.professor_subareas.belongsTo(db.professors);
 db.professor_subareas.belongsTo(db.subareas);
+db.professors.belongsTo(db.user)
 
 //Users
-db.user.hasMany(db.administrators, {foreignKey: {name: 'user_id', allowNull: false}})
-db.user.hasMany(db.coordinators, {foreignKey: {name: 'user_id', allowNull: false}})
-db.user.hasMany(db.professors, {foreignKey: {name: 'user_id', allowNull: false}})
-db.user.hasMany(db.students, {foreignKey: {name: 'user_id', allowNull: false}})
+db.user.hasOne(db.administrators, {foreignKey: {name: 'user_id', allowNull: false}})
+db.user.hasOne(db.coordinators, {foreignKey: {name: 'user_id', allowNull: false}})
+db.user.hasOne(db.professors, {foreignKey: {name: 'user_id', allowNull: false}})
+db.user.hasOne(db.students, {foreignKey: {name: 'user_id', allowNull: false}})
+
+db.administrators.belongsTo(db.user)
 
 module.exports = db;

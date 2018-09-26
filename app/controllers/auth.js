@@ -1,11 +1,23 @@
 var exports = module.exports = {}
 var db = require('../config/datasource.js');
 var User = require('../models/user.js')(db.sequelize, db.Sequelize);
+var Administrator = require('../models/administrator')(db.sequelize, db.Sequelize);
+var Coordinator = require('../models/coordinator')(db.sequelize, db.Sequelize);
+var Professor = require('../models/professor')(db.sequelize, db.Sequelize);
+var Student = require('../models/student')(db.sequelize, db.Sequelize);
 var bCrypt = require('bcrypt-nodejs');
 var validator = require('validator');
 
 const findUserByEmail = async (email) => {
-    let user = await User.findOne({where: {email: email}})
+    let user = await User.findOne({
+        where: {email: email},
+        include: [
+            {model:Administrator},
+            {model:Coordinator},
+            {model:Professor},
+            {model:Student}
+            ]
+    })
     return user
 }
 
@@ -65,7 +77,8 @@ exports.signin = async (req, res) => {
             let data = {
                 success: true,
                 message: 'Successfully login',
-                token: user.getJWT()
+                token: user.getJWT(),
+                user: user
             }
 
             res.status(200).json(data)

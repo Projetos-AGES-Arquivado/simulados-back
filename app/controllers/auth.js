@@ -9,15 +9,14 @@ var bCrypt = require('bcrypt-nodejs');
 var validator = require('validator');
 
 const findUserByEmail = async (email) => {
-    let user = await User.findOne({
-        where: {email: email},
-        include: [
-            {model:Administrator},
-            {model:Coordinator},
-            {model:Professor},
-            {model:Student}
-            ]
+    let user = await User.findOne({where: {email: email}}).then(async (user) => {
+        user.administrator = await Administrator.findOne({where: {user_id: user.id}})
+        user.coordinator = await Coordinator.findOne({where: {user_id: user.id}})
+        user.professor = await Professor.findOne({where: {user_id: user.id}})
+        user.student = await Student.findOne({where: {user_id: user.id}})
+        return user
     })
+
     return user
 }
 
@@ -78,10 +77,10 @@ exports.signin = async (req, res) => {
                 success: true,
                 message: 'Successfully login',
                 token: user.getJWT(),
-                user: user
+                data: {user, 'administrator':user.administrator, 'coordinator':user.coordinator, 'professor':user.professor, 'student':user.student}
             }
 
-            res.status(200).json(data)
+            res.status(200).send(data)
         }
     }catch (e) {
         return res.status(400).json({success: false, error: e.message});

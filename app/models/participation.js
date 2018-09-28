@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         underscored: true
-    });
+    })
 
-    return Participation;
+    return Participation
 }

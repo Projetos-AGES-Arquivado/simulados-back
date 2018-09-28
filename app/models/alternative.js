@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         underscored: true
-    });
+    })
 
-    return Alternative;
+    return Alternative
 }

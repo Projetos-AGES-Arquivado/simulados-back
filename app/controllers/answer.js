@@ -1,15 +1,15 @@
 var exports = module.exports = {}
-var db = require('../config/datasource.js');
-var AnswerModel = require('../models/answer.js')(db.sequelize, db.Sequelize);
-var QuestionModel = require('../models/question.js')(db.sequelize, db.Sequelize);
-var ParticipationModel = require('../models/participation.js')(db.sequelize, db.Sequelize);
-var AlternativeModel = require('../models/alternative.js')(db.sequelize, db.Sequelize);
+var db = require('../config/datasource.js')
+var AnswerModel = require('../models/answer.js')(db.sequelize, db.Sequelize)
+var QuestionModel = require('../models/question.js')(db.sequelize, db.Sequelize)
+var ParticipationModel = require('../models/participation.js')(db.sequelize, db.Sequelize)
+var AlternativeModel = require('../models/alternative.js')(db.sequelize, db.Sequelize)
 
 exports.create = async function (req, res) {
-    const body = req.body;
+    const body = req.body
 
     // Validates mandatory parameters
-    let errors = {};
+    let errors = {}
 
     if (!body.question_id) {
         errors['question_id'] = 'Este campo é necessário!'
@@ -23,24 +23,23 @@ exports.create = async function (req, res) {
     if (Object.keys(errors).length) {
         return res.status(400).send({
             'Error': errors
-        });
+        })
     }
 
     try {
         // Validating if given FKS exist
         if (!await ParticipationModel.findOne({ where: { id: body.participation_id } })) {
-            return res.status(404).json({ success: false, error: 'Participação não encontrada na base de dados!' });
+            return res.status(404).json({ success: false, error: 'Participação não encontrada na base de dados!' })
         }
         // Alternative will be used later to check if it is correct or not
         let alternative = await AlternativeModel.findOne({ where: { id: body.alternative_id } })
         if (!alternative) {
-            return res.status(404).json({ success: false, error: 'Alternativa não encontrada na base de dados!' });
+            return res.status(404).json({ success: false, error: 'Alternativa não encontrada na base de dados!' })
         }
         if (!await QuestionModel.findOne({ where: { id: body.question_id } })) {
-            return res.status(404).json({ success: false, error: 'Questão não encontrada na base de dados!' });
+            return res.status(404).json({ success: false, error: 'Questão não encontrada na base de dados!' })
         }
 
-        console.log("Funciona: " + alternative.correct);
         // Check if answer already exist
         AnswerModel.findOne({
             where: {
@@ -51,7 +50,7 @@ exports.create = async function (req, res) {
             // If the answer exist, it should be updated with new given time_to_answer and alternative_id
             if (answer) {
                 if (!body.time_to_answer) {
-                    return res.status(400).json({ success: false, error: 'time_to_answer = Este campo é necessário para atualizar uma resposta!' });
+                    return res.status(400).json({ success: false, error: 'time_to_answer = Este campo é necessário para atualizar uma resposta!' })
                 } else {
                     // Calling update function
                     AnswerModel.update(
@@ -80,15 +79,15 @@ exports.create = async function (req, res) {
                                     message: 'Resposta atualizada com sucesso!',
                                     correct: alternative.correct,
                                     answer: updatedAnswer.toJSON()
-                                });
-                            });
+                                })
+                            })
                         } else {
                             // Just in case if the updated response returns anything different than 1
                             return res.status(500).send({
-                                message: "Algo errado com a atualização de uma resposta "
-                            });
+                                message: 'Algo errado com a atualização de uma resposta '
+                            })
                         }
-                    });
+                    })
                 }
             } else {
                 // Save new data on database and send it back to the client
@@ -96,21 +95,21 @@ exports.create = async function (req, res) {
                     question_id: body.question_id,
                     participation_id: body.participation_id,
                     alternative_id: body.alternative_id
-                };
+                }
                 AnswerModel.create(data).then(function (answer) {
                     res.status(201).json({
                         success: true,
                         message: 'Resposta criada com sucesso!',
                         correct: alternative.correct,
                         answer: answer.toJSON()
-                    });
-                });
+                    })
+                })
             }
-        });
+        })
     } catch (err) {
         res.status(500).send({
             'Error': err.message
-        });
+        })
     }
 
-};
+}

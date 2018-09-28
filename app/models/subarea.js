@@ -29,5 +29,5 @@ module.exports = (sequelize, DataTypes) => {
         underscored: true
     })
 
-    return Subarea;
+    return Subarea
 }

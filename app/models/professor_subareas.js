@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         underscored: true
-    });
+    })
 
-    return Professor_Subareas;
+    return Professor_Subareas
 }

@@ -1,5 +1,5 @@
 const config = require('../config/config')
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
 
 module.exports = (sequelize, DataTypes) => {
 
@@ -12,16 +12,11 @@ module.exports = (sequelize, DataTypes) => {
         password: {type: DataTypes.STRING, allowNull: false},
         last_login: {type: DataTypes.DATE},
         status: {type: DataTypes.ENUM('active', 'inactive'), defaultValue: 'active'}
-    });
+    })
 
     User.prototype.getJWT = function () {
-        return "Bearer "+jwt.sign({user_id:this.id}, config.auth.secret, {expiresIn: config.auth.expiration_time});
-    };
+        return 'Bearer '+jwt.sign({user_id:this.id}, config.auth.secret, {expiresIn: config.auth.expiration_time})
+    }
 
-    User.prototype.toWeb = function (pw) {
-        let json = this.toJSON();
-        return json;
-    };
-
-    return User;
+    return User
 }

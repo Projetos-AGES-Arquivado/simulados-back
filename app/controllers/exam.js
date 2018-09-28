@@ -1,12 +1,12 @@
 var exports = module.exports = {}
-var db = require('../config/datasource.js');
-var Exam = require('../models/practise_exam')(db.sequelize, db.Sequelize);
-var Participation = require('../models/participation')(db.sequelize, db.Sequelize);
-var Question = require('../models/question')(db.sequelize, db.Sequelize);
-var ExamQuestion = require('../models/practiseexam_questions')(db.sequelize, db.Sequelize);
-var Student = require('../models/student')(db.sequelize, db.Sequelize);
+var db = require('../config/datasource.js')
+var Exam = require('../models/practise_exam')(db.sequelize, db.Sequelize)
+var Participation = require('../models/participation')(db.sequelize, db.Sequelize)
+var Question = require('../models/question')(db.sequelize, db.Sequelize)
+var ExamQuestion = require('../models/practiseexam_questions')(db.sequelize, db.Sequelize)
+var Student = require('../models/student')(db.sequelize, db.Sequelize)
 
-const findStudentById = async (id) => {
+const findStudentById = async (id, res) => {
     let student = await Student.findById(id)
 
     if (!student)
@@ -15,7 +15,7 @@ const findStudentById = async (id) => {
     return student
 }
 
-const createParticipation = async (student, exam, questions) => {
+const createParticipation = async (student, exam, questions, res) => {
     let date = new Date()
 
     let participation = await Participation.create(
@@ -39,12 +39,12 @@ const createParticipation = async (student, exam, questions) => {
 
 exports.create = async (req, res) => {
     try {
-        const body = req.body;
+        const body = req.body
 
         let date = new Date()
 
         //get student
-        let student = await findStudentById(body.student_id)
+        let student = await findStudentById(body.student_id, res)
 
         //Fetch questions
         let questions = await Question.all({where: {approved: 1}})
@@ -59,7 +59,7 @@ exports.create = async (req, res) => {
             })
         )
 
-        let participation = await createParticipation(student, exam, questions)
+        let participation = await createParticipation(student, exam, questions, res)
 
         res.status(201).json({
             success: true,
@@ -73,4 +73,4 @@ exports.create = async (req, res) => {
             message: e.message
         })
     }
-};
+}

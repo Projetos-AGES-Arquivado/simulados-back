@@ -1,28 +1,28 @@
 var exports = module.exports = {}
-var db = require('../config/datasource.js');
-var User = require('../models/user.js')(db.sequelize, db.Sequelize);
-var bCrypt = require('bcrypt-nodejs');
-var validator = require('validator');
+var db = require('../config/datasource.js')
+var User = require('../models/user.js')(db.sequelize, db.Sequelize)
+var bCrypt = require('bcrypt-nodejs')
+var validator = require('validator')
 
 exports.create = function (req, res) {
-    const body = req.body;
+    const body = req.body
 
     if (!body.email || !validator.isEmail(body.email)) {
-        return res.status(400).json({success: false, error: 'Please enter an valid email to register'});
+        return res.status(400).json({success: false, error: 'Please enter an valid email to register'})
     } else if (!body.password) {
-        return res.status(400).json({success: false, error: 'Please enter a password to register'});
+        return res.status(400).json({success: false, error: 'Please enter a password to register'})
     } else {
         try {
             User.findOne({where: {email: body.email}}).then((user) => {
                 if (user) {
-                    return res.status(400).json({success: false, error: 'That email is already taken'});
+                    return res.status(400).json({success: false, error: 'That email is already taken'})
                 } else {
                     var data = {
                         email: body.email,
                         password: bCrypt.hashSync(body.password, bCrypt.genSaltSync(8), null),
                         name: body.name,
                         username: body.username
-                    };
+                    }
 
                     User.create(data).then(function (user) {
                         res.status(201).json({
@@ -34,10 +34,10 @@ exports.create = function (req, res) {
                 }
             })
         } catch (e) {
-            return res.status(400).json({success: false, error: e.message});
+            return res.status(400).json({success: false, error: e.message})
         }
     }
-};
+}
 
 exports.findAll = function (req, res) {
     try {
@@ -49,9 +49,9 @@ exports.findAll = function (req, res) {
             })
         })
     } catch (e) {
-        return res.status(400).json({success: false, error: e.message});
+        return res.status(400).json({success: false, error: e.message})
     }
-};
+}
 
 exports.findOne = function (req, res) {
     try {
@@ -70,16 +70,16 @@ exports.findOne = function (req, res) {
             }
         })
     } catch (e) {
-        return res.status(400).json({success: false, error: e.message});
+        return res.status(400).json({success: false, error: e.message})
     }
-};
+}
 
 exports.update = function (req, res) {
     try {
-        const body = req.body;
+        const body = req.body
 
         if (!body.email || !validator.isEmail(body.email)) {
-            return res.status(400).json({success: false, error: 'Please enter an valid email to register'});
+            return res.status(400).json({success: false, error: 'Please enter an valid email to register'})
         }else{
             User.update(
                 {
@@ -95,7 +95,7 @@ exports.update = function (req, res) {
                     returning: true,
                     plain:true
                 }
-            ).then((result) => {
+            ).then(() => {
                 User.findById(req.params.id).then((user) => {
                     if (user) {
                         res.status(200).json({
@@ -113,9 +113,9 @@ exports.update = function (req, res) {
             })
         }
     } catch (e) {
-        return res.status(400).json({success: false, error: e.message});
+        return res.status(400).json({success: false, error: e.message})
     }
-};
+}
 
 exports.delete = function (req, res) {
     try {
@@ -134,6 +134,6 @@ exports.delete = function (req, res) {
                 }
             })
     } catch (e) {
-        return res.status(400).json({success: false, error: e.message});
+        return res.status(400).json({success: false, error: e.message})
     }
-};
+}

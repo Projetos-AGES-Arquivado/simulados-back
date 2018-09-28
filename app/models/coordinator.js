@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         underscored: true
-    });
+    })
 
-    return Coordinator;
+    return Coordinator
 }

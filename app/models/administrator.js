@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
         underscored: true
-    });
+    })
 
-    return Administrator;
+    return Administrator
 }

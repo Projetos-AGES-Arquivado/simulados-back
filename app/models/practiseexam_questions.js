@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
         underscored: true
-    });
+    })
 
-    return PractiseExam_Questions;
+    return PractiseExam_Questions
 }

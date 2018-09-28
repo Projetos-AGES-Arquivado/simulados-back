@@ -1,7 +1,7 @@
 {
     "development": {
         "username": "root",
-        "password": "root",
+        "password": "senha",
         "database": "simulados_database",
         "host": "127.0.0.1",
         "dialect": "mysql"
@@ -22,6 +22,6 @@
     },
     "auth":{
       "secret":"simulados",
-      "expiration_time":10000
+      "expiration_time":100000
     }
 }

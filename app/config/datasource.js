@@ -1,85 +1,85 @@
-"use strict";
+'use strict'
 
-const path = require("path");
-const Sequelize = require("sequelize");
-const env = process.env.NODE_ENV || "development";
-const config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
-let db = {};
+const path = require('path')
+const Sequelize = require('sequelize')
+const env = process.env.NODE_ENV || 'development'
+const config = require(path.join(__dirname, '..', 'config', 'config.json'))[env]
+const sequelize = new Sequelize(config.database, config.username, config.password, config)
+let db = {}
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+db.sequelize = sequelize
+db.Sequelize = Sequelize
 
 // Load modules without dependencies
-db.administrators = require('../models/administrator.js')(sequelize, Sequelize);
-db.profiles = require("../models/profile")(sequelize, Sequelize);
-db.professors = require("../models/professor.js")(sequelize, Sequelize);
-db.areas = require("../models/area.js")(sequelize, Sequelize);
-db.practise_exams = require("../models/practise_exam.js")(sequelize, Sequelize);
-db.user = require("../models/user.js")(sequelize, Sequelize);
+db.administrators = require('../models/administrator.js')(sequelize, Sequelize)
+db.profiles = require('../models/profile')(sequelize, Sequelize)
+db.professors = require('../models/professor.js')(sequelize, Sequelize)
+db.areas = require('../models/area.js')(sequelize, Sequelize)
+db.practise_exams = require('../models/practise_exam.js')(sequelize, Sequelize)
+db.user = require('../models/user.js')(sequelize, Sequelize)
 
 // Load modules with dependencies
-db.students = require("../models/student.js")(sequelize, Sequelize);
-db.subareas = require("../models/subarea.js")(sequelize, Sequelize);
-db.professor_subareas = require("../models/professor_subareas.js")(sequelize, Sequelize);
-db.coordinators = require("../models/coordinator.js")(sequelize, Sequelize);
-db.questions = require("../models/question.js")(sequelize, Sequelize);
-db.alternatives = require("../models/alternative.js")(sequelize, Sequelize);
-db.participations = require("../models/participation.js")(sequelize, Sequelize);
-db.answers = require("../models/answer.js")(sequelize, Sequelize);
-db.practiseexam_questions = require("../models/practiseexam_questions.js")(sequelize, Sequelize);
+db.students = require('../models/student.js')(sequelize, Sequelize)
+db.subareas = require('../models/subarea.js')(sequelize, Sequelize)
+db.professor_subareas = require('../models/professor_subareas.js')(sequelize, Sequelize)
+db.coordinators = require('../models/coordinator.js')(sequelize, Sequelize)
+db.questions = require('../models/question.js')(sequelize, Sequelize)
+db.alternatives = require('../models/alternative.js')(sequelize, Sequelize)
+db.participations = require('../models/participation.js')(sequelize, Sequelize)
+db.answers = require('../models/answer.js')(sequelize, Sequelize)
+db.practiseexam_questions = require('../models/practiseexam_questions.js')(sequelize, Sequelize)
 
 //Student
-db.profiles.hasMany(db.students);
-db.students.belongsTo(db.profiles);
+db.profiles.hasMany(db.students)
+db.students.belongsTo(db.profiles)
 db.students.belongsTo(db.user)
 
 //Participations
-db.students.hasMany(db.participations);
-db.practise_exams.hasMany(db.participations);
-db.participations.belongsTo(db.students);
-db.participations.belongsTo(db.practise_exams);
+db.students.hasMany(db.participations)
+db.practise_exams.hasMany(db.participations)
+db.participations.belongsTo(db.students)
+db.participations.belongsTo(db.practise_exams)
 
 //Answers
-db.participations.hasMany(db.answers);
-db.questions.hasMany(db.answers);
-db.alternatives.hasMany(db.answers);
-db.answers.belongsTo(db.participations, {foreignKey: 'participation_id'});
-db.answers.belongsTo(db.questions, {foreignKey: 'question_id'});
-db.answers.belongsTo(db.alternatives, {foreignKey: 'alternative_id'});
+db.participations.hasMany(db.answers)
+db.questions.hasMany(db.answers)
+db.alternatives.hasMany(db.answers)
+db.answers.belongsTo(db.participations, {foreignKey: 'participation_id'})
+db.answers.belongsTo(db.questions, {foreignKey: 'question_id'})
+db.answers.belongsTo(db.alternatives, {foreignKey: 'alternative_id'})
 
 //Alternatives
-db.questions.hasMany(db.alternatives);
-db.alternatives.belongsTo(db.questions);
+db.questions.hasMany(db.alternatives)
+db.alternatives.belongsTo(db.questions)
 
 //PractiseExam_Questions
-db.practise_exams.hasMany(db.practiseexam_questions, {foreignKey: 'practise_exam_id', sourceKey: 'id'});
-db.questions.hasMany(db.practiseexam_questions, {foreignKey: 'question_id', sourceKey: 'id'});
-db.practiseexam_questions.belongsTo(db.practise_exams, {foreignKey: 'practise_exam_id', targetKey: 'id'});
-db.practiseexam_questions.belongsTo(db.questions, {foreignKey: 'question_id', targetKey: 'id'});
+db.practise_exams.hasMany(db.practiseexam_questions, {foreignKey: 'practise_exam_id', sourceKey: 'id'})
+db.questions.hasMany(db.practiseexam_questions, {foreignKey: 'question_id', sourceKey: 'id'})
+db.practiseexam_questions.belongsTo(db.practise_exams, {foreignKey: 'practise_exam_id', targetKey: 'id'})
+db.practiseexam_questions.belongsTo(db.questions, {foreignKey: 'question_id', targetKey: 'id'})
 
 //Questions
-db.coordinators.hasMany(db.questions);
-db.professors.hasMany(db.questions);
-db.subareas.hasMany(db.questions);
-db.questions.belongsTo(db.coordinators);
-db.questions.belongsTo(db.professors);
-db.questions.belongsTo(db.subareas);
+db.coordinators.hasMany(db.questions)
+db.professors.hasMany(db.questions)
+db.subareas.hasMany(db.questions)
+db.questions.belongsTo(db.coordinators)
+db.questions.belongsTo(db.professors)
+db.questions.belongsTo(db.subareas)
 
 //Coordinators
-db.areas.hasMany(db.coordinators);
-db.coordinators.belongsTo(db.areas);
+db.areas.hasMany(db.coordinators)
+db.coordinators.belongsTo(db.areas)
 db.coordinators.belongsTo(db.user)
 
 //Subareas
-db.areas.hasMany(db.subareas);
-db.subareas.belongsTo(db.areas);
+db.areas.hasMany(db.subareas)
+db.subareas.belongsTo(db.areas)
 
 //Professor_subareas
-db.professors.hasMany(db.professor_subareas);
-db.subareas.hasMany(db.professor_subareas);
-db.professor_subareas.belongsTo(db.professors);
-db.professor_subareas.belongsTo(db.subareas);
+db.professors.hasMany(db.professor_subareas)
+db.subareas.hasMany(db.professor_subareas)
+db.professor_subareas.belongsTo(db.professors)
+db.professor_subareas.belongsTo(db.subareas)
 db.professors.belongsTo(db.user)
 
 //Users
@@ -90,4 +90,4 @@ db.user.hasOne(db.students, {foreignKey: {name: 'user_id', allowNull: false}})
 
 db.administrators.belongsTo(db.user)
 
-module.exports = db;
+module.exports = db

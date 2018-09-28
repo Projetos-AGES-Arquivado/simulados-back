@@ -1,5 +1,5 @@
-const passport = require('passport');
-require('../middleware/passport')(passport);
+const passport = require('passport')
+require('../middleware/passport')(passport)
 
 module.exports = (app) => {
     var questionController = require('../controllers/question.js')

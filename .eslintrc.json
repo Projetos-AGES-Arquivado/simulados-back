@@ -27,7 +27,7 @@
             "error",
             "never"
         ]
-    }/*,
+    },
     "globals": {
         "describe": true,
         "it": true,
@@ -36,5 +36,5 @@
         "request": true,
         "beforeEach": true,
         "require": true
-    }*/
+    }
 }

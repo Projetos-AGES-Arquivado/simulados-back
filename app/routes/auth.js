@@ -1,11 +1,10 @@
-var authController = require('../controllers/auth.js');
-var userController = require('../controllers/user.js');
+var authController = require('../controllers/auth.js')
 
 module.exports = function (app) {
 
-    app.post('/signup', authController.signup);
-    app.post('/signin', authController.signin);
-    app.get('/logout', authController.logout);
+    app.post('/signup', authController.signup)
+    app.post('/signin', authController.signin)
+    app.get('/logout', authController.logout)
 
 }
 

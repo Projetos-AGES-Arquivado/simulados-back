@@ -449,605 +449,483 @@
   ],
   "alternative": [
     {
-      "id": 1,
       "question_id": 1,
       "professor_id": 1,
       "description": "Laila deverá executar os honorários em face de Rita em processo autônomo, sendo vedado o pagamento nos mesmos autos, por se tratar de honorários contratuais e não sucumbenciais.",
       "correct": 0
     },
     {
-      "id": 2,
       "question_id": 1,
       "professor_id": 1,
       "description": "o juiz deverá determinar que os valores acordados a título de honorários sejam pagos diretamente a Laila, por dedução da quantia a ser recebida por Rita, independentemente de concordância desta nos autos, salvo se Rita provar que já os pagou.",
       "correct": 0
     },
     {
-      "id": 3,
       "question_id": 1,
       "professor_id": 1,
       "description": "Laila deverá executar os honorários em face do município de Manaus, em processo autônomo de execução, sendo vedado o pagamento nos mesmos autos, por se tratar de honorários contratuais e não sucumbenciais.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 4,
       "question_id": 1,
       "professor_id": 1,
       "description": "o juiz poderá determinar que os valores acordados a título de honorários sejam pagos diretamente a Laila, por dedução da quantia a ser recebida por Rita, caso Rita apresente sua concordância nos autos.",
       "correct": 0
     },
     {
-      "id": 5,
       "question_id": 2,
       "professor_id": 1,
       "description": "Maria deverá depor como testemunha, prestando compromisso de dizer a verdade, e revelar tudo o que souber, mesmo que isto prejudique Michael, uma vez que não é advogada dele no processo de natureza cível.",
       "correct": 0
     },
     {
-      "id": 6,
       "question_id": 2,
       "professor_id": 1,
       "description": "Maria deverá depor como testemunha, mesmo que isto prejudique Michael, uma vez que não é advogada dele no processo de natureza cível, mas terá o direito e o dever de se calar apenas quanto às informações acobertadas pelo sigilo bancário de Michael.",
       "correct": 0
     },
     {
-      "id": 7,
       "question_id": 2,
       "professor_id": 1,
       "description": "Maria deverá recursar-se a depor como testemunha, exceto se Michael expressamente autorizá-la, caso em que deverá informar o que souber, mesmo que isto prejudique Michael.",
       "correct": 0
     },
     {
-      "id": 8,
       "question_id": 2,
       "professor_id": 1,
       "description": "Maria deverá recursar-se a depor como testemunha, ainda que Michael expressamente lhe autorize ou solicite que revele o que sabe.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 9,
       "question_id": 3,
       "professor_id": 1,
       "description": "Diante da conciliação entre as partes, ocorrida antes da instrução e julgamento do feito, Taís fará jus à metade do valor acordado a título de honorários advocatícios.",
       "correct": 0
     },
     {
-      "id": 10,
       "question_id": 3,
       "professor_id": 1,
       "description": "A conciliação entre as partes, ocorrida antes da instrução e julgamento do feito, não prejudica os honorários convencionados, salvo aquiescência de Taís.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 11,
       "question_id": 3,
       "professor_id": 1,
       "description": "Em razão da conciliação entre as partes, ocorrida antes da instrução e julgamento do feito, deverá ser pactuado, por Taís e Lia, novo valor a título de honorários advocatícios, não prevalecendo a obrigação anteriormente fixada.",
       "correct": 0
     },
     {
-      "id": 12,
+      "question_id": 3,
+      "professor_id": 1,
+      "description": "Em razão da conciliação entre as partes, ocorrida antes da instrução e julgamento do feito, deverá ser pactuado, por Taís e Lia, novo valor a título de honorários advocatícios, não prevalecendo a obrigação anteriormente fixada.",
+      "correct": 0
+    },
+    {
+      "question_id": 4,
+      "professor_id": 1,
+      "description": "A recusa de Antônio à indicação de outro profissional pelo cliente não constitui infração ética, pois o advogado não é obrigado a aceitar a indicação de outro profissional para com ele trabalhar no processo. Por sua vez, o substabelecimento do mandato a Lucas depende de prévia comunicação a João.",
+      "correct": 0
+    },
+    {
+      "question_id": 4,
+      "professor_id": 1,
+      "description": "A recusa de Antônio à indicação de outro profissional pelo cliente constitui infração ética, uma vez que ele comportou-se com deslealdade em face do colega advogado, pronunciando-se contra sua contratação. Por sua vez, o substabelecimento do mandato a Lucas depende de prévia comunicação a João.",
+      "correct": 0
+    },
+    {
+      "question_id": 4,
+      "professor_id": 1,
+      "description": "A recusa de Antônio à indicação de outro profissional pelo cliente constitui infração ética, uma vez que ele comportou-se com deslealdade em face do colega advogado, pronunciando-se contra sua contratação. Por sua vez, o substabelecimento do mandato a Lucas independe de prévia comunicação a João, pois constitui ato pessoal do advogado da causa.",
+      "correct": 0
+    },
+    {
+      "question_id": 4,
+      "professor_id": 1,
+      "description": "A recusa de Antônio à indicação de outro profissional pelo cliente não constitui infração ética, pois o advogado não é obrigado a aceitar a indicação de outro profissional para com ele trabalhar no processo. Por sua vez, o substabelecimento do mandato a Lucas independe de comunicação a João, já que constitui ato pessoal do advogado da causa.",
+      "correct": 1
+    },
+    {
       "question_id": 5,
       "professor_id": 1,
       "description": "será extinto, apenas se a sanção disciplinar aplicada for de exclusão.",
       "correct": 0
     },
     {
-      "id": 13,
       "question_id": 5,
       "professor_id": 1,
       "description": "será extinto, apenas se a sanção por infração disciplinar aplicada for de exclusão ou de suspensão.",
       "correct": 0
     },
     {
-      "id": 14,
       "question_id": 5,
       "professor_id": 1,
       "description": "será extinto, independentemente da natureza da sanção disciplinar aplicada.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 15,
       "question_id": 5,
       "professor_id": 1,
       "description": "será extinto, apenas se a sanção aplicada for de suspensão ou se for reincidente em infração disciplinar.",
       "correct": 0
     },
     {
-      "id": 16,
       "question_id": 6,
       "professor_id": 1,
       "description": "O sucessor de Charles deverá ser eleito pelo Conselho Federal da OAB, dentre os membros do Conselho Seccional respectivo.",
       "correct": 0
     },
     {
-      "id": 17,
       "question_id": 6,
       "professor_id": 1,
       "description": "O sucessor de Charles deverá ser eleito pelo Conselho Seccional respectivo, dentre seus membros.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 18,
       "question_id": 6,
       "professor_id": 1,
       "description": "O sucessor de Charles deverá ser eleito pela Subseção respectiva, dentre seus membros.",
       "correct": 0
     },
     {
-      "id": 19,
       "question_id": 6,
       "professor_id": 1,
       "description": "O sucessor de Charles deverá ser eleito por votação direta dos advogados regularmente inscritos perante o Conselho Seccional respectivo.",
       "correct": 0
     },
     {
-      "id": 20,
       "question_id": 7,
       "professor_id": 1,
       "description": "Nenhuma das advogadas deverá compor a lista a ser encaminhada ao Tribunal de Justiça.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 21,
       "question_id": 7,
       "professor_id": 1,
       "description": "Apenas Tereza e Esmeralda deverão compor a lista a ser encaminhada ao Tribunal de Justiça.",
       "correct": 0
     },
     {
-      "id": 22,
       "question_id": 7,
       "professor_id": 1,
       "description": "Apenas Gabriela deverá compor a lista a ser encaminhada ao Tribunal de Justiça.",
       "correct": 0
     },
     {
-      "id": 23,
       "question_id": 7,
       "professor_id": 1,
       "description": "Apenas Tereza deverá compor a lista a ser encaminhada ao Tribunal de Justiça.",
       "correct": 0
     },
     {
-      "id": 24,
       "question_id": 8,
       "professor_id": 1,
       "description": "A pretensão à punibilidade das infrações disciplinares prescreve em oito anos. No caso narrado, não se operou o fenômeno prescritivo.",
       "correct": 0
     },
     {
-      "id": 25,
       "question_id": 8,
       "professor_id": 1,
       "description": "A pretensão à punibilidade das infrações disciplinares prescreve em cinco anos. No caso narrado, operou-se o fenômeno prescritivo, pois decorridos mais de cinco anos entre a data do fato e a instauração do processo disciplinar.",
       "correct": 0
     },
     {
-      "id": 26,
       "question_id": 8,
       "professor_id": 1,
       "description": "A pretensão à punibilidade das infrações disciplinares prescreve em oito anos. No caso narrado, operou-se o fenômeno prescritivo, pois decorridos mais de oito anos entre a data do fato e a aplicação definitiva da sanção disciplinar.",
       "correct": 0
     },
     {
-      "id": 27,
       "question_id": 8,
       "professor_id": 1,
       "description": "A pretensão à punibilidade das infrações disciplinares prescreve em cinco anos. No caso narrado, não se operou o fenômeno prescritivo.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 28,
       "question_id": 9,
       "professor_id": 1,
       "description": "Guilherme cometeu infração disciplinar ao estabelecer entendimento com Bruno, tanto pelo fato de não haver ciência de Gabriel, como por não haver autorização de José. (",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 29,
       "question_id": 9,
       "professor_id": 1,
       "description": "Guilherme cometeu infração disciplinar ao estabelecer entendimento com Bruno, pelo fato de não haver ciência de Gabriel, mas não por não haver autorização de José. (",
       "correct": 0
     },
     {
-      "id": 30,
       "question_id": 9,
       "professor_id": 1,
       "description": "Guilherme cometeu infração disciplinar ao estabelecer entendimento com Bruno, pelo fato de não haver autorização de José, mas não por não haver ciência de Gabriel. (",
       "correct": 0
     },
     {
-      "id": 31,
       "question_id": 9,
       "professor_id": 1,
       "description": "Guilherme não cometeu infração disciplinar ao estabelecer entendimento com Bruno, sem ciência de Gabriel ou autorização de José.",
       "correct": 0
     },
     {
-      "id": 32,
       "question_id": 10,
       "professor_id": 1,
       "description": "o pedido de desagravo público só pode ser formulado por Júlia, que é a pessoa ofendida em razão do exercício profissional.",
       "correct": 0
     },
     {
-      "id": 33,
       "question_id": 10,
       "professor_id": 1,
       "description": "o pedido de desagravo pode ser formulado por Rafaela, mas depende da concordância de Júlia, que é a pessoa ofendida em razão do exercício profissional.",
       "correct": 0
     },
     {
-      "id": 34,
       "question_id": 10,
       "professor_id": 1,
       "description": "o pedido de desagravo pode ser formulado por Rafaela, e não depende da concordância de Júlia, apesar de esta ser a pessoa ofendida em razão do exercício profissional.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 35,
       "question_id": 10,
       "professor_id": 1,
       "description": "o pedido de desagravo público só pode ser formulado por Júlia, que é a pessoa ofendida em razão do exercício profissional, mas o ajuizamento de ação para apurar a responsabilidade civil implica a perda de objeto do desagravo.",
       "correct": 0
     },
     {
-      "id": 36,
       "question_id": 11,
       "professor_id": 1,
       "description": "Justiça Natural.",
       "correct": 0
     },
     {
-      "id": 37,
       "question_id": 11,
       "professor_id": 1,
       "description": "Justiça Comutativa.",
       "correct": 0
     },
     {
-      "id": 38,
       "question_id": 11,
       "professor_id": 1,
       "description": "Justiça Corretiva.",
       "correct": 0
     },
     {
-      "id": 39,
       "question_id": 11,
       "professor_id": 1,
       "description": "Justiça Distributiva.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 40,
       "question_id": 12,
       "professor_id": 1,
       "description": "Subsunção de um caso (premissa menor) a uma norma jurídica (premissa maior) de forma a permitir uma conclusão lógica e necessária.",
       "correct": 0
     },
     {
-      "id": 41,
       "question_id": 12,
       "professor_id": 1,
       "description": "Existindo relevante semelhança entre dois casos, as consequências jurídicas atribuídas a um caso já regulamentado deverão ser atribuídas também a um caso não-regulamentado.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 42,
       "question_id": 12,
       "professor_id": 1,
       "description": "Raciocínio em que se produz, como efeito, a extensão de uma norma jurídica para casos não previstos por esta.",
       "correct": 0
     },
     {
-      "id": 43,
       "question_id": 12,
       "professor_id": 1,
       "description": "Decisão, por meio de recurso, às práticas sociais que sejam uniformes e continuadas e que possuam previsão de necessidade jurídica.",
       "correct": 0
     },
     {
-      "id": 44,
       "question_id": 13,
       "professor_id": 1,
       "description": "é um órgão atípico, que não se encontra na estrutura de nenhum dos Poderes da República, mas que, sem prejuízo das suas atribuições administrativas, excepcionalmente possui atribuições jurisdicionais.",
       "correct": 0
     },
     {
-      "id": 45,
       "question_id": 13,
       "professor_id": 1,
       "description": "é um órgão pertencente à estrutura do Poder Judiciário e, como tal, possui todas as atribuições jurisdicionais recursais, sem prejuízo das atribuições administrativas de sua competência.",
       "correct": 0
     },
     {
-      "id": 46,
       "question_id": 13,
       "professor_id": 1,
       "description": "embora seja um órgão pertencente à estrutura do Poder Judiciário, possui atribuições exclusivamente administrativas, não sendo, portanto, órgão com competência jurisdicional.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 47,
       "question_id": 13,
       "professor_id": 1,
       "description": "é um órgão auxiliar da Presidência da República, com atribuições de controle da atividade administrativa, financeira e disciplinar de toda a magistratura, incluído neste rol o Supremo Tribunal Federal.",
       "correct": 0
     },
     {
-      "id": 48,
       "question_id": 14,
       "professor_id": 1,
       "description": "inconstitucional, pois o padrão estabelecido pela CRFB/88, para o caso, configura típica cláusula de imposição de simetria.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 49,
       "question_id": 14,
       "professor_id": 1,
       "description": "constitucional, pois a organização dos Tribunais de Contas estaduais está exclusivamente submetida ao poder constituinte derivado decorrente.",
       "correct": 0
     },
     {
-      "id": 50,
       "question_id": 14,
       "professor_id": 1,
       "description": "constitucional, pois está baseada na autonomia dos Estados-Membros, princípio basilar e inflexível que sustenta o Pacto Federativo.",
       "correct": 0
     },
     {
-      "id": 51,
       "question_id": 14,
       "professor_id": 1,
       "description": "inconstitucional, pois a estrutura do Poder Judiciário somente pode ser disciplinada pela Constituição da República, não pela Constituição Estadual.",
       "correct": 0
     },
     {
-      "id": 52,
       "question_id": 15,
       "professor_id": 1,
       "description": "será possível, cumpridas as exigências formais, uma nova prorrogação de, no máximo, 30 dias do estado de defesa.",
       "correct": 0
     },
     {
-      "id": 53,
       "question_id": 15,
       "professor_id": 1,
       "description": "será possível, cumpridas as exigências formais, prorrogar o estado de defesa até que seja a crise completamente debelada.",
       "correct": 0
     },
     {
-      "id": 54,
       "question_id": 15,
       "professor_id": 1,
       "description": "será possível, cumpridas as exigências formais, decretar o estado de sítio, já que vedada nova prorrogação do estado de defesa.",
       "correct": 0
     },
     {
-      "id": 55,
       "question_id": 15,
       "professor_id": 1,
       "description": "será obrigatoriamente decretada a intervenção federal no Estado Alfa, que possibilita a utilização de meios de ação mais contundentes do que os previstos no estado de defesa.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 56,
       "question_id": 16,
       "professor_id": 1,
       "description": "A matéria constante do referido projeto de lei somente poderá constituir objeto de novo projeto na próxima sessão legislativa, em deferência ao princípio da oportunidade.",
       "correct": 0
     },
     {
-      "id": 57,
       "question_id": 16,
       "professor_id": 1,
       "description": "A matéria objeto do projeto de Lei rejeitado ainda poderá ser apreciada na mesma sessão legislativa, desde que proposta pela maioria absoluta dos membros de qualquer uma das casas do Congresso Nacional.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 58,
       "question_id": 16,
       "professor_id": 1,
       "description": "A matéria, objeto do projeto de lei rejeitado, somente poderá ser apreciada na mesma sessão legislativa se comprovadamente tratar de direito que aumente o grau de dignidade e proteção da pessoa humana.",
       "correct": 0
     },
     {
-      "id": 59,
       "question_id": 16,
       "professor_id": 1,
       "description": "A matéria, discutida em projeto de lei rejeitado pelo Congresso Nacional, não pode ser apreciada na mesma sessão legislativa, exceto se o Presidente da República, alegando interesse nacional, assim o determinar.",
       "correct": 0
     },
     {
-      "id": 60,
       "question_id": 17,
       "professor_id": 1,
       "description": "O Presidente da República não terá motivos para vetar o projeto de lei por vício de inconstitucionalidade formal, ainda que possa vetá-lo por entendê-lo contrário ao interesse público, devendo fazer isso no prazo de quinze dias úteis.",
       "correct": 0
     },
     {
-      "id": 61,
+      "question_id": 17,
+      "professor_id": 1,
+      "description": "O Presidente da República, ainda que tenha motivos para vetar o projeto de lei por vício de inconstitucionalidade formal, poderá, no curso do prazo para a sanção ou o veto presidencial, editar medida provisória com igual conteúdo ao do projeto de lei aprovado pelo Congresso Nacional, tendo em vista o princípio da separação dos poderes.",
+      "correct": 0
+    },
+    {
+      "question_id": 17,
+      "professor_id": 1,
+      "description": "O Presidente da República poderá vetá-lo, por motivo de inconstitucionalidade material e não por inconstitucionalidade formal, uma vez que os projetos de lei que acarretem despesas para o Poder Executivo são de iniciativa privativa do Presidente da República.",
+      "correct": 0
+    },
+    {
+      "question_id": 17,
+      "professor_id": 1,
+      "description": "O Presidente da República poderá vetá-lo, por motivo de inconstitucionalidade formal, na parte que majorou a remuneração dos servidores públicos, uma vez que a iniciativa legislativa nessa matéria é privativa do Chefe do Poder Executivo, devendo o veto ser exercido no prazo de quinze dias úteis.",
+      "correct": 1
+    },
+    {
       "question_id": 18,
       "professor_id": 1,
       "description": "Supremo Tribunal Federal nos dois processos, posto que a presença da China no polo ativo da relação processual obriga que a Corte Suprema seja responsável pela solução dos dois litígios.",
       "correct": 0
     },
     {
-      "id": 62,
       "question_id": 18,
       "professor_id": 1,
       "description": "Supremo Tribunal Federal na relação jurídica entre a China e o Estado Alfa, e Superior Tribunal de Justiça na relação entre a China e o Município Beta, por expressa determinação constitucional.",
       "correct": 0
     },
     {
-      "id": 63,
       "question_id": 18,
       "professor_id": 1,
       "description": "Supremo Tribunal Federal na relação jurídica entre a China e o Estado Alfa, e juiz federal, na relação entre a China e o Município Beta, por expressa determinação constitucional.",
-      "correct": 0
+      "correct": 1
     },
     {
-      "id": 64,
       "question_id": 18,
       "professor_id": 1,
       "description": "Tribunal de Justiça do Estado Alfa, posto que, não havendo interesse da União nos negócios jurídicos firmados, os órgãos da Justiça Federal não podem solucionar as lides.",
       "correct": 0
     },
     {
-      "id": 65,
       "question_id": 19,
       "professor_id": 1,
       "description": "será imediatamente suspenso de suas funções pelo prazo de até 180 dias, se recebida a denúncia pelo Supremo Tribunal Federal.",
       "correct": 0
     },
     {
-      "id": 66,
       "question_id": 19,
       "professor_id": 1,
       "description": "será imediatamente suspenso de suas funções pelo prazo de até 180 dias, se recebida a denúncia pelo Senado Federal.",
       "correct": 0
     },
     {
-      "id": 67,
       "question_id": 19,
       "professor_id": 1,
       "description": "será imediatamente suspenso de suas funções, se a acusação for autorizada por dois terços da Câmara dos Deputados e a denúncia recebida pelo Supremo Tribunal Federal.",
       "correct": 0
     },
     {
-      "id": 68,
       "question_id": 19,
       "professor_id": 1,
       "description": "será criminalmente processado somente após o término do mandato, tendo imunidade temporária à persecução penal.",
+      "correct": 1
+    },
+    {
+      "question_id": 20,
+      "professor_id": 1,
+      "description": "Os povos indígenas que ocupam terras onde haja a exploração de suas riquezas minerais e do subsolo têm direito ao recebimento de parte dos recursos auferidos, mas não possuem direito a participar da utilização, administração e conservação dos recursos mencionados.",
       "correct": 0
     },
     {
-      "id": 69,
+      "question_id": 20,
+      "professor_id": 1,
+      "description": "Em caso de a propriedade dos minérios ou dos recursos do subsolo pertencer ao Estado, o governo deverá estabelecer ou manter consultas dos povos interessados, a fim de determinar se os interesses desses povos seriam prejudicados, antes de empreender ou autorizar qualquer programa de prospecção ou exploração dos recursos existentes.",
+      "correct": 1
+    },
+    {
+      "question_id": 20,
+      "professor_id": 1,
+      "description": "A exploração de riquezas minerais e do subsolo em terras ocupadas por povos indígenas é aceitável e prescinde de consulta prévia desde que se cumpram os seguintes requisitos: preservação da identidade cultural dos povos ocupantes da terra, pagamento de royalties em função dos transtornos causados e autorização por meio de decreto legislativo.",
+      "correct": 0
+    },
+    {
       "question_id": 20,
       "professor_id": 1,
       "description": "Em nenhuma hipótese pode haver a exploração de riquezas minerais e do subsolo em terras ocupadas por populações indígenas.",
-      "correct": 0
-    },
-	{
-      "question_id": 1,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 1
-    },
-	{
-      "question_id": 1,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 1,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 1,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 2,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 1
-    },
-	{
-      "question_id": 2,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 2,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 2,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },{
-      "question_id": 3,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 1
-    },
-	{
-      "question_id": 3,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 3,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 3,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 4,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 1
-    },
-	{
-      "question_id": 4,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 4,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 4,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 5,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 1
-    },
-	{
-      "question_id": 5,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 5,
-      "professor_id": 1,
-      "description": "Alternativa 1",
-      "correct": 0
-    },
-	{
-      "question_id": 5,
-      "professor_id": 1,
-      "description": "Alternativa 1",
       "correct": 0
     }
   ],

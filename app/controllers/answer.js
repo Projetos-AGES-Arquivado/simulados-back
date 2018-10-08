@@ -5,8 +5,34 @@ var QuestionModel = require('../models/question.js')(db.sequelize, db.Sequelize)
 var ParticipationModel = require('../models/participation.js')(db.sequelize, db.Sequelize)
 var AlternativeModel = require('../models/alternative.js')(db.sequelize, db.Sequelize)
 
-exports.create = async function (req, res) {
-    const body = req.body
+//Returns the alternative chosen by the user
+const choosedAnswer = async (body) => {
+        
+        let choosedAnswer = await AnswerModel.findOne({
+                                where: {
+                                    question_id: body.question_id,
+                                    participation_id: body.participation_id
+                                }
+        });
+        
+        return choosedAnswer;    
+}   
+
+// Returns the correct answer for that question
+const correctAnswer = async (body) => { 
+
+    let correctAnswer = await AlternativeModel.findOne({
+                            where: {
+                                question_id: body.question_id,
+                                correct: true
+                            }
+    });
+
+    return correctAnswer
+}
+
+exports.create = async function (body) {
+    const body = req.body;
 
     // Validates mandatory parameters
     let errors = {}
@@ -14,11 +40,11 @@ exports.create = async function (req, res) {
     if (!body.question_id) {
         errors['question_id'] = 'Este campo é necessário!'
     } else if (!body.participation_id) {
-        errors['participation_id'] = 'Este campo é necessário!'
+        errors['participation_id'] = 'Este campo � necess�rio!'
     } else if (!body.alternative_id) {
-        errors['alternative_id'] = 'Este campo é necessário!'
+        errors['alternative_id'] = 'Este campo � necess�rio!'
     } else if (!body.time_to_answer) {
-        errors['time_to_answer'] = 'Este campo é necessário!'
+        errors['time_to_answer'] = 'Este campo � necess�rio!'
     }
     if (Object.keys(errors).length) {
         return res.status(400).send({
@@ -29,39 +55,23 @@ exports.create = async function (req, res) {
 
     // Validating if given FKS exist
     if (!await ParticipationModel.findOne({ where: { id: body.participation_id } })) {
-        return res.status(404).json({ success: false, error: 'Participação não encontrada na base de dados!' });
+        return res.status(404).json({ success: false, error: 'Participaçãoãoãocontrada na base de dados!' });
     }
     // Alternative will be used later to check if it is correct or not
     let alternative = await AlternativeModel.findOne({ where: { id: body.alternative_id } });
 
     if (!alternative) {
-        return res.status(404).json({ success: false, error: 'Alternativa não encontrada na base de dados!' });
+        return res.status(404).json({ success: false, error: 'Alternativa nãoencontrada na base de dados!' });
     }
 
     if (!await QuestionModel.findOne({ where: { id: body.question_id } })) {
-        return res.status(404).json({ success: false, error: 'Questão não encontrada na base de dados!' });
+        return res.status(404).json({ success: false, error: 'Questãonããoncontrada na base de dados!' });
     }
     
-    // Check if answer already exist
-    const choosedAnswer = await AnswerModel.findOne({
-        where: {
-            question_id: body.question_id,
-            participation_id: body.participation_id
-        }
-    });
-    
-    // Incluir alternativa correta
-    const correctAnswer = await AlternativeModel.findOne({
-        where: {
-            question_id: body.question_id,
-            correct: true
-        }
-    });
-
     // If the answer exist, it should be updated with new given time_to_answer and alternative_id
     if (choosedAnswer) {
         if (!body.time_to_answer) {
-            return res.status(400).json({ success: false, error: 'time_to_answer = Este campo é necessário para atualizar uma resposta!' });
+            return res.status(400).json({ success: false, error: 'time_to_answer = Este campo énecessáár para atualizar uma resposta!' });
         } else {
             // Calling update function
             const updateStatus = await AnswerModel.update(
@@ -100,7 +110,7 @@ exports.create = async function (req, res) {
             } else {
                 // Just in case if the updated response returns anything different than 1
                 return res.status(500).send({
-                    message: "Algo errado com a atualização de uma resposta "
+                    message: "Algo errado com a atualizaçãoe uma resposta "
                 });
             }
             

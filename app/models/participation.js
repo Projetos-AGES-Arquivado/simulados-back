@@ -15,8 +15,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             notEmpty: true
         },
+        participation_date: {
+            type: DataTypes.DATE            
+        },        
         time_of_conclusion: {
-            type: DataTypes.DATE
+            type: DataTypes.TIME
         },
         numberOfQuestions: {
             type: DataTypes.INTEGER

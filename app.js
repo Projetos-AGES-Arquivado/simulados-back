@@ -20,11 +20,12 @@ app.get('/', function (req, res) {
 const models = require("./app/config/datasource");
 
 //Routes
-require('./app/routes/auth.js')(app);
-require('./app/routes/user.js')(app);
-require('./app/routes/answer.js')(app);
-require('./app/routes/exam.js')(app);
-require('./app/routes/question.js')(app);
+require('./app/routes/auth.js')(app)
+require('./app/routes/user.js')(app)
+require('./app/routes/answer.js')(app)
+require('./app/routes/exam.js')(app)
+require('./app/routes/question.js')(app)
+require('./app/routes/professor.js')(app)
 //Sync Database
 /*
 models.sequelize.sync().then(function () {

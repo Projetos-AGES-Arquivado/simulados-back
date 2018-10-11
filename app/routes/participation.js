@@ -7,4 +7,6 @@ module.exports = function (app) {
      // Create an Participation
      //app.post('/participation', passport.authenticate('jwt', {session:false}), participationController.create);
      app.post('/participation', participationController.create);
+
+     app.get('result/:idParticipation', participationController.findOne);
 }

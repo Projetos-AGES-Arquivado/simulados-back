@@ -2,6 +2,7 @@ var exports = module.exports = {}
 var db = require('../config/datasource.js')
 var Participation = require('../models/participation.js')(db.sequelize, db.Sequelize)
 var Alternative = require('../models/alternative.js')(db.sequelize, db.Sequelize)
+var Question = require('../models/question.js')(db.sequelize, db.Sequelize)
 // var bCrypt = require('bcrypt-nodejs');
 // var validator = require('validator');
 
@@ -55,5 +56,37 @@ exports.getQuestionsWithPagination = async (req, res) => {
                     return res.status(401).json({ success: false, error: 'As questões deste simulado não foram encontradas.' })
             }
         }).catch(() => res.status(401).json({ success: false, error: 'Ocorreu um erro ao buscar as questões.' }))
+    }
+}
+
+exports.approve = async (req, res) => {
+    try{
+        Question.update(
+            {
+                approved: req.body.approved
+            },
+            {
+                where: {id: req.body.id},
+                returning: true,
+                plain:true
+            }
+        ).then(() => {
+            Question.findById(req.body.id).then((question) => {
+                if (question) {
+                    res.status(200).json({
+                        success: true,
+                        message: 'Questão atualizada',
+                        question: question.toJSON()
+                    })
+                } else {
+                    res.status(400).json({
+                        success: false,
+                        error: 'Questão não encontrada'
+                    })
+                }
+            })
+        })
+    }catch (e) {
+        return res.status(400).json({success: false, error: 'Ocorreu um erro ao aprovar esta questão'})
     }
 }

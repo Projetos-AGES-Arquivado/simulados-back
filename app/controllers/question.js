@@ -6,7 +6,6 @@ var Question = require('../models/question.js')(db.sequelize, db.Sequelize)
 var Coordinator = require('../models/coordinator')(db.sequelize, db.Sequelize)
 // var bCrypt = require('bcrypt-nodejs');
 // var validator = require('validator');
-const passport = require('passport')
 
 exports.getQuestionsWithPagination = async (req, res) => {
 

@@ -3,8 +3,10 @@ var db = require('../config/datasource.js')
 var Participation = require('../models/participation.js')(db.sequelize, db.Sequelize)
 var Alternative = require('../models/alternative.js')(db.sequelize, db.Sequelize)
 var Question = require('../models/question.js')(db.sequelize, db.Sequelize)
+var Coordinator = require('../models/coordinator')(db.sequelize, db.Sequelize)
 // var bCrypt = require('bcrypt-nodejs');
 // var validator = require('validator');
+const passport = require('passport')
 
 exports.getQuestionsWithPagination = async (req, res) => {
 
@@ -59,33 +61,44 @@ exports.getQuestionsWithPagination = async (req, res) => {
     }
 }
 
+const isCoordinator = async (user) => {
+    let coordinator = await Coordinator.findOne({where:{user_id:user.id}})
+    if(coordinator)
+        return true
+    return false
+}
+
 exports.approve = async (req, res) => {
     try{
-        Question.update(
-            {
-                approved: req.body.approved
-            },
-            {
-                where: {id: req.body.id},
-                returning: true,
-                plain:true
-            }
-        ).then(() => {
-            Question.findById(req.body.id).then((question) => {
-                if (question) {
-                    res.status(200).json({
-                        success: true,
-                        message: 'Questão atualizada',
-                        question: question.toJSON()
-                    })
-                } else {
-                    res.status(400).json({
-                        success: false,
-                        error: 'Questão não encontrada'
-                    })
+        if(! await isCoordinator(req.user)){
+            return res.status(400).json({ success: false, error: 'Usuário sem premissão para esta ação' })
+        }else{
+            Question.update(
+                {
+                    approved: req.body.approved
+                },
+                {
+                    where: {id: req.body.id},
+                    returning: true,
+                    plain:true
                 }
+            ).then(() => {
+                Question.findById(req.body.id).then((question) => {
+                    if (question) {
+                        res.status(200).json({
+                            success: true,
+                            message: 'Questão atualizada',
+                            question: question.toJSON()
+                        })
+                    } else {
+                        res.status(400).json({
+                            success: false,
+                            error: 'Questão não encontrada'
+                        })
+                    }
+                })
             })
-        })
+        }
     }catch (e) {
         return res.status(400).json({success: false, error: 'Ocorreu um erro ao aprovar esta questão'})
     }

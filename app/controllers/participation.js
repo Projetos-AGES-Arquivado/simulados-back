@@ -1,13 +1,7 @@
-import { basename } from 'path';
-
 var exports = module.exports = {}
 var db = require('../config/datasource.js');
-var StudentModel = require('../modles/student.js')(db.sequelize, db.Sequelize);
-var AnswerModel = require('../models/answer.js')(db.sequelize, db.Sequelize);
-var QuestionModel = require('../models/question.js')(db.sequelize, db.Sequelize);
+var StudentModel = require('../models/student.js')(db.sequelize, db.Sequelize);
 var ParticipationModel = require('../models/participation.js')(db.sequelize, db.Sequelize);
-var AlternativeModel = require('../models/alternative.js')(db.sequelize, db.Sequelize);
-var PractiseExam_QuestionsModel = require('../models/practiseexam_questions.js')(db.sequelize, db.Sequelize);
 
 exports.create = async function (req, res) {
     const body = req.body;

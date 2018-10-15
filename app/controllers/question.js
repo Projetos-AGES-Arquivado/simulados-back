@@ -60,17 +60,13 @@ exports.getQuestionsWithPagination = async (req, res) => {
     }
 }
 
-const isCoordinator = async (user) => {
-    let coordinator = await Coordinator.findOne({where:{user_id:user.id}})
-    if(coordinator)
-        return true
-    return false
-}
+const isCoordinator = async user => !!(await Coordinator.findOne({where:{user_id:user.id}}))
 
 exports.approve = async (req, res) => {
     try{
-        if(! await isCoordinator(req.user)){
-            return res.status(400).json({ success: false, error: 'Usuário sem premissão para esta ação' })
+        let isUserCoordinator = await isCoordinator(req.user)
+        if(!isUserCoordinator){
+            return res.status(400).json({ success: false, error: 'Usuário sem permissão para esta ação' })
         }else{
             Question.update(
                 {

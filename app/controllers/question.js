@@ -58,25 +58,32 @@ exports.getQuestionsWithPagination = async (req, res) => {
 }
 
 const validate = (body) => {
-    return ['professor_id', 'coordinator_id', 'subarea_id', 'statement', 'approved', 'studyMaterials', 'comment'].every( field => body[field])
+    let properties = ['professor_id', 'coordinator_id', 'subarea_id', 'statement', 'approved', 'comment']
+
+    for(let p in properties){
+        if(!body.hasOwnProperty(p) || body[p] === '')
+            return false        
+    }
+    return true
 }
 
 exports.update = async (req, res) => {
     try {
         const body = req.body
 
-        if (!validate(body)) {
+        let valid = validate(body)
+        if (!valid) {
             return res.status(400).json({success: false, error: 'Dados informados invalidados ou faltando'})
         }else{
-            Question.update(
+            await Question.update(
                 {
                     professor_id: body.professor_id,
-                    coordinator_id: body.professor_id,
-                    subarea_id: body.professor_id,
-                    statement: body.professor_id,
-                    approved: body.professor_id,
-                    studyMaterials: body.professor_id,
-                    comment: body.professor_id                
+                    coordinator_id: body.coordinator_id,
+                    subarea_id: body.subarea_id,
+                    statement: body.statement,
+                    approved: body.approved,
+                    studyMaterials: body.studyMaterials,
+                    comment: body.comment                
                 },
                 {
                     where: {id: req.params.id},

@@ -3,6 +3,12 @@ var db = require('../config/datasource.js')
 
 var ParticipationModel = require('../models/participation.js')(db.sequelize, db.Sequelize)
 
+/**
+ * This function receives data from the client, calculate the results of a given exam,
+ * builds an object of it and returns it back to the client.
+ * @param {*request} req 
+ * @param {*responde} res 
+ */
 exports.calcResult = async function (req, res) {
     const participationId = req.params.participationId;
     try {
@@ -10,12 +16,11 @@ exports.calcResult = async function (req, res) {
             return res.status(400).json({ success: false, error: 'ID da participação não informada!' });
         }
         else {
-            //Fetch participation
+            // Fetch the participation
             let participation = await ParticipationModel.findOne({ where: { id: participationId } });
             if (!participation) {
                 return res.status(401).json({ success: false, error: 'Participação não encontrada na base de dados!' });
             } else {
-                console.log("Chegou aki 5");
                 let query = `SELECT subA.id, subA.name, ans.question_id, ans.time_to_answer, alt.correct
                             FROM answers ans 
                             INNER JOIN participations part
@@ -30,8 +35,6 @@ exports.calcResult = async function (req, res) {
                 db.sequelize
                     .query(query, { type: db.sequelize.QueryTypes.SELECT })
                     .then(result => {
-                        console.log("Result: " + result);
-
                         // First, we create our initial object of subAreas
                         let resultObject = [];
                         // For each question found...
@@ -41,10 +44,10 @@ exports.calcResult = async function (req, res) {
                                 buildQuestion(resultObject, result, i);
                             } else {
                                 // If the subarea doesn`t exist, then
-                                // Creates a subArea object as an empty array of questions and the name of the subArea
+                                // Creates a subArea object before building a question
                                 const subArea = {
-                                    questions: [],
-                                    name: result[i].name
+                                    subAreaName: result[i].name,
+                                    questions: []
                                 };
                                 console.log(`New subarea being included: ${subArea}`);
                                 resultObject[result[i].id] = subArea;
@@ -53,18 +56,28 @@ exports.calcResult = async function (req, res) {
                         }
                         res.status(200).json({
                             success: true,
-                            message: 'Foi',
-                            fodeu: resultObject
-                        })
-                    })
+                            message: 'Resultado buscado com sucesso!',
+                            result: resultObject
+                        });
+                    });
             }
         }
 
     } catch (err) {
-        res.status(401).json({ success: false, error: 'Erro ao buscar resultado de exame: ' + console.log(err.message) });
+        res.status(401)
+        .json({ 
+            success: false, error: 'Erro ao buscar resultado de exame: ' + 
+            console.log(err.message) 
+        });
     }
 }
 
+/**
+ * This function builds a question and add it to the resultObject
+ * @param {*} resultObject 
+ * @param {*} result 
+ * @param {*} i 
+ */
 async function buildQuestion(resultObject, result, i) {
     // Lets check if the question already exist, just to prevent failures
     if (resultObject[result[i].id].questions[result[i].question_id] != undefined) { // Se a questão existe na subArea mencionada
@@ -72,6 +85,7 @@ async function buildQuestion(resultObject, result, i) {
     } else {
         // If the Question doesn`t exist on mentioned subArea, build it.
         const question = {
+            question_id: result[i].question_id,
             correct: result[i].correct,
             time_to_answer: result[i].time_to_answer
         };

@@ -1,12 +1,12 @@
 var exports = module.exports = {}
-var db = require('../config/datasource.js');
+var db = require('../config/datasource.js')
 
-var ParticipationModel = require('../models/participation.js')(db.sequelize, db.Sequelize);
+var ParticipationModel = require('../models/participation.js')(db.sequelize, db.Sequelize)
 
 exports.calcResult = async function (req, res) {
     
-    const participationId = req.params;
-    console.log(participationId);
+    const participationId = req.params.participationId;
+    console.log("AKI " + participationId);
     try{
         if (!participationId) {
             console.log("Chegou aki 1");
@@ -22,7 +22,7 @@ exports.calcResult = async function (req, res) {
                 return res.status(401).json({ success: false, error: 'Participação não encontrada na base de dados!' });
             } else {
                 console.log("Chegou aki 5");
-                let query2 = `SELECT subA.name, ans.question_id, ans.time_to_answer, alt.correct
+                let query = `SELECT subA.name, ans.question_id, ans.time_to_answer, alt.correct
                             FROM answers ans 
                             INNER JOIN participations part
                                 ON ans.participation_id = part.id
@@ -34,21 +34,42 @@ exports.calcResult = async function (req, res) {
                                 ON quest. subarea_id = subA.id
                             Where part.id = ${participationId};`; 
                 console.log("Chegou aki 6"); 
-                console.log(query2);
                 
-                // let questions = await db.sequelize
-                //     .query(query, { type: db.sequelize.QueryTypes.SELECT })
-                //     .then(questions =>
-                //         db.sequelize.Promise.each(questions, async question =>
-                //             question.alternatives = await Alternative
-                //                 .findAll({ where: { question_id: question.id } })
-                //                 .then(alternatives => alternatives)
-                //         )
-                //     )
+                let result = await db.sequelize
+                    .query(query, { type: db.sequelize.QueryTypes.SELECT })
+                    .then(result => {
+                        console.log("Result: " + result);
+                        let returnObject;
+                        for(let i=0; i<result.length; i++) {
+                            returnObject[result[i].name].questoes[result[i].question_id].correct = result[i].correct;
+                            returnObject[result[i].name].questoes[result[i].question_id].time_to_answer = result[i].time_to_answer;
+                        }
+                        // console.log("returnObject: " + returnObject);
+                    })
+
+                    // for(let i=0; i<result.length; i++) {
+                    //     console.log(result[i].name);
+                    //     console.log(result[i].question_id);
+                    //     console.log(result[i].time_to_answer);
+                    //     console.log(result[i].correct);
+                    // }
+                    
+
+                //console.log("Result: "+ result);
+                // let returnObject;
+
+                // for(let i=0; i<result.length; i++) {
+                //     returnObject[result[i].name].[result[i].question_id].hit = result[i].correct;
+                //     returnObject[result[i].name].[result[i].question_id].time = result[i].time_to_answer;
+                // }
+                res.status(200).json({
+                    success: true,
+                    message: 'Foi'
+                })
             }     
         }
         
     } catch (err) {
-        res.status(401).json({ success: false, error: 'Ocorreu um erro ao buscar resultado de exame' });
+        res.status(401).json({ success: false, error: 'Ocorreu um erro ao buscar resultado de exame: ' + console.log(err.message)});
     }
 }

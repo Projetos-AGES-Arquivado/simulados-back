@@ -68,7 +68,7 @@ exports.approve = async (req, res) => {
         if(!isUserCoordinator){
             return res.status(400).json({ success: false, error: 'Usuário sem permissão para esta ação' })
         }else{
-            Question.update(
+            await Question.update(
                 {
                     approved: req.body.approved
                 },

@@ -61,14 +61,11 @@ exports.signin = async (req, res) => {
         const body = req.body
 
         if(!body.email) {
-            console.log("Caiu aki 1");
             return res.status(400).json({success: false, error: 'Please enter an valid email to login'})
         } else if(!body.password) {
-            console.log("Caiu aki 2");
             return res.status(400).json({success: false, error: 'Please enter a password to login'})
         } else {
             let user = await findUserByEmail(body.email)
-            console.log("Caiu aki 3");
             if (!user)
                 throw new Error('Email does not exist')
 
@@ -81,11 +78,9 @@ exports.signin = async (req, res) => {
                 token: user.getJWT(),
                 data: {user, 'administrator':user.administrator, 'coordinator':user.coordinator, 'professor':user.professor, 'student':user.student}
             }
-            console.log("Caiu aki 4");
             res.status(200).send(data)
         }
     }catch (e) {
-        console.log("Caiu aki 5");
         return res.status(400).json({success: false, error: e.message})
     }
 }

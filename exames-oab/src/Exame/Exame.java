@@ -8,6 +8,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -66,8 +67,12 @@ public class Exame {
         this.urlGabarito = urlGabarito;
     }
 
-    public Date getData() {
-        return data;
+    public int getData() {    	
+    	 
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(data);
+        
+        return calendar.get(calendar.YEAR);
     }
 
     public void setData(Date data) {

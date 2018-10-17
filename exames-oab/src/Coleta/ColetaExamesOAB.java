@@ -8,10 +8,11 @@ import Exame.Questao;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Calendar;
 
 public class ColetaExamesOAB {
 
-    public static final String filePath = "C:/Users/Eduardo Arruda/Documents/src/AGES/simulados/simulados-back/exames-oab/data/";
+    public static final String filePath = "/home/14202112/OAB/simulados-back/exames-oab/data/";
     public static final String outputFileName = "inserts.sql";
 
     public static void main(String[] args) {
@@ -23,9 +24,14 @@ public class ColetaExamesOAB {
         final File outputDoc = new File(filePath + outputFileName);
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputDoc));
+            int i = 0;
             for (Exame exame : Exames.getExames()) {
-                exame.coleta();
-                writer.write("insert into exames (num_exame, url_exame, url_gabarito, data)\r\nvalues(" + Integer.toString(exame.getNumero()) + ", '" + exame.getUrlExame() + "', '" + exame.getUrlGabarito() + "', '" + exame.getData() + "');\r\n");
+                exame.coleta();                
+                System.out.println(i);
+                i++;
+               
+                
+                writer.write("insert into practise_exam (aob_exam, aob_exam_year, aob_exam_serial)\r\nvalues(" + "true" + ", " + exame.getData() +", " + exame.getNumero() + ");\r\n");
                 for (Questao questao : exame.getQuestoes()) {
                     writer.write("insert into questoes (num_exame, num_questao, enunciado, opcao_correta)\r\nvalues(" + Integer.toString(exame.getNumero()) + ", " + Integer.toString(questao.getNumero()) + ", '" + questao.getEnunciado() + "', '" + questao.getOpcaoCorreta() + "');\r\n");
                     for (Opcao opcao : questao.getOpcoes()) {
@@ -38,6 +44,7 @@ public class ColetaExamesOAB {
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
         }
+        System.out.println("cabo");
     }
 
 }

@@ -2,7 +2,8 @@ var exports = module.exports = {}
 var db = require('../config/datasource.js')
 var Participation = require('../models/participation.js')(db.sequelize, db.Sequelize)
 var Alternative = require('../models/alternative.js')(db.sequelize, db.Sequelize)
-var Question = require('../models/question')(db.sequelize, db.Sequelize)
+var Question = require('../models/question.js')(db.sequelize, db.Sequelize)
+var Coordinator = require('../models/coordinator')(db.sequelize, db.Sequelize)
 
 exports.getQuestionsWithPagination = async (req, res) => {
 
@@ -112,57 +113,41 @@ exports.update = async (req, res) => {
     }
 }
 
-const validate = (body) => {
-    let properties = ['professor_id', 'coordinator_id', 'subarea_id', 'statement', 'approved', 'comment']
+const isCoordinator = async user => !!(await Coordinator.findOne({where:{user_id:user.id}}))
 
-    for(let p in properties){
-        if(!body.hasOwnProperty(p) || body[p] === '')
-            return false        
-    }
-    return true
-}
-
-exports.update = async (req, res) => {
-    try {
-        const body = req.body
-
-        let valid = validate(body)
-        if (!valid) {
-            return res.status(400).json({success: false, error: 'Dados informados invalidados ou faltando'})
+exports.approve = async (req, res) => {
+    try{
+        let isUserCoordinator = await isCoordinator(req.user)
+        if(!isUserCoordinator){
+            return res.status(400).json({ success: false, error: 'Usuário sem permissão para esta ação' })
         }else{
             await Question.update(
                 {
-                    professor_id: body.professor_id,
-                    coordinator_id: body.coordinator_id,
-                    subarea_id: body.subarea_id,
-                    statement: body.statement,
-                    approved: body.approved,
-                    studyMaterials: body.studyMaterials,
-                    comment: body.comment                
+                    approved: req.body.approved
                 },
                 {
-                    where: {id: req.params.id},
+                    where: {id: req.body.id},
                     returning: true,
                     plain:true
                 }
             ).then(() => {
-                Question.findById(req.params.id).then((question) => {
+                Question.findById(req.body.id).then((question) => {
                     if (question) {
                         res.status(200).json({
                             success: true,
-                            message: 'Question updated',
-                            user: question.toJSON()
+                            message: 'Questão atualizada',
+                            question: question.toJSON()
                         })
                     } else {
                         res.status(400).json({
                             success: false,
-                            error: 'Question not found'
+                            error: 'Questão não encontrada'
                         })
                     }
                 })
             })
         }
-    } catch (e) {
-        return res.status(400).json({success: false, error: e.message})
+    }catch (e) {
+        return res.status(400).json({success: false, error: 'Ocorreu um erro ao aprovar esta questão'})
     }
 }

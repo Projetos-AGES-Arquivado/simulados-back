@@ -1,6 +1,0 @@
-git pull --rebase origin dev
-vão aparecer que certos arquivos estão com conflito, então resolva todos os conflitos de cada passo 
-git add . 
-git rebase --continue. 
-Itere nesse último passo até que o rebase termine. 
-Execute git push --force-with-lease.

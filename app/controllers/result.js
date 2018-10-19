@@ -21,7 +21,7 @@ exports.calcResult = async function (req, res) {
             if (!participation) {
                 return res.status(401).json({ success: false, error: 'Participação não encontrada na base de dados!' });
             } else {
-                let query = `SELECT subA.id, subA.name, ans.question_id, ans.time_to_answer, alt.correct
+                let querySubAreas = `SELECT DISTINCT subA.id, subA.name
                             FROM answers ans 
                             INNER JOIN participations part
                                 ON ans.participation_id = part.id
@@ -32,34 +32,43 @@ exports.calcResult = async function (req, res) {
                             INNER JOIN subareas subA
                                 ON quest. subarea_id = subA.id
                             Where part.id = ${participationId};`;
-                db.sequelize
-                    .query(query, { type: db.sequelize.QueryTypes.SELECT })
-                    .then(result => {
-                        // First, we create our initial object of subAreas
-                        let resultObject = [];
-                        // For each question found...
-                        for (let i = 0; i < result.length; i++) {                            
-                            // First we check if subArea already exist in our Object
-                            if (resultObject[result[i].id] != undefined) {
-                                buildQuestion(resultObject, result, i);
-                            } else {
-                                // If the subarea doesn`t exist, then
-                                // Creates a subArea object before building a question
-                                const subArea = {
-                                    subAreaName: result[i].name,
-                                    questions: []
-                                };
-                                console.log(`New subarea being included: ${subArea}`);
-                                resultObject[result[i].id] = subArea;
-                                buildQuestion(resultObject, result, i);
+
+                let queryQuestions = `SELECT DISTINCT subA.id, ans.question_id, ans.time_to_answer, alt.correct
+                            FROM answers ans 
+                            INNER JOIN participations part
+                                ON ans.participation_id = part.id
+                            INNER JOIN questions quest
+                                ON ans.question_id = quest.id
+                            INNER JOIN alternatives alt
+                                ON quest.id = alt.id 
+                            INNER JOIN subareas subA
+                                ON quest. subarea_id = subA.id
+                            Where part.id = ${participationId};`;
+                
+                let subAreas = await db.sequelize.query(querySubAreas, { type: db.sequelize.QueryTypes.SELECT });
+                let questions = await db.sequelize.query(queryQuestions, { type: db.sequelize.QueryTypes.SELECT });
+
+                for(let i = 0; i< questions.length; i++){
+                    console.log(Object.values(questions[i]));
+                }
+
+                for(let i = 0; i < questions.length; i++) {
+                    if(questions[i] != undefined){
+                        for(let j = 0; j < subAreas.length; j++) {
+                            if(!subAreas[j].hasOwnProperty("questions")){
+                                subAreas[j].questions = [];
+                            } 
+                            if(questions[i].id === subAreas[j].id){
+                                subAreas[j].questions.push(questions[i]);                          
                             }
                         }
-                        res.status(200).json({
-                            success: true,
-                            message: 'Resultado buscado com sucesso!',
-                            result: resultObject
-                        });
-                    });
+                    }
+                }
+                res.status(200).json({
+                    success: true,
+                    message: 'Resultado buscado com sucesso!',
+                    result: subAreas
+                });
             }
         }
 
@@ -69,26 +78,5 @@ exports.calcResult = async function (req, res) {
             success: false, error: 'Erro ao buscar resultado de exame: ' + 
             console.log(err.message) 
         });
-    }
-}
-
-/**
- * This function builds a question and add it to the resultObject
- * @param {*} resultObject 
- * @param {*} result 
- * @param {*} i 
- */
-async function buildQuestion(resultObject, result, i) {
-    // Lets check if the question already exist, just to prevent failures
-    if (resultObject[result[i].id].questions[result[i].question_id] != undefined) { // Se a questão existe na subArea mencionada
-        console.log("Question already exist");
-    } else {
-        // If the Question doesn`t exist on mentioned subArea, build it.
-        const question = {
-            question_id: result[i].question_id,
-            correct: result[i].correct,
-            time_to_answer: result[i].time_to_answer
-        };
-        resultObject[result[i].id].questions[result[i].question_id] = question;
     }
 }

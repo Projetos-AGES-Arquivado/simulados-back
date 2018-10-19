@@ -2,8 +2,7 @@ var exports = module.exports = {}
 var db = require('../config/datasource.js')
 var Participation = require('../models/participation.js')(db.sequelize, db.Sequelize)
 var Alternative = require('../models/alternative.js')(db.sequelize, db.Sequelize)
-// var bCrypt = require('bcrypt-nodejs');
-// var validator = require('validator');
+var Question = require('../models/question')(db.sequelize, db.Sequelize)
 
 exports.getQuestionsWithPagination = async (req, res) => {
 
@@ -55,5 +54,115 @@ exports.getQuestionsWithPagination = async (req, res) => {
                     return res.status(401).json({ success: false, error: 'As questões deste simulado não foram encontradas.' })
             }
         }).catch(() => res.status(401).json({ success: false, error: 'Ocorreu um erro ao buscar as questões.' }))
+    }
+}
+
+const validate = (body) => {
+    let properties = ['professor_id', 'coordinator_id', 'subarea_id', 'statement', 'approved', 'comment']
+
+    for(let p in properties){
+        if(!body.hasOwnProperty(p) || body[p] === '')
+            return false        
+    }
+    return true
+}
+
+exports.update = async (req, res) => {
+    try {
+        const body = req.body
+
+        let valid = validate(body)
+        if (!valid) {
+            return res.status(400).json({success: false, error: 'Dados informados invalidados ou faltando'})
+        }else{
+            await Question.update(
+                {
+                    professor_id: body.professor_id,
+                    coordinator_id: body.coordinator_id,
+                    subarea_id: body.subarea_id,
+                    statement: body.statement,
+                    approved: body.approved,
+                    studyMaterials: body.studyMaterials,
+                    comment: body.comment                
+                },
+                {
+                    where: {id: req.params.id},
+                    returning: true,
+                    plain:true
+                }
+            ).then(() => {
+                Question.findById(req.params.id).then((question) => {
+                    if (question) {
+                        res.status(200).json({
+                            success: true,
+                            message: 'Question updated',
+                            user: question.toJSON()
+                        })
+                    } else {
+                        res.status(400).json({
+                            success: false,
+                            error: 'Question not found'
+                        })
+                    }
+                })
+            })
+        }
+    } catch (e) {
+        return res.status(400).json({success: false, error: e.message})
+    }
+}
+
+const validate = (body) => {
+    let properties = ['professor_id', 'coordinator_id', 'subarea_id', 'statement', 'approved', 'comment']
+
+    for(let p in properties){
+        if(!body.hasOwnProperty(p) || body[p] === '')
+            return false        
+    }
+    return true
+}
+
+exports.update = async (req, res) => {
+    try {
+        const body = req.body
+
+        let valid = validate(body)
+        if (!valid) {
+            return res.status(400).json({success: false, error: 'Dados informados invalidados ou faltando'})
+        }else{
+            await Question.update(
+                {
+                    professor_id: body.professor_id,
+                    coordinator_id: body.coordinator_id,
+                    subarea_id: body.subarea_id,
+                    statement: body.statement,
+                    approved: body.approved,
+                    studyMaterials: body.studyMaterials,
+                    comment: body.comment                
+                },
+                {
+                    where: {id: req.params.id},
+                    returning: true,
+                    plain:true
+                }
+            ).then(() => {
+                Question.findById(req.params.id).then((question) => {
+                    if (question) {
+                        res.status(200).json({
+                            success: true,
+                            message: 'Question updated',
+                            user: question.toJSON()
+                        })
+                    } else {
+                        res.status(400).json({
+                            success: false,
+                            error: 'Question not found'
+                        })
+                    }
+                })
+            })
+        }
+    } catch (e) {
+        return res.status(400).json({success: false, error: e.message})
     }
 }

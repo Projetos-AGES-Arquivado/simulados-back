@@ -51,19 +51,23 @@ exports.calcResult = async function (req, res) {
                 for(let i = 0; i< questions.length; i++){
                     console.log(Object.values(questions[i]));
                 }
-
                 for(let i = 0; i < questions.length; i++) {
                     if(questions[i] != undefined){
                         for(let j = 0; j < subAreas.length; j++) {
                             if(!subAreas[j].hasOwnProperty("questions")){
                                 subAreas[j].questions = [];
                             } 
+                            if(!subAreas[j].hasOwnProperty("total_time")){
+                                subAreas[j].total_time = 0;
+                            } 
                             if(questions[i].id === subAreas[j].id){
-                                subAreas[j].questions.push(questions[i]);                          
+                                subAreas[j].questions.push(questions[i]);
+                                subAreas[j].total_time += questions[i].time_to_answer;                          
                             }
                         }
                     }
                 }
+                
                 res.status(200).json({
                     success: true,
                     message: 'Resultado buscado com sucesso!',

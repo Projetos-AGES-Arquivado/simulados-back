@@ -48,17 +48,14 @@ exports.calcResult = async function (req, res) {
                 let subAreas = await db.sequelize.query(querySubAreas, { type: db.sequelize.QueryTypes.SELECT });
                 let questions = await db.sequelize.query(queryQuestions, { type: db.sequelize.QueryTypes.SELECT });
 
-                for(let i = 0; i< questions.length; i++){
-                    console.log(Object.values(questions[i]));
-                }
                 for(let i = 0; i < questions.length; i++) {
                     if(questions[i] != undefined){
                         for(let j = 0; j < subAreas.length; j++) {
-                            if(!subAreas[j].hasOwnProperty("questions")){
-                                subAreas[j].questions = [];
-                            } 
                             if(!subAreas[j].hasOwnProperty("total_time")){
                                 subAreas[j].total_time = 0;
+                            } 
+                            if(!subAreas[j].hasOwnProperty("questions")){
+                                subAreas[j].questions = [];
                             } 
                             if(questions[i].id === subAreas[j].id){
                                 subAreas[j].questions.push(questions[i]);
@@ -67,7 +64,7 @@ exports.calcResult = async function (req, res) {
                         }
                     }
                 }
-                
+                                
                 res.status(200).json({
                     success: true,
                     message: 'Resultado buscado com sucesso!',
@@ -75,7 +72,6 @@ exports.calcResult = async function (req, res) {
                 });
             }
         }
-
     } catch (err) {
         res.status(401)
         .json({ 

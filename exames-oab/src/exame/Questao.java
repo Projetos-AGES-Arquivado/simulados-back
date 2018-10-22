@@ -4,34 +4,8 @@ import java.util.ArrayList;
 
 public class Questao {
 
-    private int id;
     private int exam_id;
-
-    @Override
-    public String toString() {
-        return "Questao{" +
-                "id=" + id +
-                ", exam_id=" + exam_id +
-                ", statement='" + statement + '\'' +
-                ", opcoes=" + opcoes +
-                ", professor_id=" + professor_id +
-                ", coordinator_id=" + coordinator_id +
-                ", subarea_id=" + subarea_id +
-                ", approved=" + approved +
-                ", studyMaterials='" + studyMaterials + '\'' +
-                ", coment='" + coment + '\'' +
-                ", opcaoCorreta=" + opcaoCorreta +
-                '}';
-    }
-
-    public int getExam_id() {
-        return exam_id;
-    }
-
-    public void setExam_id(int exam_id) {
-        this.exam_id = exam_id;
-    }
-
+    private int serial;
     private String statement;
     private ArrayList<Opcao> opcoes;
     private final int professor_id = 1;
@@ -42,19 +16,19 @@ public class Questao {
     private final String coment = null;
     private char opcaoCorreta;
 
-    public Questao(int id, String statement, ArrayList<Opcao> opcoes, char opcaoCorreta) {
-        this.id = id;
-        this.statement = statement;
-        this.opcoes = opcoes;
+     public Questao(int exam_id, int serial, String statement, char opcaoCorreta) {
+        this.exam_id = exam_id;
+        this.serial = serial;
+        this.statement = statement;        
         this.opcaoCorreta = opcaoCorreta;
     }
 
-    public int getId() {
-        return id;
+    public int getExam_id() {
+        return exam_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setExam_id(int exam_id) {
+        this.exam_id = exam_id;
     }
 
     public String getStatement() {
@@ -104,4 +78,10 @@ public class Questao {
     public void setOpcaoCorreta(char opcaoCorreta) {
         this.opcaoCorreta = opcaoCorreta;
     }
+
+    @Override
+    public String toString() {
+        return "Questao{" + "exam_id=" + exam_id + ", serial=" + serial + ", statement=" + statement + ", opcoes=" + opcoes + ", professor_id=" + professor_id + ", coordinator_id=" + coordinator_id + ", subarea_id=" + subarea_id + ", approved=" + approved + ", studyMaterials=" + studyMaterials + ", coment=" + coment + ", opcaoCorreta=" + opcaoCorreta + '}';
+    }
+    
 }

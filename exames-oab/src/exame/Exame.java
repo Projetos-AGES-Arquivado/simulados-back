@@ -59,6 +59,8 @@ public class Exame {
 
     @Override
     public String toString() {
-        return Integer.toString(getAob_exam_year());
+        return "Exame{" + "id=" + id + ", aob_exam=" + aob_exam + ", aob_exam_year=" + aob_exam_year + ", aob_exam_serial=" + aob_exam_serial + ", questoes=" + questoes + '}';
     }
+
+   
 }

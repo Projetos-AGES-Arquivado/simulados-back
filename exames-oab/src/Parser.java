@@ -1,4 +1,6 @@
 import exame.Exame;
+import exame.Opcao;
+import exame.Questao;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,21 +10,19 @@ import java.util.stream.Collectors;
 
 public class Parser {
     
-    private static HashMap<Integer, ArrayList<Exame>> examesPorAno = new HashMap<Integer, ArrayList<Exame>>();
+    private static final HashMap<Integer, ArrayList<Exame>> examesPorAno = new HashMap<Integer, ArrayList<Exame>>();
     private static List<Exame> exames = new ArrayList<Exame>(); 
+    private static List<Questao> questoes = new ArrayList<Questao>();    
+    private static List<Opcao> opcoes = new ArrayList<Opcao>();
     
     public static void main(String[] args) {
-
         
         try {
-            List<String[]> list = Files.lines(Paths.get("inserts.sql"))
-                    .filter(s -> !s.contains("insert") && !s.contains("commit"))
-                    .map(s -> s.replaceAll("values\\(", ""))
-                    .map(s -> s.replaceAll("\\);", ""))
-                    .map(s -> s.replaceAll("\\[", ""))
-                    .map(s -> s.replaceAll("\\]", ""))                    
-                    .map(s -> s.split(","))
-                    .collect(Collectors.toList());
+           
+            List<String[]> list = clean();
+            
+           for(String[] s : list)
+           System.out.println(Arrays.toString(s));
             
             exames = list.stream()
                    .filter(s -> s[1].contains("pdf"))                   
@@ -31,14 +31,7 @@ public class Parser {
             
             System.out.println("Coletei " + exames.size() + " exames");
             
-            for(Exame exame : exames){
-                ArrayList<Exame> aux;
-                aux = examesPorAno.getOrDefault(exame.getAob_exam_year(), new ArrayList<>());
-                aux.add(exame);
-                examesPorAno.put(exame.getAob_exam_year(), aux);
-                exame.setAob_exam_serial(examesPorAno.get(exame.getAob_exam_year()).size());
-            }
-            
+            /*
             //For testing purposes. Should return two 2016 exams 
             ArrayList<Exame> ex2016 = examesPorAno.get(2016);
             
@@ -59,29 +52,126 @@ public class Parser {
             
             //For testing purposes. Should return a total of 6 exams
             System.out.println("Coletei " + exames.size() + " exames");            
-           
+            
+            */
+            
+            questoes = list.stream()
+                    .filter(s -> !(s[1].contains("pdf")))
+                    .filter(s -> s[2].trim().length() > 3)
+                    .map(s -> createQuestion(s))
+                    .collect(Collectors.toList());
+            
+            System.out.println("Coletei " + questoes.size() + " questoes");
+            
+            /*
+            
+            //For testing purposes. Each exam should have 80 questions 
+            for(Exame e : exames)
+                System.out.println("Exame " + e.getId() + " contém " + e.getQuestoes().size());
+        
+            */
+            
+            opcoes = list.stream()
+                    .filter(s -> !(s[1].contains("pdf")))
+                    .filter(s -> s[2].trim().length() == 3)
+                    .map(s -> createOpcao(s))
+                    .collect(Collectors.toList());
+                    
+            
+            for(Exame exame : exames){
+                ArrayList<Exame> aux;
+                aux = examesPorAno.getOrDefault(exame.getAob_exam_year(), new ArrayList<>());
+                aux.add(exame);
+                examesPorAno.put(exame.getAob_exam_year(), aux);
+                exame.setAob_exam_serial(examesPorAno.get(exame.getAob_exam_year()).size());
+            }
+            
+            for(Questao q : questoes){
+                //System.out.println("Questão " + q.getId() + " do exame " + q.getExam_id());
+                for(Exame e : exames){
+                    //System.out.println("Verificando exame " + e.getId());
+                    if(q.getExam_id() == e.getId()){
+                        //System.out.println("Encontrado, adicionando");
+                        e.addQuestao(q);
+                        break;
+                    }
+                }
+            }
+            
+    
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static Exame createExam(String[] line) {
+    private static List<String[]> clean() throws IOException {
         
-        int examYear = getDate(line[3]);
-        int numExam = Integer.parseInt(line[0]);
+        List<String[]> list = Files.lines(Paths.get("inserts.sql"))
+                    .filter(s -> !s.contains("insert") && !s.contains("commit"))
+                    .map(s -> s.replaceAll("values\\(", ""))
+                    .map(s -> s.replaceAll("\\);", ""))
+                    .map(s -> s.replaceAll("\\[", ""))
+                    .map(s -> s.replaceAll("\\]", ""))                    
+                    .map(s -> s.split(","))
+                    .collect(Collectors.toList());
+        for(String[] line : list){
+            for(String string : line)
+                string.trim();
+        }
+        return list;
+    }
+    
+    private static int getDate(String nonFormatedDate){
+
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", new Locale("pt", "BR"));
+
+        String formatedDate = "";
+
+        for (int i = nonFormatedDate.length()-5, count = 0; count < 4 ; i++, count++)
+            formatedDate += nonFormatedDate.charAt(i);
+
+        return Integer.parseInt(formatedDate);
+    }
+
+    private static Exame createExam(String[] s) {
+        
+        int examYear = getDate(s[3]);
+        int numExam = Integer.parseInt(s[0]);
         Exame exame = new Exame(numExam, examYear);        
         return exame;        
     }
 
-        private static int getDate(String nonFormatedDate){
-            
-            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", new Locale("pt", "BR"));
-        
-            String formatedDate = "";
-            
-            for (int i = nonFormatedDate.length()-5, count = 0; count < 4 ; i++, count++)
-                formatedDate += nonFormatedDate.charAt(i);
-            
-            return Integer.parseInt(formatedDate);
+    private static Questao createQuestion(String[] s) {
+      
+        StringBuilder sb = new StringBuilder();
+        for(int i = 2; i < s.length-1; i++){
+            String aux = s[i].trim();
+            aux += " ";
+            sb.append(aux);
         }
+
+        boolean erased = true;
+        
+        while(erased){
+            erased = false;        
+            if(sb.toString().contains("  ")){
+                sb.toString().replaceAll("  "," ");
+                erased = true;
+            }
+        }
+       int examID = Integer.parseInt(s[0].trim()); 
+       int questionID = Integer.parseInt(s[1].trim());
+       String statment = sb.toString().trim();
+       Questao questao = new Questao(examID, questionID, statment);
+       //System.out.println(questao);
+       return questao;
+    }
+
+    private static Opcao createOpcao(String [] line){
+        for(String s : line)
+            System.out.println(s);
+        
+        return new Opcao();
+    }
 }

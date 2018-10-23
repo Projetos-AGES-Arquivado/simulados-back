@@ -19,7 +19,19 @@ public class Exame {
         this.aob_exam_serial = 0;
         this.questoes = new ArrayList<>();
     }
-
+    
+    public void addQuestao(Questao q){
+        questoes.add(q);
+    }
+    
+    public int[] getQuestoesIDs(){
+        int result[] = new int[80];
+        
+        for(int i = 0; i < questoes.size(); i++)
+            result[i] = questoes.get(i).getId();
+        return result;
+    }
+    
     public boolean isAob_exam() {
         return aob_exam;
     }

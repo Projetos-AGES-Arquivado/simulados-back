@@ -3,9 +3,9 @@ package exame;
 import java.util.ArrayList;
 
 public class Questao {
-
+    
     private int exam_id;
-    private int serial;
+    private int id;
     private String statement;
     private ArrayList<Opcao> opcoes;
     private final int professor_id = 1;
@@ -16,13 +16,16 @@ public class Questao {
     private final String coment = null;
     private char opcaoCorreta;
 
-     public Questao(int exam_id, int serial, String statement, char opcaoCorreta) {
+    public Questao(int exam_id, int id, String statement) {
         this.exam_id = exam_id;
-        this.serial = serial;
+        this.id = id;
         this.statement = statement;        
-        this.opcaoCorreta = opcaoCorreta;
     }
 
+    public int getId(){
+        return id;
+    }
+    
     public int getExam_id() {
         return exam_id;
     }
@@ -81,7 +84,7 @@ public class Questao {
 
     @Override
     public String toString() {
-        return "Questao{" + "exam_id=" + exam_id + ", serial=" + serial + ", statement=" + statement + ", opcoes=" + opcoes + ", professor_id=" + professor_id + ", coordinator_id=" + coordinator_id + ", subarea_id=" + subarea_id + ", approved=" + approved + ", studyMaterials=" + studyMaterials + ", coment=" + coment + ", opcaoCorreta=" + opcaoCorreta + '}';
+        return "Questao{" + "exam_id=" + exam_id + ", id=" + id + ", statement=" + statement + ", opcoes=" + opcoes + ", professor_id=" + professor_id + ", coordinator_id=" + coordinator_id + ", subarea_id=" + subarea_id + ", approved=" + approved + ", studyMaterials=" + studyMaterials + ", coment=" + coment + ", opcaoCorreta=" + opcaoCorreta + '}';
     }
     
 }

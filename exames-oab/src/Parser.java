@@ -21,8 +21,8 @@ public class Parser {
            
             List<String[]> list = clean();
             
-           for(String[] s : list)
-           System.out.println(Arrays.toString(s));
+           //for(String[] s : list)
+           //System.out.println(Arrays.toString(s));
             
             exames = list.stream()
                    .filter(s -> s[1].contains("pdf"))                   
@@ -76,7 +76,8 @@ public class Parser {
                     .filter(s -> s[2].trim().length() == 3)
                     .map(s -> createOpcao(s))
                     .collect(Collectors.toList());
-                    
+            
+            System.out.println("Coletei " + opcoes.size() + " opcoes");
             
             for(Exame exame : exames){
                 ArrayList<Exame> aux;
@@ -98,7 +99,25 @@ public class Parser {
                 }
             }
             
-    
+            for(Opcao o : opcoes){
+                //System.out.println("Opcao " + o.getLetra() + " da questao " + o.getQuestionId() + " do exame " + o.getExamId());
+                
+                for(Exame e : exames){
+                    if(o.getExamId() == e.getId()){
+                        //System.out.println("Encontrei exame " + e.getId());
+                        
+                        for(Questao q : e.getQuestoes()){
+                            //System.out.println("Verificando questao " + q.getId() + " do exame " + q.getExam_id());
+                            if(o.getQuestionId()== q.getId()){
+                            //System.out.println("Encontrado, adicionando");
+                            q.addOpcao(o);
+                            break;
+                            }
+                        }
+                    }
+                }   
+            }
+            
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -160,18 +179,40 @@ public class Parser {
                 erased = true;
             }
         }
-       int examID = Integer.parseInt(s[0].trim()); 
-       int questionID = Integer.parseInt(s[1].trim());
-       String statment = sb.toString().trim();
-       Questao questao = new Questao(examID, questionID, statment);
-       //System.out.println(questao);
-       return questao;
+        
+        int examID = Integer.parseInt(s[0].trim()); 
+        int questionID = Integer.parseInt(s[1].trim());
+        String statment = sb.toString().trim();
+        Questao questao = new Questao(examID, questionID, statment);
+        //System.out.println(questao);
+        return questao;
     }
 
     private static Opcao createOpcao(String [] line){
-        for(String s : line)
-            System.out.println(s);
         
-        return new Opcao();
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i = 3; i < line.length; i++){
+            String aux = line[i].trim();
+            aux += " ";
+            sb.append(aux);
+        }
+
+        boolean erased = true;
+        
+        while(erased){
+            erased = false;        
+            if(sb.toString().contains("  ")){
+                sb.toString().replaceAll("  "," ");
+                erased = true;
+            }
+        }
+        
+        int examID = Integer.parseInt(line[0].trim()); 
+        int questionID = Integer.parseInt(line[1].trim());
+        char letra = line[2].trim().charAt(1);
+        
+        
+        return new Opcao(examID, questionID, letra, sb.toString(), false);
     }
 }

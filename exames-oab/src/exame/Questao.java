@@ -19,7 +19,9 @@ public class Questao {
     public Questao(int exam_id, int id, String statement) {
         this.exam_id = exam_id;
         this.id = id;
-        this.statement = statement;        
+        this.statement = statement;
+        opcoes = new ArrayList<Opcao>();
+        opcaoCorreta = 'X';
     }
 
     public int getId(){
@@ -73,6 +75,10 @@ public class Questao {
     public String getComent() {
         return coment;
     }
+    
+    public void addOpcao(Opcao o) {
+        opcoes.add(o);
+    }
 
     public char getOpcaoCorreta() {
         return opcaoCorreta;
@@ -85,6 +91,5 @@ public class Questao {
     @Override
     public String toString() {
         return "Questao{" + "exam_id=" + exam_id + ", id=" + id + ", statement=" + statement + ", opcoes=" + opcoes + ", professor_id=" + professor_id + ", coordinator_id=" + coordinator_id + ", subarea_id=" + subarea_id + ", approved=" + approved + ", studyMaterials=" + studyMaterials + ", coment=" + coment + ", opcaoCorreta=" + opcaoCorreta + '}';
-    }
-    
+    }    
 }

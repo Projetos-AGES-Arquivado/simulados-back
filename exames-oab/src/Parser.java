@@ -140,7 +140,8 @@ public class Parser {
                 writer.write("insert into Practise_Exam (true, " + exame.getAob_exam_year() + ");\n)");
                 
                 for (Questao questao : exame.getQuestoes()) {
-                    writer.write("insert into Question (1,1,1, " + questao.getStatement() + ", true, 'Questão não possui comentário cadastrado');\r\n");
+                    writer.write("insert into Question (1,1,1, " + questao.getStatement() + ", true, 'Questão não possui comentário cadastrado');\n");
+                    writer.write("insert into PractiseExam_Questions (" + questao.getId() + ", " + exame.getId() + ");\n");
                     
                     for (Opcao opcao : questao.getOpcoes()) {
                         writer.write("insert into Alternative (" + questao.getId() + ", " + questao.getProfessor_id() + ", " + opcao.getDescription() + ", " + opcao.isCorrect() + ");\r\n");

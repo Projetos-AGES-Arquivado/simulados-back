@@ -21,8 +21,8 @@ public class Parser {
            
             List<String[]> list = clean();
             
-           //for(String[] s : list)
-           //System.out.println(Arrays.toString(s));
+           for(String[] s : list)
+           System.out.println(Arrays.toString(s));
             
             exames = list.stream()
                    .filter(s -> s[1].contains("pdf"))                   
@@ -30,6 +30,14 @@ public class Parser {
                    .collect(Collectors.toList());
             
             System.out.println("Coletei " + exames.size() + " exames");
+            
+            for(Exame exame : exames){
+                ArrayList<Exame> aux;
+                aux = examesPorAno.getOrDefault(exame.getAob_exam_year(), new ArrayList<>());
+                aux.add(exame);
+                examesPorAno.put(exame.getAob_exam_year(), aux);
+                exame.setAob_exam_serial(examesPorAno.get(exame.getAob_exam_year()).size());
+            }            
             
             /*
             //For testing purposes. Should return two 2016 exams 
@@ -52,7 +60,6 @@ public class Parser {
             
             //For testing purposes. Should return a total of 6 exams
             System.out.println("Coletei " + exames.size() + " exames");            
-            
             */
             
             questoes = list.stream()
@@ -62,6 +69,18 @@ public class Parser {
                     .collect(Collectors.toList());
             
             System.out.println("Coletei " + questoes.size() + " questoes");
+            
+            for(Questao q : questoes){
+                //System.out.println("Questão " + q.getId() + " do exame " + q.getExam_id());
+                for(Exame e : exames){
+                    //System.out.println("Verificando exame " + e.getId());
+                    if(q.getExam_id() == e.getId()){
+                        //System.out.println("Encontrado, adicionando");
+                        e.addQuestao(q);
+                        break;
+                    }
+                }
+            }
             
             /*
             
@@ -78,26 +97,6 @@ public class Parser {
                     .collect(Collectors.toList());
             
             System.out.println("Coletei " + opcoes.size() + " opcoes");
-            
-            for(Exame exame : exames){
-                ArrayList<Exame> aux;
-                aux = examesPorAno.getOrDefault(exame.getAob_exam_year(), new ArrayList<>());
-                aux.add(exame);
-                examesPorAno.put(exame.getAob_exam_year(), aux);
-                exame.setAob_exam_serial(examesPorAno.get(exame.getAob_exam_year()).size());
-            }
-            
-            for(Questao q : questoes){
-                //System.out.println("Questão " + q.getId() + " do exame " + q.getExam_id());
-                for(Exame e : exames){
-                    //System.out.println("Verificando exame " + e.getId());
-                    if(q.getExam_id() == e.getId()){
-                        //System.out.println("Encontrado, adicionando");
-                        e.addQuestao(q);
-                        break;
-                    }
-                }
-            }
             
             for(Opcao o : opcoes){
                 //System.out.println("Opcao " + o.getLetra() + " da questao " + o.getQuestionId() + " do exame " + o.getExamId());
@@ -162,8 +161,8 @@ public class Parser {
     }
 
     private static Questao createQuestion(String[] s) {
-      
-        StringBuilder sb = new StringBuilder();
+    	
+    	StringBuilder sb = new StringBuilder();
         for(int i = 2; i < s.length-1; i++){
             String aux = s[i].trim();
             aux += " ";

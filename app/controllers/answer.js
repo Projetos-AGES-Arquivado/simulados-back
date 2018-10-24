@@ -6,7 +6,7 @@ var ParticipationModel = require('../models/participation.js')(db.sequelize, db.
 var AlternativeModel = require('../models/alternative.js')(db.sequelize, db.Sequelize)
 
 //Returns the alternative chosen by the user
-async function chosenAnswer(body) {
+const chosenAnswer = async (body) =>  {
     let userAnswer = await AnswerModel.findOne({
         where: {
             question_id: body.question_id,
@@ -65,10 +65,11 @@ exports.create = async function (req, res) {
             return res.status(404).json({ success: false, error: 'Questão não encontrada na base de dados!' });
         }
 
-        let chosenAnswer = await chosenAnswer(body);
-        console.log(chosenAnswer);
+        let chosenAns = await chosenAnswer(body);
+        let correctAns = await correctAnswer(body);
+
         // If the answer exist, it should be updated with new given time_to_answer and alternative_id
-        if (chosenAnswer != undefined) {
+        if (chosenAns) {
             if (!body.time_to_answer) {
                 return res.status(400).json({ success: false, error: 'time_to_answer = Este campo é necessário para atualizar uma resposta!' });
             } else {
@@ -82,7 +83,6 @@ exports.create = async function (req, res) {
                     }
                 );
                 
-                console.log(correctAnswer);
                 // The update function returns 1 if update was successful
                 if (updateStatus[0] === 1) {
                     // Since the update function doesn`t return the updated object, we have
@@ -101,7 +101,7 @@ exports.create = async function (req, res) {
                         success: true,
                         message: 'Resposta atualizada com sucesso!',
                         selectedAlternative: alternative,
-                        correctAlternative: correctAnswer,
+                        correctAlternative: correctAns,
                         answer: updatedAnswer.toJSON()
                         });
                     }
@@ -122,12 +122,12 @@ exports.create = async function (req, res) {
                 participation_id: body.participation_id,
                 alternative_id: body.alternative_id
             };
-            AnswerModel.create(data).then(function (answer) {
+            AnswerModel.create(data).then(async (answer) => {
                 res.status(201).json({
                     success: true,
                     message: 'Resposta criada com sucesso!',
                     selectedAlternative: alternative,
-                    correctAlternative: correctAnswer,
+                    correctAlternative: correctAns,
                     answer: answer.toJSON()
                 });
             });

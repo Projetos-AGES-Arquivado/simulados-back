@@ -1,6 +1,10 @@
 import exame.Exame;
 import exame.Opcao;
 import exame.Questao;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,8 +25,8 @@ public class Parser {
            
             List<String[]> list = clean();
             
-           for(String[] s : list)
-           System.out.println(Arrays.toString(s));
+           //for(String[] s : list)
+           //System.out.println(Arrays.toString(s));
             
             exames = list.stream()
                    .filter(s -> s[1].contains("pdf"))                   
@@ -117,13 +121,72 @@ public class Parser {
                 }   
             }
             
+            for(Exame e : exames)
+            	getGabarito(e);
+            
+            generateSQL();
             
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static List<String[]> clean() throws IOException {
+    private static void generateSQL() {
+		
+    	try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("inserts2.sql"));
+            
+            for (Exame exame : exames) {
+                writer.write("insert into Practise_Exam (true, " + exame.getAob_exam_year() + ");\n)");
+                
+                for (Questao questao : exame.getQuestoes()) {
+                    writer.write("insert into Question (1,1,1, " + questao.getStatement() + ", true, 'Questão não possui comentário cadastrado');\r\n");
+                    
+                    for (Opcao opcao : questao.getOpcoes()) {
+                        writer.write("insert into Alternative (" + questao.getId() + ", " + questao.getProfessor_id() + ", " + opcao.getDescription() + ", " + opcao.isCorrect() + ");\r\n");
+                    }
+                }
+                writer.write("commit;\r\n");
+            }
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+}
+		
+	}
+
+	private static void getGabarito(Exame exam) {
+		String fileName = "gab" + exam.getAob_exam_year() + "_" + exam.getAob_exam_serial() + ".txt";
+    	File gab = new File(fileName);
+		System.out.println("Coletando gabarito a partir do arquivo " + fileName);
+		    	
+    	try {
+			Scanner scan = new Scanner(gab);
+			int n = 0;
+			
+			while(scan.hasNextLine()) {
+				char respostaCorreta = scan.nextLine().charAt(0);
+				Questao questao = exam.getQuestoes().get(n);
+				questao.setOpcaoCorreta(respostaCorreta);
+				
+				for(Opcao op : questao.getOpcoes()) {
+					if(op.getLetra() == respostaCorreta)
+						op.setCorrect(true);
+				}
+					
+				//System.out.print(n + " ");
+				n++;
+				//System.out.println(scan.nextLine());			
+				
+			}
+				
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	private static List<String[]> clean() throws IOException {
         
         List<String[]> list = Files.lines(Paths.get("inserts.sql"))
                     .filter(s -> !s.contains("insert") && !s.contains("commit"))

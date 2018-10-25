@@ -24,10 +24,7 @@ public class Parser {
         try {
            
             List<String[]> list = clean();
-            
-           //for(String[] s : list)
-           //System.out.println(Arrays.toString(s));
-            
+                                 
             exames = list.stream()
                    .filter(s -> s[1].contains("pdf"))                   
                    .map(s -> createExam(s))                   
@@ -42,30 +39,7 @@ public class Parser {
                 examesPorAno.put(exame.getAob_exam_year(), aux);
                 exame.setAob_exam_serial(examesPorAno.get(exame.getAob_exam_year()).size());
             }            
-            
-            /*
-            //For testing purposes. Should return two 2016 exams 
-            ArrayList<Exame> ex2016 = examesPorAno.get(2016);
-            
-            for(Exame ex : ex2016)
-                System.out.println(ex);
-            
-            //For testing purposes. Should return two 2017 exams 
-            ArrayList<Exame> ex2017 = examesPorAno.get(2017);
-            
-            for(Exame ex : ex2017)
-                System.out.println(ex);
-            
-            //For testing purposes. Should return two 2018 exams 
-            ArrayList<Exame> ex2018 = examesPorAno.get(2018);
-            
-            for(Exame ex : ex2018)
-                System.out.println(ex);
-            
-            //For testing purposes. Should return a total of 6 exams
-            System.out.println("Coletei " + exames.size() + " exames");            
-            */
-            
+           
             questoes = list.stream()
                     .filter(s -> !(s[1].contains("pdf")))
                     .filter(s -> s[2].trim().length() > 3)
@@ -75,24 +49,15 @@ public class Parser {
             System.out.println("Coletei " + questoes.size() + " questoes");
             
             for(Questao q : questoes){
-                //System.out.println("Questão " + q.getId() + " do exame " + q.getExam_id());
+           
                 for(Exame e : exames){
-                    //System.out.println("Verificando exame " + e.getId());
+					
                     if(q.getExam_id() == e.getId()){
-                        //System.out.println("Encontrado, adicionando");
                         e.addQuestao(q);
                         break;
                     }
                 }
             }
-            
-            /*
-            
-            //For testing purposes. Each exam should have 80 questions 
-            for(Exame e : exames)
-                System.out.println("Exame " + e.getId() + " contém " + e.getQuestoes().size());
-        
-            */
             
             opcoes = list.stream()
                     .filter(s -> !(s[1].contains("pdf")))
@@ -103,18 +68,15 @@ public class Parser {
             System.out.println("Coletei " + opcoes.size() + " opcoes");
             
             for(Opcao o : opcoes){
-                //System.out.println("Opcao " + o.getLetra() + " da questao " + o.getQuestionId() + " do exame " + o.getExamId());
                 
                 for(Exame e : exames){
                     if(o.getExamId() == e.getId()){
-                        //System.out.println("Encontrei exame " + e.getId());
                         
                         for(Questao q : e.getQuestoes()){
-                            //System.out.println("Verificando questao " + q.getId() + " do exame " + q.getExam_id());
+            
                             if(o.getQuestionId()== q.getId()){
-                            //System.out.println("Encontrado, adicionando");
-                            q.addOpcao(o);
-                            break;
+								q.addOpcao(o);
+								break;
                             }
                         }
                     }
@@ -140,11 +102,11 @@ public class Parser {
                 writer.write("insert into Practise_Exam (true, " + exame.getAob_exam_year() + ");\n)");
                 
                 for (Questao questao : exame.getQuestoes()) {
-                    writer.write("insert into Question (1,1,1, " + questao.getStatement() + ", true, 'Questão não possui comentário cadastrado');\n");
+                    writer.write("insert into Question (1,1,1, '" + questao.getStatement() + "', true, 'Questão não possui comentário cadastrado');\n");
                     writer.write("insert into PractiseExam_Questions (" + questao.getId() + ", " + exame.getId() + ");\n");
                     
                     for (Opcao opcao : questao.getOpcoes()) {
-                        writer.write("insert into Alternative (" + questao.getId() + ", " + questao.getProfessor_id() + ", " + opcao.getDescription() + ", " + opcao.isCorrect() + ");\r\n");
+                        writer.write("insert into Alternative (" + questao.getId() + ", " + questao.getProfessor_id() + ", '" + opcao.getDescription() + "', " + opcao.isCorrect() + ");\r\n");
                     }
                 }
                 writer.write("commit;\r\n");
@@ -152,8 +114,7 @@ public class Parser {
             writer.close();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
-}
-		
+		}		
 	}
 
 	private static void getGabarito(Exame exam) {
@@ -174,11 +135,8 @@ public class Parser {
 					if(op.getLetra() == respostaCorreta)
 						op.setCorrect(true);
 				}
-					
-				//System.out.print(n + " ");
-				n++;
-				//System.out.println(scan.nextLine());			
 				
+				n++;
 			}
 				
 		} catch (FileNotFoundException e) {
@@ -247,7 +205,6 @@ public class Parser {
         int questionID = Integer.parseInt(s[1].trim());
         String statment = sb.toString().trim();
         Questao questao = new Questao(examID, questionID, statment);
-        //System.out.println(questao);
         return questao;
     }
 

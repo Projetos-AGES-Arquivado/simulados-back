@@ -6,32 +6,28 @@ var ParticipationModel = require('../models/participation.js')(db.sequelize, db.
 var AlternativeModel = require('../models/alternative.js')(db.sequelize, db.Sequelize)
 
 //Returns the alternative chosen by the user
-const chosenAnswer = async (body) => {
-        
-        let userAnswer = await AnswerModel.findOne({
-                                where: {
-                                    question_id: body.question_id,
-                                    participation_id: body.participation_id
-                                }
-        });
-        
-        return userAnswer;    
+const chosenAnswer = async (body) =>  {
+    let userAnswer = await AnswerModel.findOne({
+        where: {
+            question_id: body.question_id,
+            participation_id: body.participation_id
+        }
+    });  
+    return userAnswer;    
 }   
 
 // Returns the correct answer for that question
 const correctAnswer = async (body) => { 
-
     let rightAnswer = await AlternativeModel.findOne({
-                            where: {
-                                question_id: body.question_id,
-                                correct: true
-                            }
+        where: {
+            question_id: body.question_id,
+            correct: true
+        }
     });
-
     return rightAnswer
 }
 
-exports.create = async function (body) {
+exports.create = async function (req, res) {
     const body = req.body;
 
     // Validates mandatory parameters
@@ -39,11 +35,11 @@ exports.create = async function (body) {
 
     if (!body.question_id) {
         errors['question_id'] = 'Este campo é necessário!'
-    } else if (!body.participation_id) {
+    } if (!body.participation_id) {
         errors['participation_id'] = 'Este campo é necessário!'
-    } else if (!body.alternative_id) {
+    } if (!body.alternative_id) {
         errors['alternative_id'] = 'Este campo é necessário!'
-    } else if (!body.time_to_answer) {
+    } if (!body.time_to_answer) {
         errors['time_to_answer'] = 'Este campo é necessário!'
     }
     if (Object.keys(errors).length) {
@@ -52,85 +48,94 @@ exports.create = async function (body) {
         })
     }
 
+    try {
+        // Validating if given FKS exist
+        if (!await ParticipationModel.findOne({ where: { id: body.participation_id } })) {
+            return res.status(404).json({ success: false, error: 'Participação não encontrada na base de dados!' });
+        }
 
-    // Validating if given FKS exist
-    if (!await ParticipationModel.findOne({ where: { id: body.participation_id } })) {
-        return res.status(404).json({ success: false, error: 'Participação não encontrada na base de dados!' });
-    }
-    // Alternative will be used later to check if it is correct or not
-    let alternative = await AlternativeModel.findOne({ where: { id: body.alternative_id } });
+        // Alternative will be used later to check if it is correct or not
+        let alternative = await AlternativeModel.findOne({ where: { id: body.alternative_id } });
 
-    if (!alternative) {
-        return res.status(404).json({ success: false, error: 'Alternativa não encontrada na base de dados!' });
-    }
+        if (!alternative) {
+            return res.status(404).json({ success: false, error: 'Alternativa não encontrada na base de dados!' });
+        }
 
-    if (!await QuestionModel.findOne({ where: { id: body.question_id } })) {
-        return res.status(404).json({ success: false, error: 'Questão não encontrada na base de dados!' });
-    }
-    
-    // If the answer exist, it should be updated with new given time_to_answer and alternative_id
-    if (choosedAnswer) {
-        if (!body.time_to_answer) {
-            return res.status(400).json({ success: false, error: 'time_to_answer = Este campo é necessário para atualizar uma resposta!' });
-        } else {
-            // Calling update function
-            const updateStatus = await AnswerModel.update(
-                { time_to_answer: body.time_to_answer, alternative_id: body.alternative_id },
-                { where: {
-                        question_id: body.question_id,
-                        participation_id: body.participation_id
+        if (!await QuestionModel.findOne({ where: { id: body.question_id } })) {
+            return res.status(404).json({ success: false, error: 'Questão não encontrada na base de dados!' });
+        }
+
+        let chosenAns = await chosenAnswer(body);
+        let correctAns = await correctAnswer(body);
+
+        // If the answer exist, it should be updated with new given time_to_answer and alternative_id
+        if (chosenAns) {
+            if (!body.time_to_answer) {
+                return res.status(400).json({ success: false, error: 'time_to_answer = Este campo é necessário para atualizar uma resposta!' });
+            } else {
+                // Calling update function
+                const updateStatus = await AnswerModel.update(
+                    { time_to_answer: body.time_to_answer, alternative_id: body.alternative_id },
+                    { where: {
+                            question_id: body.question_id,
+                            participation_id: body.participation_id
+                        }
                     }
-                }
-            );
-            
-            // The update function returns 1 if update was successful
-            if (updateStatus[0] === 1) {
-                // Since the update function doesn`t return the updated object, we have
-                // to find it again and return it 
-                const updatedAnswer = await AnswerModel.findOne({
-                    where: {
-                        question_id: body.question_id,
-                        participation_id: body.participation_id,
-                        alternative_id: body.alternative_id,
-                        time_to_answer: body.time_to_answer
-                    }
-                });
+                );
                 
+                // The update function returns 1 if update was successful
+                if (updateStatus[0] === 1) {
+                    // Since the update function doesn`t return the updated object, we have
+                    // to find it again and return it 
+                    const updatedAnswer = await AnswerModel.findOne({
+                        where: {
+                            question_id: body.question_id,
+                            participation_id: body.participation_id,
+                            alternative_id: body.alternative_id,
+                            time_to_answer: body.time_to_answer
+                        }
+                    });                    
 
-                if(updatedAnswer) {
-                    res.status(201).json({
-                    success: true,
-                    message: 'Resposta atualizada com sucesso!',
-                    selectedAlternative: alternative,
-                    correctAlternative: correctAnswer,
-                    answer: updatedAnswer.toJSON()
+                    if(updatedAnswer) {
+                        res.status(201).json({
+                        success: true,
+                        message: 'Resposta atualizada com sucesso!',
+                        selectedAlternative: alternative,
+                        correctAlternative: correctAns,
+                        answer: updatedAnswer.toJSON()
+                        });
+                    }
+
+                } else {
+                    // Just in case if the updated response returns anything different than 1
+                    return res.status(500).send({
+                        message: "Algo errado com a atualização de uma resposta "
                     });
                 }
-
-            } else {
-                // Just in case if the updated response returns anything different than 1
-                return res.status(500).send({
-                    message: "Algo errado com a atualizaçãoe uma resposta "
-                });
+                
             }
-            
         }
-    }
-    else {
-        // Save new data on database and send it back to the client
-        let data = {
-            question_id: body.question_id,
-            participation_id: body.participation_id,
-            alternative_id: body.alternative_id
-        };
-        AnswerModel.create(data).then(function (answer) {
-            res.status(201).json({
-                success: true,
-                message: 'Resposta criada com sucesso!',
-                selectedAlternative: alternative,
-                correctAlternative: correctAnswer,
-                answer: answer.toJSON()
+        else {
+            // Save new data on database and send it back to the client
+            let data = {
+                question_id: body.question_id,
+                participation_id: body.participation_id,
+                alternative_id: body.alternative_id
+            };
+            AnswerModel.create(data).then(async (answer) => {
+                res.status(201).json({
+                    success: true,
+                    message: 'Resposta criada com sucesso!',
+                    selectedAlternative: alternative,
+                    correctAlternative: correctAns,
+                    answer: answer.toJSON()
+                });
             });
-        });
+
+        }
+    } catch (err) {
+        res.status(500).send({
+            'Error': err.message
+        })
     }
 };

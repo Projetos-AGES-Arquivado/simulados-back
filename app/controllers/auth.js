@@ -66,7 +66,6 @@ exports.signin = async (req, res) => {
             return res.status(400).json({success: false, error: 'Please enter a password to login'})
         } else {
             let user = await findUserByEmail(body.email)
-
             if (!user)
                 throw new Error('Email does not exist')
 
@@ -79,7 +78,6 @@ exports.signin = async (req, res) => {
                 token: user.getJWT(),
                 data: {user, 'administrator':user.administrator, 'coordinator':user.coordinator, 'professor':user.professor, 'student':user.student}
             }
-
             res.status(200).send(data)
         }
     }catch (e) {

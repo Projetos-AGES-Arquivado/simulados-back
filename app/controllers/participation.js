@@ -1,12 +1,7 @@
-import { basename } from 'path';
-
 var exports = module.exports = {}
 var db = require('../config/datasource.js');
-var StudentModel = require('../modles/student.js')(db.sequelize, db.Sequelize);
-var AnswerModel = require('../models/answer.js')(db.sequelize, db.Sequelize);
-var QuestionModel = require('../models/question.js')(db.sequelize, db.Sequelize);
+var StudentModel = require('../models/student.js')(db.sequelize, db.Sequelize);
 var ParticipationModel = require('../models/participation.js')(db.sequelize, db.Sequelize);
-var AlternativeModel = require('../models/alternative.js')(db.sequelize, db.Sequelize);
 
 exports.create = async function (req, res) {
     const body = req.body;
@@ -35,7 +30,7 @@ exports.create = async function (req, res) {
     }
 
     try {
-        // Validating if stundent and practiseExam are on the DB.
+        // Validating if student and practiseExam are on the DB.
         //If they're not, the participation shouldn't exist
         let practiseExam = await Practise_ExamModel.findOne({ where: { id: body.practise_exam_id } });
         if(!practiseExam) {
@@ -105,5 +100,4 @@ exports.create = async function (req, res) {
             'Error': err.message
         });
     }
-
 };

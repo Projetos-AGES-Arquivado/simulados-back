@@ -1,0 +1,672 @@
+[33mcommit 511c3f38e7285e73dfc33584844a00aaa24ec7e7[m
+Author: Edj84 <eduardo.silva.006@acad.pucrs.br>
+Date:   Fri Oct 19 18:50:27 2018 -0300
+
+    Fixing
+
+[33mcommit d08a7ca7c2fbcbd79113b8ad0adeb3458fe48cee[m
+Author: Eduardo J. Silva <eduardo.silva.006@acad.pucrs.br>
+Date:   Fri Oct 19 18:20:07 2018 -0300
+
+    Deleting useless file
+
+[33mcommit 1bf4432773c7251674d2dd0523e489f704c7be8c[m
+Author: Edj84 <eduardo.silva.006@acad.pucrs.br>
+Date:   Tue Oct 16 17:34:41 2018 -0300
+
+    Refactoring once more. Solving format problems
+
+[33mcommit 52af8c5305f093ed210fc0fa78adc8aba73fe01d[m
+Author: Edj84 <eduardo.silva.006@acad.pucrs.br>
+Date:   Mon Oct 8 18:21:17 2018 -0300
+
+    Refactoring controllers/answers.js
+    
+    Turning const choosedAnswer and const correctAnswer into functions
+
+[33mcommit cd4433c07f5b00a8ca38c00d7d1d8baca8b0b98b[m
+Author: Edj84 <eduardo.silva.006@acad.pucrs.br>
+Date:   Fri Oct 5 22:36:59 2018 -0300
+
+    Refatorando marcar_resposta
+
+[33mcommit cd94e929c69f3142f8d6af5f059d97f448762b01[m
+Merge: c6c51c8 c3a9546
+Author: Fábio H. S. de Almeida <fabio.h.s.almeida@gmail.com>
+Date:   Tue Oct 9 16:37:46 2018 -0300
+
+    Merge pull request #11 from AGES-PUCRS/create_participation_route
+    
+    Get participation route
+
+[33mcommit c6c51c8225f86620374f4024577fac6d93966428[m
+Merge: fd7bcdb 182c67f
+Author: Fábio H. S. de Almeida <fabio.h.s.almeida@gmail.com>
+Date:   Tue Oct 9 16:36:39 2018 -0300
+
+    Merge pull request #15 from AGES-PUCRS/total_questions
+    
+    Returning total of questions in getQuestionsWithPagination method
+
+[33mcommit fd7bcdb634d96d53c98de0c9e4a214b273f2d990[m
+Merge: 8ef67d6 5df7468
+Author: Fábio H. S. de Almeida <fabio.h.s.almeida@gmail.com>
+Date:   Tue Oct 9 16:34:33 2018 -0300
+
+    Merge pull request #16 from AGES-PUCRS/professor-subarea-questions
+    
+    Implemented method to get questions by professor and/or subarea
+
+[33mcommit 5df7468d62afb92149f58f27611757274ced8bd1[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Oct 8 21:42:47 2018 -0300
+
+    Implemented method to get questions by professor and/or subarea
+
+[33mcommit 182c67f1cda432aca959f2f227dd7a42c50ae8bd[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Oct 8 21:02:00 2018 -0300
+
+    Returning total of questions in getQuestionsWithPagination method
+
+[33mcommit 8ef67d64de6d1feaa911a0dbd43fc28029539e18[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Fri Sep 28 20:56:46 2018 -0300
+
+    linted
+
+[33mcommit 275abc6e6b2baa8b48554a8d6b4ec45b307c6987[m
+Merge: 4425537 fcc9a41
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Fri Sep 28 19:58:47 2018 -0300
+
+    Merge branch 'login' of https://github.com/AGES-PUCRS/simulados-back into login
+
+[33mcommit 4425537151e59e1b5d01716557faf37b5a728cbc[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Wed Sep 26 21:27:52 2018 -0300
+
+    Returning user's profiles on signin route
+
+[33mcommit a20006fe0b9391cbd3b7e093a9244e1c974c07f2[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Tue Sep 25 22:14:49 2018 -0300
+
+    Changed user associations
+
+[33mcommit f268bd717c76ef7871de725c9c1a515850b2afa9[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 24 22:18:24 2018 -0300
+
+    Added user relationship to administrator, coordinator, professor and student models
+
+[33mcommit 8d6265315f7b1d7e597f2e569c6bc23959caa320[m
+Merge: 5be12a9 4c4023f
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Fri Sep 28 19:57:13 2018 -0300
+
+    Merge branch 'lint' of https://github.com/AGES-PUCRS/simulados-back into lint
+
+[33mcommit 5be12a981266ae5f358331a39c1188c0a692fab1[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Wed Sep 26 21:37:14 2018 -0300
+
+    Added prettier, lint-staged and husky packages
+
+[33mcommit 71d68e45de0379b37413b6866dcaf058b05d6848[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Wed Sep 19 22:10:39 2018 -0300
+
+    setting up linter
+
+[33mcommit 5a2f97836e9a35accc93da618959129db4cbacbe[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Wed Sep 19 21:28:29 2018 -0300
+
+    Added eslint
+
+[33mcommit c3a9546983e6cbfcc99e573e7c143970b63fefc3[m
+Author: Edj84 <eduardo.silva.006@acad.pucrs.br>
+Date:   Fri Sep 28 17:33:28 2018 -0300
+
+    Fixing async functions. Using await instead of .then
+
+[33mcommit 62c5760a50010859467e51ff3cf973f2a9e174dc[m
+Merge: f0109a5 39160a1
+Author: Lucas Stein <42624148+lsteinp@users.noreply.github.com>
+Date:   Fri Sep 28 15:43:50 2018 -0300
+
+    Merge pull request #13 from AGES-PUCRS/fix-populate
+    
+    Ajuste no json de população inicial do banco
+
+[33mcommit 39160a1122ebc9e3ceea765b97b3d2c512dcde6c[m
+Author: Lucas Stein <lucas.cerqueira@acad.pucrs.br>
+Date:   Thu Sep 27 19:56:22 2018 -0300
+
+    Ajuste no json de população inicial do banco, campo description da tabala alternative alterado para txt(long)
+
+[33mcommit 4c4023fb2880de0f88c54830c21fc4f1a1bb3bce[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Wed Sep 26 21:37:14 2018 -0300
+
+    Added prettier, lint-staged and husky packages
+
+[33mcommit fcc9a410196717218ce891d4c402fa572529ce20[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Wed Sep 26 21:27:52 2018 -0300
+
+    Returning user's profiles on signin route
+
+[33mcommit 706575e9b6f5ce266730838a830c8b6fbe659cd1[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Tue Sep 25 22:14:49 2018 -0300
+
+    Changed user associations
+
+[33mcommit 52b04275215cc849b6d7bf591c9c55e135b3a48d[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 24 22:18:24 2018 -0300
+
+    Added user relationship to administrator, coordinator, professor and student models
+
+[33mcommit 8ffedf0008a89eeb7a4cd930043f4ad985c5a399[m
+Author: Edj84 <eduardo.silva.006@acad.pucrs.br>
+Date:   Mon Sep 24 22:04:57 2018 -0300
+
+    Get participation route done
+
+[33mcommit b1190d55bc1c0c5ada0c09e84c6ce6c2335ab534[m
+Merge: c23ad93 38ada44
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 24 21:22:26 2018 -0300
+
+    Merge branch 'lint' of https://github.com/AGES-PUCRS/simulados-back into lint
+
+[33mcommit c23ad93f3857d858d784c4593983ee3da366c47b[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Wed Sep 19 22:10:39 2018 -0300
+
+    setting up linter
+
+[33mcommit 35c87e5477cbcfe364edc3b821c5f55f47a8ac95[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Wed Sep 19 21:28:29 2018 -0300
+
+    Added eslint
+
+[33mcommit f0109a5f3152f54799af39a56b55549e04e8a2ce[m
+Merge: ae04691 1f41cf6
+Author: Israel Deorce V. Jr <israel.deorce@acad.pucrs.br>
+Date:   Mon Sep 24 19:33:27 2018 -0300
+
+    Merge pull request #8 from AGES-PUCRS/answer-question
+    
+    Adding data insertion json file for every table and Improving Integration Tests
+
+[33mcommit 1f41cf68cc2fd60d68f15e2d3eb5c5bbfb75b5ef[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Sat Sep 22 18:59:04 2018 -0300
+
+    Update Answer and returning if correct
+
+[33mcommit ae0469115f2e529f4b357b67616b27c38bca1e47[m
+Merge: 3d17e0d a04fb1a
+Author: Eduardo Dornelles <e_dornelles1992@hotmail.com>
+Date:   Fri Sep 21 22:06:58 2018 -0300
+
+    Merge pull request #9 from AGES-PUCRS/fix/cors_allow_all
+    
+    Change CORS to allow all access sources
+
+[33mcommit a04fb1a76100a5abb738017250a3eb09ec996104[m
+Author: Alan Quadros <alanquadros@hotmail.com>
+Date:   Fri Sep 21 22:02:18 2018 -0300
+
+    Change CORS to allow all access sources
+
+[33mcommit 09f512021833ac8132c304376cefea6fca7a57e2[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Fri Sep 21 01:22:17 2018 -0300
+
+    Commenting Populate part again
+
+[33mcommit 46679c9595886d97b163775a6a7eab5c06ec1029[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Fri Sep 21 01:20:41 2018 -0300
+
+    Adding data to the database for every table
+
+[33mcommit 7ddbdbc75d3f04a5b0d537fb8aec79401c3e3dda[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Fri Sep 21 00:05:17 2018 -0300
+
+    improving tests
+
+[33mcommit 3d17e0da01cc224207285667d311cfddbc00faa6[m
+Merge: 9acbf0d 96bdbb2
+Author: Renan Vaz <renan.piresvz@gmail.com>
+Date:   Thu Sep 20 21:56:27 2018 -0300
+
+    Merge pull request #7 from AGES-PUCRS/questoes-do-simulado-com-paginacao
+    
+    Questoes do simulado com paginacao
+
+[33mcommit 96bdbb286ed2f974433b8b5d4fc298c5e392511f[m
+Author: Gregory <gregory.lagranha@acad.pucrs.br>
+Date:   Thu Sep 20 21:06:16 2018 -0300
+
+    test adaptation
+
+[33mcommit 38ada4446c1757ab635078b00009f9b76e83dfc7[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Wed Sep 19 22:10:39 2018 -0300
+
+    setting up linter
+
+[33mcommit d15bede01571aaf74e0a7749102c980caedf3c0a[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Wed Sep 19 21:28:29 2018 -0300
+
+    Added eslint
+
+[33mcommit 9cfe329a29347828b450a3db0f99e30c769849f9[m
+Author: Gregory Lagranha <gregory.lagranha@construtiva.com.br>
+Date:   Wed Sep 19 12:12:33 2018 -0300
+
+    duplicate test file removed
+
+[33mcommit d5ba80a0ba85cd75f9b9d5bf4b05253c938b343a[m
+Author: Gregory Lagranha <gregory.lagranha@construtiva.com.br>
+Date:   Wed Sep 19 12:03:57 2018 -0300
+
+    rebase dev / inserts of questions added to populate.json
+
+[33mcommit 648b018e4bc38016eb9554497c72299e3b127e73[m
+Author: Gregory <gregory.lagranha@acad.pucrs.br>
+Date:   Tue Sep 18 23:26:46 2018 -0300
+
+    included json inserts of exam for test
+
+[33mcommit d291f208135046252e8c2151d28881ce9390adca[m
+Author: Gregory <gregory.lagranha@acad.pucrs.br>
+Date:   Tue Sep 18 22:14:40 2018 -0300
+
+    included inserts of exam for test
+
+[33mcommit 1df4cd5af42ab2c3b5a6febc132c1516461c46e8[m
+Author: Gregory <gregory.lagranha@acad.pucrs.br>
+Date:   Tue Sep 18 22:11:07 2018 -0300
+
+    unit test / refactor code
+
+[33mcommit 3569941d86b9103333b2531d50a933b3efd28b6c[m
+Author: Gregory <gregory.lagranha@acad.pucrs.br>
+Date:   Tue Sep 18 21:39:02 2018 -0300
+
+    problem of sequelize 'join' resolved
+
+[33mcommit 4f86579aaeb801bc041c588f49ecb5615cc228f2[m
+Author: Gregory Lagranha <gregory.lagranha@construtiva.com.br>
+Date:   Fri Sep 14 13:01:33 2018 -0300
+
+    try configure the query of sequelize
+
+[33mcommit 04530d651e87c479dc6cdbfbfe9377bc9305aa86[m
+Author: Gregory Lagranha <gregory.lagranha@construtiva.com.br>
+Date:   Fri Sep 14 11:15:35 2018 -0300
+
+    remove property wrong of pratiseexam_questions / add default value to params of get questions
+
+[33mcommit 84b8baf4cda50ceb5ba5601801fac494e74ba71c[m
+Author: Gregory Lagranha <gregory.lagranha@acad.pucrs.br>
+Date:   Fri Sep 14 09:36:19 2018 -0300
+
+    change the query to get the participation, not the exam / validate the number of questions
+
+[33mcommit f70957cf9381493e00e53d48004826899e9bd77c[m
+Author: Gregory Lagranha <gregory.lagranha@acad.pucrs.br>
+Date:   Thu Sep 13 21:46:30 2018 -0300
+
+    route and controller to fetch questions of exam with pagination
+
+[33mcommit 9acbf0da4cf0b5fcfcff68854ba6931199a17962[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Tue Sep 18 20:44:52 2018 -0300
+
+    Imported config on model user
+
+[33mcommit 9ad123ac678210f9434822d56f36f53e0801c635[m
+Merge: e8e182d e54579f
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 17 22:03:17 2018 -0300
+
+    Resolving merge conflicts
+
+[33mcommit e8e182d4198cf73fe68c04560cf7ec263441302f[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 17 21:40:58 2018 -0300
+
+    Refactored auth controller
+
+[33mcommit 8b7eabdf856a2ac51fa4d8102d5fd44807f6de5e[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 17 21:26:59 2018 -0300
+
+    Refatored exam controller
+
+[33mcommit 1e5c47dad3ea196fb2edbdf85cbfe2ad836921a9[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Fri Sep 14 21:27:12 2018 -0300
+
+    Refactoring
+
+[33mcommit 0048dfc598a5ee62b8aacb9f572c3c8c89d1d949[m
+Author: Eduardo Dornelles <e_dornelles1992@hotmail.com>
+Date:   Wed Sep 12 19:52:09 2018 -0300
+
+    added cors dependency
+
+[33mcommit ba7e5cbd8264bbbbdfc15de713efa52b66ccc1c4[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Tue Sep 11 22:20:16 2018 -0300
+
+    Refact create exam
+
+[33mcommit 88b94badd9c7adb96466e81db761509c78cce9d1[m
+Author: Alan Quadros <alanquadros@hotmail.com>
+Date:   Tue Sep 11 22:16:49 2018 -0300
+
+    Refactoring controller user and auth
+
+[33mcommit 32dbfe295e01117b40794b1781054f7390487833[m
+Author: Alan Quadros <alanquadros@hotmail.com>
+Date:   Tue Sep 11 21:55:36 2018 -0300
+
+    Change findAll users return
+
+[33mcommit 33cb0ff042781de1b2a7c5143da007810a1ec9ee[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Tue Sep 11 21:38:59 2018 -0300
+
+    Added more data to populate db; refact exam controller.
+
+[33mcommit b95e8a9491e44f4b2a2723858a650e57686ac725[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 10 22:11:34 2018 -0300
+
+    Adding questions to exam when it is created
+
+[33mcommit 4a2f6a331ec287989a51503f1597e48cf47f140b[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 10 20:55:34 2018 -0300
+
+    Create route to create exam
+
+[33mcommit e3449e5553a883afca327ef17000b11f36d83ad4[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Fri Sep 7 21:38:40 2018 -0300
+
+    Created script to populate database with records from a json file
+
+[33mcommit 102099a8c067b833fafc08f799d91ebe9c7841e5[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Fri Sep 7 21:36:56 2018 -0300
+
+    Added new models and relationships
+
+[33mcommit e7f393f7a60002824d457395021bdc767baf75bc[m
+Merge: eb477df ba3e632
+Author: Israel Deorce V. Jr <israel.deorce@acad.pucrs.br>
+Date:   Mon Sep 17 18:09:16 2018 -0300
+
+    Merge pull request #6 from AGES-PUCRS/answer-question
+    
+    Answer route implemented
+
+[33mcommit ba3e632547ce8081f2a9836df739b1550144741c[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Sat Sep 15 17:54:35 2018 -0300
+
+    Changes made after code review
+
+[33mcommit e54579fd6aed246c5e82243dec613f51094a6b0c[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Fri Sep 14 21:27:12 2018 -0300
+
+    Refactoring
+
+[33mcommit da6c2519eff6e9d29d618db51129c2f1d263490f[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Thu Sep 13 23:22:42 2018 -0300
+
+    Removing comments from app - sync database
+
+[33mcommit 8b7a39a9931b7e79c06232d353d132682a68448e[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Thu Sep 13 23:13:52 2018 -0300
+
+    changing tests to make it pass on Travis CI. We need to define a remote database
+
+[33mcommit df1ff61041e9c734f401ca51235c7681b51cc66f[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Thu Sep 13 22:18:40 2018 -0300
+
+    Fixing tests 1
+
+[33mcommit b64e09d6ee4079fa0be1ab39a8cc25dfff12c70b[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Thu Sep 13 21:50:41 2018 -0300
+
+    Sync bug solved, we still need to define the UPDATE metrics
+
+[33mcommit 677c10ea8e94dbb7c7d05f32c2ef1cb827f9dc62[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Wed Sep 12 20:07:14 2018 -0300
+
+    basic POST answer completed
+
+[33mcommit b1b79139a5056444c3bf34a984748ac028b48d49[m
+Author: Eduardo Dornelles <e_dornelles1992@hotmail.com>
+Date:   Wed Sep 12 19:52:09 2018 -0300
+
+    added cors dependency
+
+[33mcommit 36760f3173c4fd3f4e25c725a43fbcc8e4fda055[m
+Author: Alan Quadros <alanquadros@hotmail.com>
+Date:   Tue Sep 11 22:21:30 2018 -0300
+
+    Removing unused imports in User model
+
+[33mcommit c96246fb3355c6869ca3d1cc696e7832cf248375[m
+Merge: ae0e9f0 45d86ed
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Tue Sep 11 22:20:20 2018 -0300
+
+    Merge branch 'novo-simulado' of https://github.com/AGES-PUCRS/simulados-back into novo-simulado
+
+[33mcommit ae0e9f06413b1da730730af63ac7995c5b90ba52[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Tue Sep 11 22:20:16 2018 -0300
+
+    Refact create exam
+
+[33mcommit 45d86eddccad33134505e2c006d9389f27a959ca[m
+Author: Alan Quadros <alanquadros@hotmail.com>
+Date:   Tue Sep 11 22:16:49 2018 -0300
+
+    Refactoring controller user and auth
+
+[33mcommit e59c2139973944d560f2b7c99140cffb7d7a475b[m
+Merge: ae52a36 8212ea5
+Author: Alan Quadros <alanquadros@hotmail.com>
+Date:   Tue Sep 11 21:57:56 2018 -0300
+
+    Resolving conflicts
+
+[33mcommit ae52a365aba17042302e09a2b4d1ac2214f30ec5[m
+Author: Alan Quadros <alanquadros@hotmail.com>
+Date:   Tue Sep 11 21:55:36 2018 -0300
+
+    Change findAll users return
+
+[33mcommit eb477df4c0b6a3d2322091c749e6f61e5c12aa98[m
+Merge: 1500b42 3214794
+Author: Israel Deorce V. Jr <israel.deorce@acad.pucrs.br>
+Date:   Tue Sep 11 21:48:09 2018 -0300
+
+    Merge pull request #3 from AGES-PUCRS/unit-testing
+    
+    Redirecting test script to pass Travis CI - TESTING
+
+[33mcommit 8212ea58522fa66801b03abb7e6838dc06b2b09e[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Tue Sep 11 21:38:59 2018 -0300
+
+    Added more data to populate db; refact exam controller.
+
+[33mcommit 28d7f679310af0720c253fdb785a7ad3caedacb4[m
+Merge: 5f3ab6b 1500b42
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Tue Sep 11 20:44:14 2018 -0300
+
+    Resolving merge conflicts
+
+[33mcommit 1500b42836d2b652c77041fd987edf8a5bb382df[m
+Author: Fábio Almeida <fabio.h.s.almeida@gmail.com>
+Date:   Tue Sep 11 01:57:36 2018 -0300
+
+    Incluindo estrutura do banco
+
+[33mcommit 5f3ab6b15d7ce8726ec666bca7723b8fbdd1ff74[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 10 22:11:34 2018 -0300
+
+    Adding questions to exam when it is created
+
+[33mcommit 3a45b64614690088db691abce1227cc67d4a4e0e[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 10 20:55:34 2018 -0300
+
+    Create route to create exam
+
+[33mcommit 321479420460abd1604adf01999aa4e47808fde6[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Sun Sep 9 18:33:36 2018 -0300
+
+    Redirecting test script to pass Travis CI - TESTING
+
+[33mcommit d814d856119dc9510df4e45ea6dd53bfcb5fa532[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Fri Sep 7 21:38:40 2018 -0300
+
+    Created script to populate database with records from a json file
+
+[33mcommit 7ee964a42f91c02198244afd11b159d94c62a4b6[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Fri Sep 7 21:36:56 2018 -0300
+
+    Added new models and relationships
+
+[33mcommit 3a7844894cebb104b249ac4c37b2ec8a1f035727[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 3 22:18:09 2018 -0300
+
+    added auth_test files
+
+[33mcommit cf7db239e594bd10e91b3f9c3053d6a0f0d11777[m
+Author: Ricardo Borges <ricardo93borges@gmail.com>
+Date:   Mon Sep 3 21:32:03 2018 -0300
+
+    Fix datasource file
+
+[33mcommit 416b62cbb4b7d1b9fa0c50c95ffcf80dd328d9d7[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Mon Sep 3 17:16:33 2018 -0300
+
+    Refatorando para possibilitar testes automatizados
+
+[33mcommit ca45b2b0aec89d8ca84150dffa7997b7c6c8838a[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Mon Sep 3 16:05:52 2018 -0300
+
+    Mocha, Chai e Supertest OK, falta configurar os scripts e banco
+
+[33mcommit fa0cd2c32e599a2191d4011b71d2141243da4473[m
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Mon Sep 3 02:04:49 2018 -0300
+
+    Adicionando arquivo postman 1.0
+
+[33mcommit 710710287966391864a69d59d86bc083d051156e[m
+Author: RICARDO BORGES DA SILVA <ricardo.silva.009@acad.pucrs.br>
+Date:   Fri Aug 31 20:46:11 2018 -0300
+
+    Added auth, user model, user crud, routes, controllers
+
+[33mcommit 55be41c361193962b5e323b062c2f08fcbccd78d[m
+Author: Gregory Lagranha <gregory.lagranha@acad.pucrs.br>
+Date:   Fri Aug 31 19:36:11 2018 -0300
+
+    app folder
+
+[33mcommit eb81bb21ed6ed2df95c18865ff384c2b51166fa6[m
+Author: Gregory Lagranha <gregory.lagranha@acad.pucrs.br>
+Date:   Fri Aug 31 19:32:57 2018 -0300
+
+    Configuration of sequelize, some models created
+
+[33mcommit f35f2f33653e479f818bf889269c22e8b90b0854[m
+Merge: 6011408 9d3c14e
+Author: Israel Deorce <israel.deorce@acad.pucrs.br>
+Date:   Wed Aug 29 18:03:03 2018 -0300
+
+    Merge branch 'dev' of https://github.com/AGES-PUCRS/simulados-back into dev
+
+[33mcommit 60114082942c428d4ff98bd8b62f49b02e0aaad2[m
+Author: Alan Quadros <alanquadros@hotmail.com>
+Date:   Fri Aug 24 20:28:49 2018 -0300
+
+    Testando integração com o Travis(2)
+
+[33mcommit 2aa05c47e483b6b1233a7c853d697df26e5a9626[m
+Author: Alan Quadros <alanquadros@hotmail.com>
+Date:   Fri Aug 24 20:26:46 2018 -0300
+
+    Testando integração com o Travis
+
+[33mcommit 90433b57859e13446f1ba06602f16c24bf9fad91[m
+Author: Eduardo Arruda <eduardo.arruda@doc.space>
+Date:   Mon Aug 27 04:50:02 2018 -0300
+
+    Criado crawler de exames da OAB
+
+[33mcommit 9d3c14effd46a2163869207b0558e31ac9cb0685[m
+Author: Alan Quadros <alanquadros@hotmail.com>
+Date:   Fri Aug 24 20:28:49 2018 -0300
+
+    Testando integração com o Travis(2)
+
+[33mcommit 90361be249fb859566e2fa8cee9d7a6424ba164d[m
+Author: Alan Quadros <alanquadros@hotmail.com>
+Date:   Fri Aug 24 20:26:46 2018 -0300
+
+    Testando integração com o Travis
+
+[33mcommit 671783b3393f2bd9882de7865721caa2049c0f1f[m
+Author: Alan Quadros <alan.quadros@4all.com>
+Date:   Thu Aug 23 14:21:04 2018 -0300
+
+    Primeiro commit
+
+[33mcommit eeeb2dd89869297e1c05667950362bf1a0eff322[m
+Author: Israel Deorce V. Jr <israel.idvj@gmail.com>
+Date:   Sat Aug 18 18:36:54 2018 -0300
+
+    Update README.md
+
+[33mcommit 03738d2840fdb11dcb0911e2ba711717136f843a[m
+Author: Eduardo Arruda <eduardo.arruda@doc.space>
+Date:   Fri Aug 17 21:05:25 2018 -0300
+
+    Initial commit

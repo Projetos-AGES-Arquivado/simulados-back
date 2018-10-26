@@ -24,7 +24,7 @@ PROVA APLICADA EM 05/08/2018
 
 (Questão \d+)(.*?)(?=Questão \d+)
 
-4. Isolar enunciado
+4. Isolar statement
 
 5. Isolar alternativas
 

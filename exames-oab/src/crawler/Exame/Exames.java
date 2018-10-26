@@ -1,4 +1,4 @@
-package Exame;
+package crawler.Exame;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;

@@ -26,6 +26,8 @@ require('./app/routes/answer.js')(app)
 require('./app/routes/exam.js')(app)
 require('./app/routes/question.js')(app)
 require('./app/routes/professor.js')(app)
+require('./app/routes/participation.js')(app)
+require('./app/routes/result.js')(app)
 //Sync Database
 
 

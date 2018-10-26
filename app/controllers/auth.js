@@ -10,6 +10,7 @@ var validator = require('validator')
 
 const findUserByEmail = async (email) => {
     let user = await User.findOne({where: {email: email}}).then(async (user) => {
+        if(!user){return user}
         user.administrator = await Administrator.findOne({where: {user_id: user.id}})
         user.coordinator = await Coordinator.findOne({where: {user_id: user.id}})
         user.professor = await Professor.findOne({where: {user_id: user.id}})
@@ -23,11 +24,25 @@ const findUserByEmail = async (email) => {
 exports.signup = async (req, res) => {
     const body = req.body
 
-    if (!body.email || !validator.isEmail(body.email)) {
-        return res.status(400).json({success: false, error: 'Please enter an valid email to register'})
-    } else if (!body.password) {
-        return res.status(400).json({success: false, error: 'Please enter a password to register'})
-    } else {
+        // Validates mandatory parameters
+        let errors = {}
+
+        if (!body.email || !validator.isEmail(body.email)) {
+            errors['email'] = 'Este campo é necessário!'
+        } if (!body.name) {
+            errors['name'] = 'Este campo é necessário!'
+        } if (!body.password) {
+            errors['password'] = 'Este campo é necessário!'
+        } if (!body.username) {
+            errors['username'] = 'Este campo é necessário!'
+        } if (!body.about) {
+            errors['about'] = 'Este campo é necessário!'
+        }
+        if (Object.keys(errors).length) {
+            return res.status(400).send({
+                'Error': errors
+            })
+        } else {
         try {
             let user = await findUserByEmail(body.email)
 
@@ -38,7 +53,8 @@ exports.signup = async (req, res) => {
                 email: body.email,
                 password: bCrypt.hashSync(body.password, bCrypt.genSaltSync(8), null),
                 name: body.name,
-                username: body.username
+                username: body.username,
+                about: body.about
             }
 
             User.create(data).then(function (user) {
@@ -66,7 +82,6 @@ exports.signin = async (req, res) => {
             return res.status(400).json({success: false, error: 'Please enter a password to login'})
         } else {
             let user = await findUserByEmail(body.email)
-
             if (!user)
                 throw new Error('Email does not exist')
 
@@ -79,7 +94,6 @@ exports.signin = async (req, res) => {
                 token: user.getJWT(),
                 data: {user, 'administrator':user.administrator, 'coordinator':user.coordinator, 'professor':user.professor, 'student':user.student}
             }
-
             res.status(200).send(data)
         }
     }catch (e) {

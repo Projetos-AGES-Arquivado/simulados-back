@@ -1,4 +1,4 @@
-package Exame;
+package crawler.Exame;
 
 import java.util.ArrayList;
 

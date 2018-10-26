@@ -1,9 +1,9 @@
-package Coleta;
+package crawler.Coleta;
 
-import Exame.Exame;
-import Exame.Exames;
-import Exame.Opcao;
-import Exame.Questao;
+import crawler.Exame.Exame;
+import crawler.Exame.Exames;
+import crawler.Exame.Opcao;
+import crawler.Exame.Questao;
 
 import java.io.BufferedWriter;
 import java.io.File;

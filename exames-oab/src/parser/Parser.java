@@ -1,6 +1,4 @@
-import exame.Exame;
-import exame.Opcao;
-import exame.Questao;
+package parser;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -98,15 +96,22 @@ public class Parser {
     	try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("inserts2.sql"));
             
+            writer.write("insert into Area(1,'Não cadastrada');\n");
+            writer.write("insert into Subarea(1, 'Não cadastrada');\n");
+            writer.write("insert into Coordenator(1, 'Não cadastrado', 'Não cadastrado', 'senha');\n");
+            writer.write("insert into Professor('Não cadastrado', 'OAB', 'senha');\n");
+            writer.write("insert into Professor_Subareas(1,1);\n");
+            writer.write("commit;\n");
+            
             for (Exame exame : exames) {
-                writer.write("insert into Practise_Exam (true, " + exame.getAob_exam_year() + ");\n)");
+                writer.write("insert into Practise_Exam (true, " + exame.getAob_exam_year() + ");\n");
                 
                 for (Questao questao : exame.getQuestoes()) {
-                    writer.write("insert into Question (1,1,1, '" + questao.getStatement() + "', true, 'Questão não possui comentário cadastrado');\n");
+                    writer.write("insert into Question (1,1,1, " + questao.getStatement() + ", true, 'Questão não possui comentário cadastrado');\n");
                     writer.write("insert into PractiseExam_Questions (" + questao.getId() + ", " + exame.getId() + ");\n");
                     
                     for (Opcao opcao : questao.getOpcoes()) {
-                        writer.write("insert into Alternative (" + questao.getId() + ", " + questao.getProfessor_id() + ", '" + opcao.getDescription() + "', " + opcao.isCorrect() + ");\r\n");
+                        writer.write("insert into Alternative (" + questao.getId() + ", " + questao.getProfessor_id() + ", " + opcao.getDescription() + ", " + opcao.isCorrect() + ");\r\n");
                     }
                 }
                 writer.write("commit;\r\n");
@@ -118,10 +123,8 @@ public class Parser {
 	}
 
 	private static void getGabarito(Exame exam) {
-		String fileName = "gab" + exam.getAob_exam_year() + "_" + exam.getAob_exam_serial() + ".txt";
+		String fileName = "C:\\Users\\DELL\\Desktop\\Eduardo\\Engenharia de Software\\2018 02\\AGES - Simulados\\simulados-back\\exames-oab\\src\\parser\\gab" + exam.getAob_exam_year() + "_" + exam.getAob_exam_serial() + ".txt";
     	File gab = new File(fileName);
-		System.out.println("Coletando gabarito a partir do arquivo " + fileName);
-		    	
     	try {
 			Scanner scan = new Scanner(gab);
 			int n = 0;
@@ -147,7 +150,9 @@ public class Parser {
 
 	private static List<String[]> clean() throws IOException {
         
-        List<String[]> list = Files.lines(Paths.get("inserts.sql"))
+       
+        
+        List<String[]> list = Files.lines(Paths.get("C:\\Users\\DELL\\Desktop\\Eduardo\\Engenharia de Software\\2018 02\\AGES - Simulados\\simulados-back\\exames-oab\\src\\parser\\inserts.sql"))
                     .filter(s -> !s.contains("insert") && !s.contains("commit"))
                     .map(s -> s.replaceAll("values\\(", ""))
                     .map(s -> s.replaceAll("\\);", ""))

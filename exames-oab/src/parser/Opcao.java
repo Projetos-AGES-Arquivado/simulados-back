@@ -1,4 +1,4 @@
-package exame;
+package parser;
 
 public class Opcao {
     private char letra;

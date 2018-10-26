@@ -1,4 +1,4 @@
-package exame;
+package parser;
 
 import java.util.ArrayList;
 

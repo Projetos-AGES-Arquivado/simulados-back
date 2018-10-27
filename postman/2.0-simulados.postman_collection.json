@@ -1,0 +1,514 @@
+{
+	"info": {
+		"_postman_id": "ecd6f266-7c9f-4f08-8182-13d1306d0b53",
+		"name": "simulados",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "general",
+			"item": [
+				{
+					"name": "/signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"israelTest8@ages.pucrs.br\",\r\n    \"name\": \"Master\",\r\n    \"password\": \"simulados@ages\",\r\n    \"username\": \"Israel\",\r\n    \"about\": \"About me\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"signup"
+							]
+						},
+						"description": "Attempt to Sign Up (creates a new user)\n\nBody content example:\n\n{\n    \"email\": \"israelTest8@ages.pucrs.br\",\n    \"name\": \"Master\",\n    \"password\": \"simulados@ages\",\n    \"username\": \"Israel\",\n    \"about\": \"About me\"\n}\n\nReturn example:\n\n{\n    \"success\": true,\n    \"message\": \"Successfully created new user\",\n    \"user\": {\n        \"status\": \"active\",\n        \"id\": 18,\n        \"email\": \"israelTest8@ages.pucrs.br\",\n        \"password\": \"$2a$08$N8S3MbBOoofD8ycaDLoVqORh1/3QxS/U8szEpOsWjqIxm9WHwTNPi\",\n        \"name\": \"Master\",\n        \"username\": \"Israel\",\n        \"about\": \"About me\",\n        \"updatedAt\": \"2018-10-27T20:36:32.887Z\",\n        \"createdAt\": \"2018-10-27T20:36:32.887Z\"\n    },\n    \"token\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxOCwiaWF0IjoxNTQwNjcyNTkyLCJleHAiOjE1NDA3NzI1OTJ9.W_cfABGB9dxvzXUTo_kp3XTkyUvKUpb6Gtm_KVnRhqE\"\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "/signin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@simulados.com\",\r\n    \"password\": \"admin\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"signin"
+							]
+						},
+						"description": "Attempt to Sign In with given user\n\nBody content example:\n\n{\n    \"email\": \"admin@simulados.com\",\n    \"password\": \"admin\"\n}\n\nReturn Example:\n\n{\n    \"success\": true,\n    \"message\": \"Successfully login\",\n    \"token\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE1NDA2NzI2MjIsImV4cCI6MTU0MDc3MjYyMn0.LeZtoOJQtUKEg5OIOWOKm2CeV-Zr6A57PMjS-sTiFtA\",\n    \"data\": {\n        \"user\": {\n            \"id\": 1,\n            \"name\": \"Admin\",\n            \"username\": \"admin\",\n            \"about\": \"about me\",\n            \"email\": \"admin@simulados.com\",\n            \"password\": \"$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq\",\n            \"last_login\": null,\n            \"status\": \"active\",\n            \"createdAt\": \"2018-10-12T21:48:14.000Z\",\n            \"updatedAt\": \"2018-10-12T21:48:14.000Z\"\n        },\n        \"administrator\": {\n            \"id\": 1,\n            \"email\": \"administrators@simulados.com\",\n            \"name\": \"Administrators\",\n            \"password\": \"$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq\",\n            \"created_at\": \"2018-10-12T21:48:14.000Z\",\n            \"updated_at\": \"2018-10-12T21:48:14.000Z\",\n            \"user_id\": 1\n        },\n        \"coordinator\": {\n            \"id\": 1,\n            \"area_id\": 1,\n            \"email\": \"admin@simulados.com\",\n            \"name\": \"professor\",\n            \"password\": \"$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq\",\n            \"active\": true,\n            \"created_at\": \"2018-10-12T21:48:14.000Z\",\n            \"updated_at\": \"2018-10-12T21:48:14.000Z\",\n            \"user_id\": 1\n        },\n        \"professor\": {\n            \"id\": 1,\n            \"email\": \"admin@simulados.com\",\n            \"name\": \"professor\",\n            \"password\": \"$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq\",\n            \"active\": true,\n            \"created_at\": \"2018-10-12T21:48:14.000Z\",\n            \"updated_at\": \"2018-10-12T21:48:14.000Z\",\n            \"user_id\": 1\n        },\n        \"student\": {\n            \"id\": 1,\n            \"profile_id\": 1,\n            \"email\": \"admin@simulados.com\",\n            \"name\": \"aluno\",\n            \"password\": \"$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq\",\n            \"active\": true,\n            \"created_at\": \"2018-10-12T21:48:14.000Z\",\n            \"updated_at\": \"2018-10-12T21:48:14.000Z\",\n            \"user_id\": 1\n        }\n    }\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "/users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE1NDA1MTQ1MDMsImV4cCI6MTU0MDYxNDUwM30.RHvxtPTVVGa1S7YKo6lcOVkUip-eBuIIuoqP70hXyfg"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Return all the registred users\n\n\nReturn Example:\n\n\n{\n    \"success\": true,\n    \"message\": \"Users found\",\n    \"users\": [\n        {\n            \"id\": 1,\n            \"name\": \"Admin\",\n            \"username\": \"admin\",\n            \"about\": \"about me\",\n            \"email\": \"admin@simulados.com\",\n            \"password\": \"$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq\",\n            \"last_login\": null,\n            \"status\": \"active\",\n            \"createdAt\": \"2018-10-12T21:48:14.000Z\",\n            \"updatedAt\": \"2018-10-12T21:48:14.000Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"User2\",\n            \"username\": \"admin\",\n            \"about\": \"about me\",\n            \"email\": \"user2@simulados.com\",\n            \"password\": \"$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq\",\n            \"last_login\": null,\n            \"status\": \"active\",\n            \"createdAt\": \"2018-10-12T21:48:14.000Z\",\n            \"updatedAt\": \"2018-10-12T21:48:14.000Z\"\n        }\n    ]\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "/users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE1NDA1MTQ1MDMsImV4cCI6MTU0MDYxNDUwM30.RHvxtPTVVGa1S7YKo6lcOVkUip-eBuIIuoqP70hXyfg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"testUser@simulados.com\",\n    \"password\": \"admin\",\n    \"name\": \"Israel\",\n    \"username\": \"TestIsrael\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Creates a new user, does the same as the signup (Needs Update)\n\nexample of body: \n\n{\n    \"email\": \"testUser@simulados.com\",\n    \"password\": \"admin\",\n    \"name\": \"Israel\",\n    \"username\": \"TestIsrael\"\n}\n\nreturn example:\n\n{\n    \"success\": true,\n    \"message\": \"Successfully created new user\",\n    \"user\": {\n        \"status\": \"active\",\n        \"id\": 19,\n        \"email\": \"testUser@simulados.com\",\n        \"password\": \"$2a$08$.uKVghF2WeDH6GFNrigBF.VVvP4/LSJni92XZGYNoVFq.bhK0p2Wu\",\n        \"name\": \"Israel\",\n        \"username\": \"TestIsrael\",\n        \"updatedAt\": \"2018-10-27T20:39:08.721Z\",\n        \"createdAt\": \"2018-10-27T20:39:08.721Z\"\n    }\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "/users/:id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE1NDA1MTQ1MDMsImV4cCI6MTU0MDYxNDUwM30.RHvxtPTVVGa1S7YKo6lcOVkUip-eBuIIuoqP70hXyfg"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "Return a specific user by its id information\n\nexample of return:\n\n{\n    \"success\": true,\n    \"message\": \"User found\",\n    \"user\": {\n        \"id\": 1,\n        \"name\": \"Admin\",\n        \"username\": \"admin\",\n        \"about\": \"about me\",\n        \"email\": \"admin@simulados.com\",\n        \"password\": \"$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq\",\n        \"last_login\": null,\n        \"status\": \"active\",\n        \"createdAt\": \"2018-10-12T21:48:14.000Z\",\n        \"updatedAt\": \"2018-10-12T21:48:14.000Z\"\n    }\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "/users/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE1NDA1MTQ1MDMsImV4cCI6MTU0MDYxNDUwM30.RHvxtPTVVGa1S7YKo6lcOVkUip-eBuIIuoqP70hXyfg"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"testUser@simulados.com\",\n    \"password\": \"admin\",\n    \"name\": \"Israel\",\n    \"username\": \"TestIsrael\",\n    \"about\": \"about me\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"16"
+							]
+						},
+						"description": "updates an user by its id\n\nExample of body:\n\n{\n    \"email\": \"testUser@simulados.com\",\n    \"password\": \"admin\",\n    \"name\": \"Israel\",\n    \"username\": \"TestIsrael\",\n    \"about\": \"about me\"\n}\n\nexample of return:\n\n{\n    \"success\": true,\n    \"message\": \"User updated\",\n    \"user\": {\n        \"id\": 19,\n        \"name\": \"Israel\",\n        \"username\": \"TestIsrael\",\n        \"about\": \"about me\",\n        \"email\": \"testUser@simulados.com\",\n        \"password\": \"$2a$08$vq4H4u7w6Tv5y5rYFT1wGOIAbIKmgSSrpnTIGfFStHnM0RSH5ihgG\",\n        \"last_login\": null,\n        \"status\": \"active\",\n        \"createdAt\": \"2018-10-27T20:39:08.000Z\",\n        \"updatedAt\": \"2018-10-27T20:41:53.000Z\"\n    }\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "/users/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE1NDA1MTQ1MDMsImV4cCI6MTU0MDYxNDUwM30.RHvxtPTVVGa1S7YKo6lcOVkUip-eBuIIuoqP70hXyfg"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/users/16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"16"
+							]
+						},
+						"description": "Delete a user by its id\n\nexample of return:\n\n{\n    \"success\": true,\n    \"message\": \"User deleted\"\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "/exam",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE1Mzc2MzQ5NDgsImV4cCI6MTUzNzY0NDk0OH0.1rXoUrKUBt0ue7PQ-rLNhjpVhIy6E1z6KCit7oNVBzM"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"student_id\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/exam",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"exam"
+							]
+						},
+						"description": "Responsible for creating an exam and participation\n\nExample of Body:\n\n{\n\t\"student_id\": 1\n}\n\n\nExample of return:\n\n{\n    \"success\": true,\n    \"message\": \"Successfully created new exam\",\n    \"participation\": {\n        \"created_at\": \"2018-10-27T20:43:03.703Z\",\n        \"updated_at\": \"2018-10-27T20:43:03.703Z\",\n        \"id\": 22,\n        \"participation_date\": \"2018-10-27T20:43:03.703Z\",\n        \"time_of_conclusion\": null,\n        \"student_id\": 1,\n        \"practise_exam_id\": 23,\n        \"numberOfQuestions\": 25,\n        \"numberOfCorrectAnswers\": 0,\n        \"numberOfWrongAnswers\": 0,\n        \"hitRatio\": 0\n    },\n    \"exam\": {\n        \"created_at\": \"2018-10-27T20:43:03.635Z\",\n        \"updated_at\": \"2018-10-27T20:43:03.635Z\",\n        \"id\": 23,\n        \"aob_exam\": true,\n        \"aob_exam_year\": 2018\n    }\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "/answer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE1Mzk1NjAxMTgsImV4cCI6MTUzOTY2MDExOH0.sn7kbDDWN96m5YJjmefC538ZXDr2wsmFI6h_YVhui-k"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question_id\": \"4\",\r\n    \"participation_id\": \"3\",\r\n    \"alternative_id\": \"20\",\r\n    \"time_to_answer\": 0\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/answer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"answer"
+							]
+						},
+						"description": "Responsible for creating and updating an answer on database\r\n\r\nExample of body:\r\n\r\n{\r\n    \"question_id\": \"4\",\r\n    \"participation_id\": \"3\",\r\n    \"alternative_id\": \"20\",\r\n    \"time_to_answer\": 0\r\n}\r\n\r\nExample of return:\r\n\r\n{\r\n    \"success\": true,\r\n    \"message\": \"Resposta atualizada com sucesso!\",\r\n    \"selectedAlternative\": {\r\n        \"id\": 20,\r\n        \"question_id\": 5,\r\n        \"professor_id\": 1,\r\n        \"description\": \"será extinto, apenas se a sanção aplicada for de suspensão ou se for reincidente em infração disciplinar.\",\r\n        \"correct\": false,\r\n        \"created_at\": \"2018-10-12T21:48:14.000Z\",\r\n        \"updated_at\": \"2018-10-12T21:48:14.000Z\"\r\n    },\r\n    \"correctAlternative\": {\r\n        \"id\": 16,\r\n        \"question_id\": 4,\r\n        \"professor_id\": 1,\r\n        \"description\": \"A recusa de Antônio à indicação de outro profissional pelo cliente não constitui infração ética, pois o advogado não é obrigado a aceitar a indicação de outro profissional para com ele trabalhar no processo. Por sua vez, o substabelecimento do mandato a Lucas independe de comunicação a João, já que constitui ato pessoal do advogado da causa.\",\r\n        \"correct\": true,\r\n        \"created_at\": \"2018-10-12T21:48:14.000Z\",\r\n        \"updated_at\": \"2018-10-12T21:48:14.000Z\"\r\n    },\r\n    \"answer\": {\r\n        \"id\": 15,\r\n        \"question_id\": 4,\r\n        \"participation_id\": 3,\r\n        \"alternative_id\": 20,\r\n        \"created_at\": \"2018-10-23T23:25:54.000Z\",\r\n        \"updated_at\": \"2018-10-27T20:44:29.000Z\",\r\n        \"time_to_answer\": 0\r\n    }\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "/result/:id_participation",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE1Mzc2MzQ5NDgsImV4cCI6MTUzNzY0NDk0OH0.1rXoUrKUBt0ue7PQ-rLNhjpVhIy6E1z6KCit7oNVBzM"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question_id\": \"1\",\r\n    \"participation_id\": \"1\",\r\n    \"alternative_id\": \"4\",\r\n    \"time_to_answer\": \"40\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/result/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"result",
+								"3"
+							]
+						},
+						"description": "Responsible for returning the results of a given participation\n\nexample of return:\n\n{\n    \"success\": true,\n    \"message\": \"Resultado buscado com sucesso!\",\n    \"result\": [\n        {\n            \"id\": 1,\n            \"name\": \"Area 51.5\",\n            \"total_time\": 7,\n            \"questions\": [\n                {\n                    \"id\": 1,\n                    \"question_id\": 1,\n                    \"time_to_answer\": 7,\n                    \"correct\": 0\n                }\n            ]\n        }\n    ]\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "/questions/:examId/:lastQuestion/:amount",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE1Mzc2MzQ5NDgsImV4cCI6MTUzNzY0NDk0OH0.1rXoUrKUBt0ue7PQ-rLNhjpVhIy6E1z6KCit7oNVBzM"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"question_id\": \"1\",\r\n    \"participation_id\": \"1\",\r\n    \"alternative_id\": \"4\",\r\n    \"time_to_answer\": \"40\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/questions/1/1/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"questions",
+								"1",
+								"1",
+								"10"
+							]
+						},
+						"description": "Responsible for generating a list of questions with pagination by a given amount\n\nExample no shown due to huge amount of information"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Not Working Yet",
+			"item": [
+				{
+					"name": "/logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"logout"
+							]
+						},
+						"description": "logout route"
+					},
+					"response": []
+				},
+				{
+					"name": "/questions/approve",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE1Mzc2MzQ5NDgsImV4cCI6MTUzNzY0NDk0OH0.1rXoUrKUBt0ue7PQ-rLNhjpVhIy6E1z6KCit7oNVBzM"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"approved\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/questions/approve/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"questions",
+								"approve",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/professor/questions/:professor/:subarea/:offset/:limit",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE1Mzc2MzQ5NDgsImV4cCI6MTUzNzY0NDk0OH0.1rXoUrKUBt0ue7PQ-rLNhjpVhIy6E1z6KCit7oNVBzM"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"approved\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/professor/questions/1/1/1/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"professor",
+								"questions",
+								"1",
+								"1",
+								"1",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/questions/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJpYXQiOjE1Mzc2MzQ5NDgsImV4cCI6MTUzNzY0NDk0OH0.1rXoUrKUBt0ue7PQ-rLNhjpVhIy6E1z6KCit7oNVBzM"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"professor_id\": 1, \r\n\t\"coordinator_id\": 1, \r\n\t\"subarea_id\": 1, \r\n\t\"statement\": \"mMichael foi réu em um processo criminal, denunciado pela prática do delito de corrupção passiva. Sua defesa técnica no feito foi realizada pela advogada Maria, que, para tanto, teve acesso a comprovantes de rendimentos e extratos da conta bancária de Michael. Tempos após o término do processo penal, a ex-mulher de Michael ajuizou demanda, postulando, em face dele, a prestação de alimentos. Ciente de que Maria conhecia os rendimentos de Michael, a autora arrolou a advogada como testemunha. Considerando o caso narrado e o disposto no Código de Ética e Disciplina da OAB, assinale a afirmativa correta.\", \r\n\t\"approved\": 1, \r\n\t\"comment\": \"Lorem ipsum\",\r\n\t\"studyMaterials\": \"Lorem ipsum\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/questions/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"questions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fb7d58c9-acf1-4b20-b452-bb78a636a7bd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d3900eb3-23ec-4394-a812-e15ccf0acb95",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

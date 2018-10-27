@@ -27,6 +27,9 @@ const correctAnswer = async (body) => {
     return rightAnswer
 }
 
+/**
+ * This functions creates an answer on the database based on the information passed by the client.
+ */
 exports.create = async function (req, res) {
     const body = req.body;
 
@@ -39,7 +42,7 @@ exports.create = async function (req, res) {
         errors['participation_id'] = 'Este campo é necessário!'
     } if (!body.alternative_id) {
         errors['alternative_id'] = 'Este campo é necessário!'
-    } if (!body.time_to_answer) {
+    } if (!body.time_to_answer.toString()) {
         errors['time_to_answer'] = 'Este campo é necessário!'
     }
     if (Object.keys(errors).length) {
@@ -70,7 +73,7 @@ exports.create = async function (req, res) {
 
         // If the answer exist, it should be updated with new given time_to_answer and alternative_id
         if (chosenAns) {
-            if (!body.time_to_answer) {
+            if (!body.time_to_answer.toString()) {
                 return res.status(400).json({ success: false, error: 'time_to_answer = Este campo é necessário para atualizar uma resposta!' });
             } else {
                 // Calling update function

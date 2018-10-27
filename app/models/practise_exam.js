@@ -5,11 +5,14 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true
         },
-        aob_exam: {
+        is_aob_exam: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
         aob_exam_year: {
+            type: DataTypes.INTEGER
+        },
+        aob_exam_serial: {
             type: DataTypes.INTEGER
         },
         created_at: {

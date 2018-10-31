@@ -269,7 +269,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"question_id\": \"4\",\r\n    \"participation_id\": \"3\",\r\n    \"alternative_id\": \"20\",\r\n    \"time_to_answer\": 0\r\n}"
+							"raw": "{\r\n    \"question_id\": \"4\",\r\n    \"participation_id\": \"3\",\r\n    \"alternative_id\": \"14\",\r\n    \"time_to_answer\": 0\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:3000/answer",

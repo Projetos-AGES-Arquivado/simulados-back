@@ -106,7 +106,7 @@ exports.create = async function (req, res) {
         }
 
         // Alternative will be used later to check if it is correct or not
-        let alternative = await AlternativeModel.findOne({ where: { id: body.alternative_id } });
+        let alternative = await AlternativeModel.findOne({ where: { id: body.alternative_id, question_id: body.question_id}});
 
         if (!alternative) {
             return res.status(404).json({ success: false, error: 'Alternativa não encontrada na base de dados!' });

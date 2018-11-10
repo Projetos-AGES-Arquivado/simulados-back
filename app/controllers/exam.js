@@ -1,11 +1,11 @@
 var exports = module.exports = {}
 var db = require('../config/datasource.js')
 var Exam = require('../models/practise_exam')(db.sequelize, db.Sequelize)
-var Participation = require('../models/participation')(db.sequelize, db.Sequelize)
 var Question = require('../models/question')(db.sequelize, db.Sequelize)
 var ExamQuestion = require('../models/practiseexam_questions')(db.sequelize, db.Sequelize)
 var Student = require('../models/student')(db.sequelize, db.Sequelize)
 var Practise_exam = require('../models/practise_exam')(db.sequelize, db.Sequelize)
+var participationController = require('./participation')
 
 const findStudentById = async (id, res) => {
     let student = await Student.findById(id)
@@ -15,28 +15,6 @@ const findStudentById = async (id, res) => {
 
     return student
 }
-
-const createParticipation = async (student, exam, questions, res) => {
-    let date = new Date()
-
-    let participation = await Participation.create(
-        {
-            participation_date: date,
-            time_of_conclusion: null,
-            student_id: student.id,
-            practise_exam_id: exam.id,
-            numberOfQuestions: questions.length,
-            numberOfCorrectAnswers: 0,
-            numberOfWrongAnswers: 0,
-            hitRatio: 0,
-        })
-
-    if (!participation)
-        return res.status(400).json({success: false, error: 'Error on create participation'})
-
-    return participation
-}
-
 
 exports.create = async (req, res) => {
     try {
@@ -51,7 +29,8 @@ exports.create = async (req, res) => {
         let questions = await Question.all({where: {approved: 1}})
 
         //Create exam
-        let exam = await Exam.create({aob_exam: true, aob_exam_year: date.getFullYear()})
+        let exam = await Exam.create({is_aob_exam: false, aob_exam_year: date.getFullYear()})
+        console.log(exam);
 
         //Add questions
         await Promise.all(
@@ -60,7 +39,9 @@ exports.create = async (req, res) => {
             })
         )
 
-        let participation = await createParticipation(student, exam, questions, res)
+        // Calls the Participation controller to create a participation on database
+        // This call will need a refactor since the participation would be better called from the front-end
+        let participation = await participationController.createParticipation(student, exam, questions, res);
 
         res.status(201).json({
             success: true,
@@ -68,7 +49,7 @@ exports.create = async (req, res) => {
             participation: participation.toJSON(),
             exam: exam.toJSON()
         })
-    }catch (e) {
+    } catch (e) {
         res.status(500).json({
             success: false,
             message: e.message

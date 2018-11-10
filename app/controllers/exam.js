@@ -76,20 +76,26 @@ exports.create = async (req, res) => {
     }
 }
 
+/**
+ * This function returns a list with all OAB (or AOB) exams
+ */
 exports.getOabExams = async (req, res) => {
-    const body = req.body;
-
     try {
-
         let exams = await Practise_exam.findAll({ where: { is_aob_exam: true }});
-        console.log(exams);
+        
+        let message = "";
+        
+        if(exams && exams.length > 0) {
+            message = "Exames encontrados com sucesso";
+        } else {
+            message = "Nenhum exame da OAB foi encontrado na base da dados";
+        }
 
         res.status(200).json({
             success: true,
-            message: "isra eh o cara, ricardinho tb",
+            message: message,
             exams: exams
-        })
-
+        });
 
     } catch (e) {
         res.status(500).json({

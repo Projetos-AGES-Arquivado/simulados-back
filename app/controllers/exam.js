@@ -5,6 +5,7 @@ var Participation = require('../models/participation')(db.sequelize, db.Sequeliz
 var Question = require('../models/question')(db.sequelize, db.Sequelize)
 var ExamQuestion = require('../models/practiseexam_questions')(db.sequelize, db.Sequelize)
 var Student = require('../models/student')(db.sequelize, db.Sequelize)
+var Practise_exam = require('../models/practise_exam')(db.sequelize, db.Sequelize)
 
 const findStudentById = async (id, res) => {
     let student = await Student.findById(id)
@@ -68,6 +69,29 @@ exports.create = async (req, res) => {
             exam: exam.toJSON()
         })
     }catch (e) {
+        res.status(500).json({
+            success: false,
+            message: e.message
+        })
+    }
+}
+
+exports.getOabExams = async (req, res) => {
+    const body = req.body;
+
+    try {
+
+        let exams = await Practise_exam.findAll({ where: { is_aob_exam: true }});
+        console.log(exams);
+
+        res.status(200).json({
+            success: true,
+            message: "isra eh o cara, ricardinho tb",
+            exams: exams
+        })
+
+
+    } catch (e) {
         res.status(500).json({
             success: false,
             message: e.message

@@ -7,7 +7,7 @@ exports.create = async function (req, res) {
 
 };
 
-const createParticipation = async (student, exam, questions, res) => {
+exports.createParticipation = async (student, exam, questions, res) => {
     let date = new Date();
 
     let participation = await ParticipationModel.create(

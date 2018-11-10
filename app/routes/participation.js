@@ -4,8 +4,8 @@ require('../middleware/passport')(passport)
 module.exports = function (app) {
     var participationController = require('../controllers/participation.js');
     
-     // Create an Participation
-     //app.post('/participation', passport.authenticate('jwt', {session:false}), participationController.create);
-     app.post('/participation', participationController.create);
+     // Create a user Participation on a OAB Exam
+     //app.post('/participation', passport.authenticate('jwt', {session:false}), participationController.createOabParticipation);
+     app.post('/participation/student/:student/exam/:examId', participationController.createParticipation);
 
 }

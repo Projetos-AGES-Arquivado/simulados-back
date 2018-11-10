@@ -2,28 +2,113 @@ var exports = module.exports = {}
 var db = require('../config/datasource.js');
 var StudentModel = require('../models/student.js')(db.sequelize, db.Sequelize);
 var ParticipationModel = require('../models/participation.js')(db.sequelize, db.Sequelize);
+var Practiseexam_questionsModel = require('../models/practiseexam_questions')(db.sequelize, db.Sequelize)
+var Practise_examModel = require('../models/practise_exam')(db.sequelize, db.Sequelize)
 
-exports.create = async function (req, res) { 
+/**
+ * Get the number of questions of an exam
+ */
+const countQuestionsExam = async (exam_id) => {
+    let answer = await Practiseexam_questionsModel.count({
+        where: { 'practise_exam_id': exam_id }
+    });
+    return answer;
+}
 
-};
+/**
+ * Validates mandatory parameters
+ * */
+const validateParameters = async (body, res) => {
+    let errors = {}
 
-exports.createParticipation = async (student, exam, questions, res) => {
-    let date = new Date();
+    if (!body.student_id) {
+        errors['student_id'] = 'Este campo é necessário!'
+    } 
+    if (!body.exam_id) {
+        errors['exam_id'] = 'Este campo é necessário!'
+    }
+    if (Object.keys(errors).length) {
+        return res.status(400).send({
+            'Error': errors
+        })
+    }
 
-    let participation = await ParticipationModel.create(
-        {
-            participation_date: date,
-            time_of_conclusion: null,
-            student_id: student.id,
-            practise_exam_id: exam.id,
-            numberOfQuestions: questions.length,
-            numberOfCorrectAnswers: 0,
-            numberOfWrongAnswers: 0,
-            hitRatio: 0,
+    if (!await StudentModel.findOne({ where: { id: body.question_id } })) {
+        return res.status(404).json({ success: false, error: 'Participação não encontrada na base de dados!' });
+    }    
+}
+
+// This function should be removed once the front-end points to the createParticipation() function
+exports.createParticipationProv = async (req, res) => {
+    let body = req.body;
+    validateParameters(body, res);
+    
+    try {
+        // Get the number of questions of the exam
+        let countQuestions = await countQuestionsExam(body.exam_id);
+
+        let date = new Date();
+
+        let participation = await ParticipationModel.create(
+            {
+                participation_date: date,
+                time_of_conclusion: null,
+                student_id: body.student_id,
+                practise_exam_id: body.exam_id,
+                numberOfQuestions: countQuestions,
+                numberOfCorrectAnswers: 0,
+                numberOfWrongAnswers: 0,
+                hitRatio: 0,
+            })
+
+        if (!participation)
+            return res.status(400).json({ success: true, error: 'Error on creating a participation' })
+
+        return participation
+
+    } catch (e) {
+        res.status(500).json({
+            success: false,
+            message: e.message
+        })
+    }
+}
+
+exports.createParticipation = async (req, res) => {
+    let body = req.body;
+
+    try {
+        // Get the number of questions of the exam
+        let countQuestions = await countQuestionsExam(body.exam_id);
+
+        let date = new Date();
+
+        // Create a new Participation on DB
+        let participation = await ParticipationModel.create(
+            {
+                participation_date: date,
+                time_of_conclusion: null,
+                student_id: body.student_id,
+                practise_exam_id: body.exam_id,
+                numberOfQuestions: countQuestions,
+                numberOfCorrectAnswers: 0,
+                numberOfWrongAnswers: 0,
+                hitRatio: 0,
+            })
+
+        if (!participation)
+            return res.status(400).json({ success: true, error: 'Error on creating a participation' })
+
+        res.status(201).json({
+            success: true,
+            message: 'Successfully created a new participation',
+            participation: participation.toJSON()
         })
 
-    if (!participation)
-        return res.status(400).json({success: false, error: 'Error on create participation'})
-
-    return participation
+    } catch (e) {
+        res.status(500).json({
+            success: false,
+            message: e.message
+        })
+    }
 }

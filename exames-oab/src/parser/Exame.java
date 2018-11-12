@@ -19,7 +19,6 @@ public class Exame {
         id = quant;
     	this.aob_exam_year = aob_exam_year;
         this.aob_exam_serial = aob_exam_serial;
-        System.out.println("Exame serial " + getAob_exam_serial() + " ano " + getAob_exam_year());
         this.questoes = new ArrayList<>();
     }
     

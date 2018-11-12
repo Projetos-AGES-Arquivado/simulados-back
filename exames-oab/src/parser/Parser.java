@@ -31,8 +31,7 @@ public class Parser {
             System.out.println("Coletei " + exames.size() + " exames");
             
             for(Exame exame : exames){
-                System.out.println("exame " + exame.getId());
-            	ArrayList<Exame> aux;
+                ArrayList<Exame> aux;
                 aux = examesPorAno.getOrDefault(exame.getAob_exam_year(), new ArrayList<>());
                 aux.add(exame);
                 examesPorAno.put(exame.getAob_exam_year(), aux);                
@@ -52,7 +51,6 @@ public class Parser {
 					
                     if(q.getExam_serial() == e.getAob_exam_serial()){
                         e.addQuestao(q);
-                        System.out.println("Adiconei questao " + q.getId() + " no exame " + e.getAob_exam_year() + " " + e.getAob_exam_serial());
                         break;
                     }
                 }
@@ -110,11 +108,11 @@ public class Parser {
                 writer.write("insert into practise_exam (id, is_aob_exam, aob_exam_year, aob_exam_serial) \nvalues (" + e + ", true, " + exame.getAob_exam_year() + ", " + exame.getAob_exam_serial() + ");\n");
                 e++;
                 for (Questao questao : exame.getQuestoes()) {
-                    writer.write("insert into question (id, professor_id, coordinator_id, subarea_id, statment, rightAlternative, approved) \nvalues (" + questao.getId() + ", 1, 1, 1, " + questao.getStatement() + ", " + questao.getOpcaoCorreta() + ", true);\n");
+                    writer.write("insert into question (id, professor_id, coordinator_id, subarea_id, statment, rightAlternative, approved) \nvalues (" + questao.getId() + ", 1, 1, 1, " + questao.getStatement() + ", '" + questao.getOpcaoCorreta() + "', true);\n");
                     writer.write("insert into practiseexam_questions (id, question_id, practise-exame_id) \nvalues (" + q + ", " + questao.getId() + ", " + exame.getId() + ");\n");
                     q++;
                     for (Opcao opcao : questao.getOpcoes()) {
-                        writer.write("insert into alternative (id, question_id, professor_id, letter, description, correct) \nvalues(" + op + ", " + questao.getId() + ", " + questao.getProfessor_id() + ", " + opcao.getLetra() + ", " + opcao.getDescription() + ", " + opcao.isCorrect() + ");\n");
+                        writer.write("insert into alternative (id, question_id, professor_id, letter, description, correct) \nvalues(" + op + ", " + questao.getId() + ", " + questao.getProfessor_id() + ", '" + opcao.getLetra() + "', " + opcao.getDescription() + ", " + opcao.isCorrect() + ");\n");
                         op++;
                     }
                 }
@@ -127,7 +125,6 @@ public class Parser {
 	}
 
 	private static void getGabarito(Exame exam) {
-		System.out.println(exam.getAob_exam_serial() + " " + exam.getAob_exam_year());
 		String fileName = "C:\\Users\\Maica\\Desktop\\Eduardo\\Eng de Software\\simulados-back\\exames-oab\\src\\parser\\gab" + exam.getAob_exam_year() + "_" + exam.getAob_exam_serial() + ".txt";
     	File gab = new File(fileName);
     	try {
@@ -188,7 +185,6 @@ public class Parser {
         
         int examYear = getDate(s[3]);
         int numExam = Integer.parseInt(s[0]);
-        System.out.println("num exam " + numExam);
         Exame exame = new Exame(numExam, examYear);        
         return exame;        
     }

@@ -4,24 +4,24 @@ public class Opcao {
     private char letra;
     private String description;
     private boolean correct;
-    private int examId;
+    private int examSerial;
     private int questionId;
     private final int professor_id = 1;
 
-    public Opcao(int examId, int questionId, char letra, String description, boolean correct) {
-        this.examId = examId;
+    public Opcao(int examSerial, int questionId, char letra, String description, boolean correct) {
+        this.examSerial = examSerial;
         this.questionId = questionId;
         this.letra = letra;
         this.description = description;
         this.correct = correct;
     }
 
-    public int getExamId() {
-        return examId;
+    public int getExamSerial() {
+        return examSerial;
     }
 
-    public void setExamId(int examId) {
-        this.examId = examId;
+    public void setExamId(int examSerial) {
+        this.examSerial = examSerial;
     }
 
     public int getQuestionId() {

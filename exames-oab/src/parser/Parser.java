@@ -10,10 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.sun.corba.se.spi.ior.iiop.AlternateIIOPAddressComponent;
-
-import crawler.Exame.Opcao;
-
 public class Parser {
     
     private static final HashMap<Integer, ArrayList<Exame>> examesPorAno = new HashMap<Integer, ArrayList<Exame>>();
@@ -35,13 +31,13 @@ public class Parser {
             System.out.println("Coletei " + exames.size() + " exames");
             
             for(Exame exame : exames){
-                ArrayList<Exame> aux;
+                System.out.println("exame " + exame.getId());
+            	ArrayList<Exame> aux;
                 aux = examesPorAno.getOrDefault(exame.getAob_exam_year(), new ArrayList<>());
                 aux.add(exame);
-                examesPorAno.put(exame.getAob_exam_year(), aux);
-                exame.setAob_exam_serial(examesPorAno.get(exame.getAob_exam_year()).size());
-            }            
-           
+                examesPorAno.put(exame.getAob_exam_year(), aux);                
+            }
+            
             questoes = list.stream()
                     .filter(s -> !(s[1].contains("pdf")))
                     .filter(s -> s[2].trim().length() > 3)
@@ -54,8 +50,9 @@ public class Parser {
            
                 for(Exame e : exames){
 					
-                    if(q.getExam_id() == e.getId()){
+                    if(q.getExam_serial() == e.getAob_exam_serial()){
                         e.addQuestao(q);
+                        System.out.println("Adiconei questao " + q.getId() + " no exame " + e.getAob_exam_year() + " " + e.getAob_exam_serial());
                         break;
                     }
                 }
@@ -72,7 +69,7 @@ public class Parser {
             for(Opcao o : opcoes){
                 
                 for(Exame e : exames){
-                    if(o.getExamId() == e.getId()){
+                    if(o.getExamSerial() == e.getAob_exam_serial()){
                         
                         for(Questao q : e.getQuestoes()){
             
@@ -100,22 +97,25 @@ public class Parser {
     	try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("inserts2.sql"));
             
-            writer.write("insert into Area(1,'Não cadastrada');\n");
-            writer.write("insert into Subarea(1, 'Não cadastrada');\n");
-            writer.write("insert into Coordenator(1, 'Não cadastrado', 'Não cadastrado', 'senha');\n");
-            writer.write("insert into Professor('Não cadastrado', 'OAB', 'senha');\n");
-            writer.write("insert into Professor_Subareas(1,1);\n");
+            writer.write("insert into area (id, name) \nvalues (1,'Não cadastrada');\n");
+            writer.write("insert into subarea (id, area_id, name) \nvalues(1, 1, 'Não cadastrada');\n");
+            writer.write("insert into user(id, name, username, password) \nvalues (1, 'OAB', 'senha');\n");
+            writer.write("insert into coordinator (id, area_id, email, name, password, user_id) \nvalues(1, 1, 'exame@oab.gov.br', 'OAB', 'senha', 1);\n");
+            writer.write("insert into professor (id, email, name, password, user_id) \nvalues (1, 'exame@oab.gov.br', 'OAB', 'senha', 1);\n");
+            writer.write("insert into professor_subareas (id, professor_id, subarea_id) \nvalues(1,1,1);\n");
             writer.write("commit;\n");
             
+            int e = 1, q = 1, op = 1;
             for (Exame exame : exames) {
-                writer.write("insert into Practise_Exam (true, " + exame.getAob_exam_year() + ");\n");
-                
+                writer.write("insert into practise_exam (id, is_aob_exam, aob_exam_year, aob_exam_serial) \nvalues (" + e + ", true, " + exame.getAob_exam_year() + ", " + exame.getAob_exam_serial() + ");\n");
+                e++;
                 for (Questao questao : exame.getQuestoes()) {
-                    writer.write("insert into Question (1,1,1, " + questao.getStatement() + ", ''" + questao.getOpcaoCorreta + "', true, 'Questão não possui comentário cadastrado');\n");
-                    writer.write("insert into PractiseExam_Questions (" + questao.getId() + ", " + exame.getId() + ");\n");
-                    
+                    writer.write("insert into question (id, professor_id, coordinator_id, subarea_id, statment, rightAlternative, approved) \nvalues (" + questao.getId() + ", 1, 1, 1, " + questao.getStatement() + ", " + questao.getOpcaoCorreta() + ", true);\n");
+                    writer.write("insert into practiseexam_questions (id, question_id, practise-exame_id) \nvalues (" + q + ", " + questao.getId() + ", " + exame.getId() + ");\n");
+                    q++;
                     for (Opcao opcao : questao.getOpcoes()) {
-                        writer.write("insert into Alternative (" + questao.getId() + ", " + questao.getProfessor_id() + ", '" + opcao.getLetra() + "', " + opcao.getDescription() + ", " + opcao.isCorrect() + ");\n");
+                        writer.write("insert into alternative (id, question_id, professor_id, letter, description, correct) \nvalues(" + op + ", " + questao.getId() + ", " + questao.getProfessor_id() + ", " + opcao.getLetra() + ", " + opcao.getDescription() + ", " + opcao.isCorrect() + ");\n");
+                        op++;
                     }
                 }
                 writer.write("commit;\r\n");
@@ -127,7 +127,8 @@ public class Parser {
 	}
 
 	private static void getGabarito(Exame exam) {
-		String fileName = "C:\\Users\\DELL\\Desktop\\Eduardo\\Engenharia de Software\\2018 02\\AGES - Simulados\\simulados-back\\exames-oab\\src\\parser\\gab" + exam.getAob_exam_year() + "_" + exam.getAob_exam_serial() + ".txt";
+		System.out.println(exam.getAob_exam_serial() + " " + exam.getAob_exam_year());
+		String fileName = "C:\\Users\\Maica\\Desktop\\Eduardo\\Eng de Software\\simulados-back\\exames-oab\\src\\parser\\gab" + exam.getAob_exam_year() + "_" + exam.getAob_exam_serial() + ".txt";
     	File gab = new File(fileName);
     	try {
 			Scanner scan = new Scanner(gab);
@@ -156,7 +157,7 @@ public class Parser {
         
        
         
-        List<String[]> list = Files.lines(Paths.get("C:\\Users\\DELL\\Desktop\\Eduardo\\Engenharia de Software\\2018 02\\AGES - Simulados\\simulados-back\\exames-oab\\src\\parser\\inserts.sql"))
+        List<String[]> list = Files.lines(Paths.get("C:\\Users\\Maica\\Desktop\\Eduardo\\Eng de Software\\simulados-back\\exames-oab\\src\\parser\\inserts.sql"))
                     .filter(s -> !s.contains("insert") && !s.contains("commit"))
                     .map(s -> s.replaceAll("values\\(", ""))
                     .map(s -> s.replaceAll("\\);", ""))
@@ -187,6 +188,7 @@ public class Parser {
         
         int examYear = getDate(s[3]);
         int numExam = Integer.parseInt(s[0]);
+        System.out.println("num exam " + numExam);
         Exame exame = new Exame(numExam, examYear);        
         return exame;        
     }
@@ -237,11 +239,11 @@ public class Parser {
             }
         }
         
-        int examID = Integer.parseInt(line[0].trim()); 
+        int examSerial = Integer.parseInt(line[0].trim()); 
         int questionID = Integer.parseInt(line[1].trim());
         char letra = line[2].trim().charAt(1);
         
         
-        return new Opcao(examID, questionID, letra, sb.toString(), false);
+        return new Opcao(examSerial, questionID, letra, sb.toString(), false);
     }
 }

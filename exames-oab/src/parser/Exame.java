@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Exame {
 
+    private static int quant = 0;
     private int id;
     private final boolean aob_exam = true;
     private int aob_exam_year;
@@ -13,10 +14,12 @@ public class Exame {
     private ArrayList<Questao> questoes;
 
 
-    public Exame(int id, int aob_exam_year) {
-        this.id = id;
-        this.aob_exam_year = aob_exam_year;
-        this.aob_exam_serial = 0;
+    public Exame(int aob_exam_serial, int aob_exam_year) {
+        quant++;
+        id = quant;
+    	this.aob_exam_year = aob_exam_year;
+        this.aob_exam_serial = aob_exam_serial;
+        System.out.println("Exame serial " + getAob_exam_serial() + " ano " + getAob_exam_year());
         this.questoes = new ArrayList<>();
     }
     

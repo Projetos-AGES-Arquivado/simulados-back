@@ -30,7 +30,7 @@ require('./app/routes/participation.js')(app)
 require('./app/routes/result.js')(app)
 //Sync Database
 
-
+/*
 models.sequelize.sync().then(function () {
     //Populate database
     var populate = require('./app/config/populate')
@@ -39,3 +39,4 @@ models.sequelize.sync().then(function () {
 }).catch(function (err) {
     console.log(err, "Something wrong is not right with the Database Update!")
 });
+*/

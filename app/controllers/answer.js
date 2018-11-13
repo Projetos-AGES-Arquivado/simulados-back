@@ -27,6 +27,57 @@ const correctAnswer = async (body) => {
     return rightAnswer
 }
 
+/**
+ * This function updates an already existing Answer on database.
+ * This function can only be called from within the "create" function.
+ */
+const update = async (body, res, correctAns, alternative) => { 
+    if (body.time_to_answer == undefined || !body.time_to_answer.toString()) {
+        return res.status(400).json({ success: false, error: 'time_to_answer = Este campo é necessário para atualizar uma resposta!' });
+    } else {
+        const updateStatus = await AnswerModel.update(
+            { time_to_answer: body.time_to_answer, alternative_id: body.alternative_id },
+            { where: {
+                    question_id: body.question_id,
+                    participation_id: body.participation_id
+                }
+            }
+        );        
+        // The update function returns 1 if update was successful
+        if (updateStatus[0] === 1) {
+            // Since the update function doesn`t return the updated object, we have
+            // to find it again and return it 
+            const updatedAnswer = await AnswerModel.findOne({
+                where: {
+                    question_id: body.question_id,
+                    participation_id: body.participation_id,
+                    alternative_id: body.alternative_id,
+                    time_to_answer: body.time_to_answer
+                }
+            }); 
+            if(updatedAnswer) {
+                res.status(201).json({
+                success: true,
+                message: 'Resposta atualizada com sucesso!',
+                selectedAlternative: alternative,
+                correctAlternative: correctAns,
+                answer: updatedAnswer.toJSON()
+                });
+            }
+        } else {
+            // Just in case if the updated response returns anything different than 1
+            return res.status(500).send({
+                message: "Algo errado com a atualização de uma resposta "
+            });
+        }        
+    }
+}
+
+/**
+ * This functions creates an answer on the database based on the information passed by the client.
+ * If the answer already exists in the database, this function will call the update function that
+ * will update the answer the answer instead of creating a new one.
+ */
 exports.create = async function (req, res) {
     const body = req.body;
 
@@ -39,7 +90,7 @@ exports.create = async function (req, res) {
         errors['participation_id'] = 'Este campo é necessário!'
     } if (!body.alternative_id) {
         errors['alternative_id'] = 'Este campo é necessário!'
-    } if (!body.time_to_answer) {
+    } if (body.time_to_answer == undefined || !body.time_to_answer.toString()) {
         errors['time_to_answer'] = 'Este campo é necessário!'
     }
     if (Object.keys(errors).length) {
@@ -55,7 +106,7 @@ exports.create = async function (req, res) {
         }
 
         // Alternative will be used later to check if it is correct or not
-        let alternative = await AlternativeModel.findOne({ where: { id: body.alternative_id } });
+        let alternative = await AlternativeModel.findOne({ where: { id: body.alternative_id, question_id: body.question_id}});
 
         if (!alternative) {
             return res.status(404).json({ success: false, error: 'Alternativa não encontrada na base de dados!' });
@@ -68,52 +119,9 @@ exports.create = async function (req, res) {
         let chosenAns = await chosenAnswer(body);
         let correctAns = await correctAnswer(body);
 
-        // If the answer exist, it should be updated with new given time_to_answer and alternative_id
+        // If the answer exist, it should be updated with new given information
         if (chosenAns) {
-            if (!body.time_to_answer) {
-                return res.status(400).json({ success: false, error: 'time_to_answer = Este campo é necessário para atualizar uma resposta!' });
-            } else {
-                // Calling update function
-                const updateStatus = await AnswerModel.update(
-                    { time_to_answer: body.time_to_answer, alternative_id: body.alternative_id },
-                    { where: {
-                            question_id: body.question_id,
-                            participation_id: body.participation_id
-                        }
-                    }
-                );
-                
-                // The update function returns 1 if update was successful
-                if (updateStatus[0] === 1) {
-                    // Since the update function doesn`t return the updated object, we have
-                    // to find it again and return it 
-                    const updatedAnswer = await AnswerModel.findOne({
-                        where: {
-                            question_id: body.question_id,
-                            participation_id: body.participation_id,
-                            alternative_id: body.alternative_id,
-                            time_to_answer: body.time_to_answer
-                        }
-                    });                    
-
-                    if(updatedAnswer) {
-                        res.status(201).json({
-                        success: true,
-                        message: 'Resposta atualizada com sucesso!',
-                        selectedAlternative: alternative,
-                        correctAlternative: correctAns,
-                        answer: updatedAnswer.toJSON()
-                        });
-                    }
-
-                } else {
-                    // Just in case if the updated response returns anything different than 1
-                    return res.status(500).send({
-                        message: "Algo errado com a atualização de uma resposta "
-                    });
-                }
-                
-            }
+            update(body, res, correctAns, alternative);
         }
         else {
             // Save new data on database and send it back to the client

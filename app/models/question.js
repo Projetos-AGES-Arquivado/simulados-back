@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             notEmpty: true
         },
+        rightAlternative: {
+            type: DataTypes.CHAR(1),
+            allowNull: false,
+        },
         approved: {
             type: DataTypes.BOOLEAN,
             allowNull: true

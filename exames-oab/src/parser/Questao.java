@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 public class Questao {
     
-    private int exam_id;
+    private int exam_serial;
+    private static int quant = 0;
     private int id;
+    private int quest_serial;
     private String statement;
     private ArrayList<Opcao> opcoes;
     private final int professor_id = 1;
@@ -16,24 +18,38 @@ public class Questao {
     private final String coment = null;
     private char opcaoCorreta;
 
-    public Questao(int exam_id, int id, String statement) {
-        this.exam_id = exam_id;
-        this.id = id;
+    public Questao(int exam_serial, int quest_serial, String statement) {
+        this.exam_serial = exam_serial;
+        quant++;
+        id = quant;
+        this.quest_serial = quest_serial;
         this.statement = statement;
         opcoes = new ArrayList<Opcao>();
         opcaoCorreta = 'X';
     }
 
-    public int getId(){
+    public int getQuest_serial() {
+		return quest_serial;
+	}
+
+	public void setQuest_serial(int quest_serial) {
+		this.quest_serial = quest_serial;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId(){
         return id;
     }
     
-    public int getExam_id() {
-        return exam_id;
+    public int getExam_serial() {
+        return exam_serial;
     }
 
-    public void setExam_id(int exam_id) {
-        this.exam_id = exam_id;
+    public void setExam_serial(int exam_serial) {
+        this.exam_serial = exam_serial;
     }
 
     public String getStatement() {
@@ -90,6 +106,6 @@ public class Questao {
 
     @Override
     public String toString() {
-        return "Questao{" + "exam_id=" + exam_id + ", id=" + id + ", statement=" + statement + ", opcoes=" + opcoes + ", professor_id=" + professor_id + ", coordinator_id=" + coordinator_id + ", subarea_id=" + subarea_id + ", approved=" + approved + ", studyMaterials=" + studyMaterials + ", coment=" + coment + ", opcaoCorreta=" + opcaoCorreta + '}';
+        return "Questao{" + "exam_id=" + exam_serial + ", id=" + id + ", statement=" + statement + ", opcoes=" + opcoes + ", professor_id=" + professor_id + ", coordinator_id=" + coordinator_id + ", subarea_id=" + subarea_id + ", approved=" + approved + ", studyMaterials=" + studyMaterials + ", coment=" + coment + ", opcaoCorreta=" + opcaoCorreta + '}';
     }    
 }

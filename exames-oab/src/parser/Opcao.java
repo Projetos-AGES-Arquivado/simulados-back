@@ -5,18 +5,34 @@ public class Opcao {
     private String description;
     private boolean correct;
     private int examSerial;
-    private int questionId;
+    private int questionSerial;
+    private static int quant = 0;
+    private int id;
     private final int professor_id = 1;
 
-    public Opcao(int examSerial, int questionId, char letra, String description, boolean correct) {
-        this.examSerial = examSerial;
-        this.questionId = questionId;
+    public Opcao(int examSerial, int questionSerial, char letra, String description, boolean correct) {
+        quant++;
+        id = quant;
+    	this.examSerial = examSerial;
+        this.questionSerial = questionSerial;
         this.letra = letra;
         this.description = description;
         this.correct = correct;
     }
 
-    public int getExamSerial() {
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setExamSerial(int examSerial) {
+		this.examSerial = examSerial;
+	}
+
+	public int getExamSerial() {
         return examSerial;
     }
 
@@ -24,12 +40,12 @@ public class Opcao {
         this.examSerial = examSerial;
     }
 
-    public int getQuestionId() {
-        return questionId;
+    public int getQuestionSerial() {
+        return questionSerial;
     }
 
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
+    public void setQuestionSerial(int questionSerial) {
+        this.questionSerial = questionSerial;
     }
 
     public char getLetra() {

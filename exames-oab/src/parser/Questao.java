@@ -5,7 +5,9 @@ import java.util.ArrayList;
 public class Questao {
     
     private int exam_serial;
+    private static int quant = 0;
     private int id;
+    private int quest_serial;
     private String statement;
     private ArrayList<Opcao> opcoes;
     private final int professor_id = 1;
@@ -16,15 +18,29 @@ public class Questao {
     private final String coment = null;
     private char opcaoCorreta;
 
-    public Questao(int exam_serial, int id, String statement) {
+    public Questao(int exam_serial, int quest_serial, String statement) {
         this.exam_serial = exam_serial;
-        this.id = id;
+        quant++;
+        id = quant;
+        this.quest_serial = quest_serial;
         this.statement = statement;
         opcoes = new ArrayList<Opcao>();
         opcaoCorreta = 'X';
     }
 
-    public int getId(){
+    public int getQuest_serial() {
+		return quest_serial;
+	}
+
+	public void setQuest_serial(int quest_serial) {
+		this.quest_serial = quest_serial;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getId(){
         return id;
     }
     

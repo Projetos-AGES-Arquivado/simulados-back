@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        letter: {
+            type: DataTypes.CHAR(1),
+            allowNull: false,
+            notEmpty: true,            
+        },
         description: {
             type: DataTypes.TEXT('long'),
             allowNull: false,

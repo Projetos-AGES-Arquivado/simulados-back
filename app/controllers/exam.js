@@ -1,9 +1,7 @@
 var exports = module.exports = {}
 var db = require('../config/datasource.js')
-var Exam = require('../models/practise_exam')(db.sequelize, db.Sequelize)
 var Question = require('../models/question')(db.sequelize, db.Sequelize)
 var ExamQuestion = require('../models/practiseexam_questions')(db.sequelize, db.Sequelize)
-var Student = require('../models/student')(db.sequelize, db.Sequelize)
 var Practise_exam = require('../models/practise_exam')(db.sequelize, db.Sequelize)
 var participationController = require('./participation')
 
@@ -15,7 +13,7 @@ exports.create = async (req, res) => {
         let questions = await Question.all({where: {approved: 1}})
 
         //Create exam
-        let exam = await Exam.create({is_aob_exam: false, aob_exam_year: date.getFullYear()})
+        let exam = await Practise_exam.create({is_aob_exam: false, aob_exam_year: date.getFullYear()})
 
         //Add questions
         await Promise.all(

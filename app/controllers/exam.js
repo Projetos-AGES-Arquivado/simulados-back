@@ -5,6 +5,20 @@ var ExamQuestion = require('../models/practiseexam_questions')(db.sequelize, db.
 var Practise_exam = require('../models/practise_exam')(db.sequelize, db.Sequelize)
 var participationController = require('./participation')
 
+exports.findAll = async (req, res) => {
+    try {
+        Practise_exam.all().then((exams) => {
+            res.status(200).json({
+                success: true,
+                message: 'Exams found',
+                exams: exams
+            })
+        })
+    } catch (e) {
+        return res.status(400).json({success: false, error: e.message})
+    }
+}
+
 exports.create = async (req, res) => {
     try {
         let date = new Date()

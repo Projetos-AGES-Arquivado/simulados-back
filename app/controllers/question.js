@@ -5,6 +5,20 @@ var Alternative = require('../models/alternative.js')(db.sequelize, db.Sequelize
 var Question = require('../models/question.js')(db.sequelize, db.Sequelize)
 var Coordinator = require('../models/coordinator')(db.sequelize, db.Sequelize)
 
+exports.findAll = async (req, res) => {
+    try {
+        Question.all().then((questions) => {
+            res.status(200).json({
+                success: true,
+                message: 'Questions found',
+                questions: questions
+            })
+        })
+    } catch (e) {
+        return res.status(400).json({success: false, error: e.message})
+    }
+}
+
 exports.getQuestionsWithPagination = async (req, res) => {
 
     const { examId, lastQuestion = 0, amount = 10 } = req.params

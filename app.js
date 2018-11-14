@@ -28,6 +28,8 @@ require('./app/routes/question.js')(app)
 require('./app/routes/professor.js')(app)
 require('./app/routes/participation.js')(app)
 require('./app/routes/result.js')(app)
+require('./app/routes/practiseexam_questions.js')(app)
+require('./app/routes/alternative.js')(app)
 //Sync Database
 
 /*

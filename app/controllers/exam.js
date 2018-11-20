@@ -60,7 +60,12 @@ exports.create = async (req, res) => {
  */
 exports.getOabExams = async (req, res) => {
     try {
-        let exams = await Practise_exam.findAll({ where: { is_aob_exam: true }});
+        let exams = await Practise_exam.findAll({ 
+            where: { is_aob_exam: true },
+            order: [
+                ['aob_exam_year', 'DESC'],
+            ]
+        });
         
         let message = "";
         

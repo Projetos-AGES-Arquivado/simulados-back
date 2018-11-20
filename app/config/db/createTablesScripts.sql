@@ -183,6 +183,7 @@ foreign key (user_id) references users(id);
 drop table if exists practise_exams;
 create table practise_exams (
   id int(11) not null auto_increment,
+  name varchar(255) not null,
   is_aob_exam tinyint(1) default '0',
   aob_exam_year int(11) default null,
   aob_exam_serial int(11) default null,
@@ -202,6 +203,7 @@ create table questions (
   coordinator_id int(11) not null,
   subarea_id int(11) not null,
   statement longtext not null,
+  right_alternative char(1) not null,
   approved tinyint(1) default null,
   studymaterials varchar(255) default null,
   comment varchar(255) not null,
@@ -231,6 +233,7 @@ create table alternatives (
   id int(11) not null auto_increment,
   question_id int(11) not null,
   professor_id int(11) not null,
+  letter char(1) not null,
   description longtext not null,
   correct tinyint(1) default '0',
   created_at datetime default null,
@@ -255,6 +258,7 @@ create table practiseexam_questions (
   id int(11) not null auto_increment,
   question_id int(11) not null,
   practise_exam_id int(11) not null,
+  serial_number int(11) not null,
   created_at datetime default null,
   updated_at datetime default null,
   constraint pk_practiseexam_questions primary key(id)

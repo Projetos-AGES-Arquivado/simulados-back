@@ -38,6 +38,9 @@ const validateParameters = async (body, res) => {
     }    
 }
 
+
+
+
 // This function should be removed once the front-end points to the createParticipation() function
 exports.createParticipationProv = async (req, res) => {
     let body = req.body;
@@ -104,6 +107,32 @@ exports.createParticipation = async (req, res) => {
             message: 'Successfully created a new participation',
             participation: participation.toJSON()
         })
+
+    } catch (e) {
+        res.status(500).json({
+            success: false,
+            message: e.message
+        })
+    }
+}
+
+
+exports.getParticipationsByStudentId = async (req, res) => {
+    const studentId = req.params.studentId;
+
+    if(!studentId) {
+        return res.status(400).json({ success: false, error: 'ID do estudante não informada!' }); 
+    }
+
+    try {
+
+        let participations = await ParticipationModel.findAll({ where: { student_id: studentId }});
+
+        res.status(200).json({
+            success: true,
+            message: "Successfully list of participations",
+            participations: participations
+        });
 
     } catch (e) {
         res.status(500).json({

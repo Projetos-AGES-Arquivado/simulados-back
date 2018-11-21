@@ -30,15 +30,5 @@ require('./app/routes/participation.js')(app)
 require('./app/routes/result.js')(app)
 require('./app/routes/practiseexam_questions.js')(app)
 require('./app/routes/alternative.js')(app)
-//Sync Database
 
-/*
-models.sequelize.sync().then(function () {
-    //Populate database
-    var populate = require('./app/config/populate')
-    populate.run()
-    console.log('You\'re pretty good. Database looks fine')
-}).catch(function (err) {
-    console.log(err, "Something wrong is not right with the Database Update!")
-});
-*/
+// Please, use db scripts to generate and populate DB

@@ -43,10 +43,13 @@ create table users (
   password varchar(255) not null,
   last_login datetime default null,
   status enum('active','inactive') default 'active',
-  createdat datetime not null,
-  updatedat datetime not null,
+  createdat datetime default null,
+  updatedat datetime default null,
   constraint pk_users primary key(id)
 ) engine=InnoDB;
+
+alter table users add constraint creationdat default getdate() for createdat;
+alter table users add constraint updateddat default getdate() for updatedat;
 
 --
 -- table structure for table administrators

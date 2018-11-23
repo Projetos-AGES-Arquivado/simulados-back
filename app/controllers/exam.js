@@ -69,6 +69,11 @@ exports.mount = async (req, res) => {
             selectedQuestions = await db.sequelize.query(query, { type: db.sequelize.QueryTypes.SELECT })
             questions = questions.concat(selectedQuestions)
         }
+
+        if(questions.length > totalQuestions){
+            let end = questions.length - totalQuestions
+            questions = questions.slice(0, end)
+        }
  
         let date = new Date()
     

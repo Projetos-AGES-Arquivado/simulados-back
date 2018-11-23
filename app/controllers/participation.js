@@ -126,7 +126,30 @@ exports.getParticipationsByStudentId = async (req, res) => {
 
     try {
 
-        let participations = await ParticipationModel.findAll({ where: { student_id: studentId }});
+        let participations = await db.sequelize.query(
+            " SELECT PAR.PRACTISE_EXAM_ID AS PRACTISE_EXAM_ID," +
+            "        PAR.STUDENT_ID AS STUDENT_ID, " +
+            "        PAR.PARTICIPATION_DATE AS PARTICIPATION_DATE, " +
+            "        PAR.TIME_OF_CONCLUSION AS TIME_OF_CONCLUSION, " +
+            "        PAR.NUMBEROFQUESTIONS AS NUMBEROFQUESTIONS, " +
+            "        PAR.NUMBEROFCORRECTANSWERS AS NUMBEROFCORRECTANSWERS, " +
+            "        PAR.NUMBEROFWRONGANSWERS AS NUMBEROFWRONGANSWERS, " +
+            "        PAR.HITRATIO AS HITRATIO, " +
+            "        PAR.CREATED_AT AS PARTICIPATION_CREATE_DATE, " +
+            "        EXA.NAME AS EXAM_NAME, " +
+            "        EXA.IS_AOB_EXAM AS IS_AOB_EXAM, " +
+            "        EXA.AOB_EXAM_YEAR AS AOB_EXAM_YEAR, " +
+            "        EXA.AOB_EXAM_SERIAL AS AOB_EXAM_SERIAL " +
+            " FROM " +
+            "        PARTICIPATIONS PAR, " +
+            "        PRACTISE_EXAMS EXA" +
+            " WHERE " +
+            "        PAR.PRACTISE_EXAM_ID = EXA.ID " +
+            "        AND STUDENT_ID = :student_id",
+            { replacements: {
+                student_id: studentId
+            }, type: db.sequelize.QueryTypes.SELECT
+        });
 
         res.status(200).json({
             success: true,

@@ -1,11 +1,5 @@
 insert into users (name, username, about, email, password, last_login, status)
 values ('Admin', 'admin', 'about me', 'admin@simulados.com', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', null, 'active');
-insert into users (name, username, about, email, password, last_login, status)
-values ('User2', 'admin', 'about me', 'user2@simulados.com', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', null, 'active');
-insert into users (name, username, about, email, password, last_login, status)
-values ('User3', 'admin', 'about me', 'user3@simulados.com', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', null, 'active');
-insert into users (name, username, about, email, password, last_login, status)
-values ('User4', 'admin', 'about me', 'user4@simulados.com', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', null, 'active');
 
 insert into administrators (name, email, password, user_id)
 values ('Administrators', 'administrators@simulados.com', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', 1);
@@ -42,30 +36,14 @@ values ('Responsabilidade Civil', 2);
 
 insert into professors (email, name, password, active, user_id)
 values ('admin@simulados.com', 'professor', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 1);
-insert into professors (email, name, password, active, user_id)
-values ('professor@gmail.com', 'Professor Familia', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 2);
-insert into professors (email, name, password, active, user_id)
-values ('professor2@gmail.com', 'Professor Coisas', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 3);
-insert into professors (email, name, password, active, user_id)
-values ('professor3@gmail.com', 'Professor Responsabilidade', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 4);
+
 
 insert into professor_subareas (professor_id, subarea_id)
 values (1, 1);
-insert into professor_subareas (professor_id, subarea_id)
-values (2, 2);
-insert into professor_subareas (professor_id, subarea_id)
-values (3, 3);
-insert into professor_subareas (professor_id, subarea_id)
-values (4, 4);
+
 
 insert into coordinators(area_id, email, name, password, active, user_id)
 values (1, 'admin@simulados.com', 'professor', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 1);
-insert into coordinators(area_id, email, name, password, active, user_id)
-values (2, 'coordinators1@simulados.com', 'Coordenador Civil', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 2);
-insert into coordinators(area_id, email, name, password, active, user_id)
-values (3, 'coordinators2@simulados.com', 'Coordenador Comercial', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 3);
-insert into coordinators(area_id, email, name, password, active, user_id)
-values (4, 'coordinators3@simulados.com', 'Coordenador Consumidor', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 4);
 
 insert into profiles (type)
 values ('Profile 1');
@@ -78,12 +56,6 @@ values ('PUC');
 
 insert into students(profile_id, email, name, password, active, user_id)
 values (1, 'admin@simulados.com', 'professor', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 1);
-insert into students(profile_id, email, name, password, active, user_id)
-values (2, 'student@simulados.com', 'Student 1', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 2);
-insert into students(profile_id, email, name, password, active, user_id)
-values (3, 'student2@simulados.com', 'Student 2', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 3);
-insert into students(profile_id, email, name, password, active, user_id)
-values (4, 'student3@simulados.com', 'Student 3', '$2a$08$FZNXJAmVUPTPLBWdnMuequ.dppzWtlocW9wyA3zMTBTpka2eQehnq', true, 4);
 
 insert into practise_exams (id, is_aob_exam, aob_exam_year, aob_exam_serial) 
 values (1, true, 2016, 20);

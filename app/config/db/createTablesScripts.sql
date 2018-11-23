@@ -43,13 +43,10 @@ create table users (
   password varchar(255) not null,
   last_login datetime default null,
   status enum('active','inactive') default 'active',
-  createdat datetime default null,
-  updatedat datetime default null,
+  created_at datetime default null,
+  updated_at datetime default null,
   constraint pk_users primary key(id)
 ) engine=InnoDB;
-
-alter table users add constraint creationdat default getdate() for createdat;
-alter table users add constraint updateddat default getdate() for updatedat;
 
 --
 -- table structure for table administrators
@@ -186,7 +183,7 @@ foreign key (user_id) references users(id);
 drop table if exists practise_exams;
 create table practise_exams (
   id int(11) not null auto_increment,
-  name varchar(255) not null,
+  name varchar(255) default null,
   is_aob_exam tinyint(1) default '0',
   aob_exam_year int(11) default null,
   aob_exam_serial int(11) default null,
@@ -205,11 +202,12 @@ create table questions (
   professor_id int(11) not null,
   coordinator_id int(11) not null,
   subarea_id int(11) not null,
+  serial_number int(11) default null,
   statement longtext not null,
   right_alternative char(1) not null,
   approved tinyint(1) default null,
   studymaterials varchar(255) default null,
-  comment varchar(255) not null,
+  comment varchar(255) default null,
   created_at datetime default null,
   updated_at datetime default null,
   constraint pk_questions primary key(id)

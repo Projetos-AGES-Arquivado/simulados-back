@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         password: {type: DataTypes.STRING, allowNull: false},
         last_login: {type: DataTypes.DATE},
         status: {type: DataTypes.ENUM('active', 'inactive'), defaultValue: 'active'}
+    },
+    {
+        underscored: true
     })
 
     User.prototype.getJWT = function () {

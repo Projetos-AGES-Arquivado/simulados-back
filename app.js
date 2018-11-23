@@ -30,5 +30,6 @@ require('./app/routes/participation.js')(app)
 require('./app/routes/result.js')(app)
 require('./app/routes/practiseexam_questions.js')(app)
 require('./app/routes/alternative.js')(app)
+require('./app/routes/area.js')(app)
 
 // Please, use db scripts to generate and populate DB

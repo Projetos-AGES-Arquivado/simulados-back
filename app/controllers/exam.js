@@ -55,6 +55,52 @@ exports.create = async (req, res) => {
     }
 }
 
+exports.mount = async (req, res) => {
+    try {
+        const areas = JSON.parse(req.body.areas)
+        const totalQuestions = 80        
+        const questionsPerArea = Math.round(totalQuestions/areas.length)
+        let questions = []
+
+        let selectedQuestions = []
+        let query = ""
+        for(let i=0; i < areas.length; i++){
+            query = `SELECT * FROM questions WHERE subarea_id in (SELECT id FROM subareas WHERE area_id IN (${areas[i]})) LIMIT ${questionsPerArea};`
+            selectedQuestions = await db.sequelize.query(query, { type: db.sequelize.QueryTypes.SELECT })
+            questions = questions.concat(selectedQuestions)
+        }
+ 
+        let date = new Date()
+    
+        //Create exam
+        let exam = await Practise_exam.create({is_aob_exam: false, aob_exam_year: date.getFullYear()})
+
+        //Add questions
+        await Promise.all(
+            questions.map((q) => {
+                return ExamQuestion.create({practise_exam_id: exam.id, question_id: q.id})
+            })
+        )
+
+        // Calls the Participation controller to create a participation on database
+        // These two lines should be removed once the front-end points to the correct route
+        req.body.exam_id = exam.id;
+        let participation = await participationController.createParticipationProv(req, res);
+
+        res.status(201).json({
+            success: true,
+            message: 'Successfully created new exam',
+            participation: participation.toJSON(),
+            exam: exam.toJSON()
+        })
+    } catch (e) {
+        res.status(500).json({
+            success: false,
+            message: e.message
+        })
+    }
+}
+
 /**
  * This function returns a list with all OAB (or AOB) exams
  */

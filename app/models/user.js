@@ -16,13 +16,13 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT
         },
         email: {
-            type: DataTypes.STRING, validate: {isEmail: true}
+            type: DataTypes.STRING, validate: {isEmail: true}, allowNull: false
         },
         password: {
             type: DataTypes.STRING, allowNull: false
         },
         last_login: {
-            type: DataTypes.DATE
+            type: DataTypes.DATE, allowNull: true
         },
         status: {
             type: DataTypes.ENUM('active', 'inactive'), defaultValue: 'active'

@@ -21,16 +21,16 @@ module.exports = (sequelize, DataTypes) => {
         time_of_conclusion: {
             type: DataTypes.TIME
         },
-        numberOfQuestions: {
+        numberofquestions: {
             type: DataTypes.INTEGER
         },
-        numberOfCorrectAnswers: {
+        numberofcorrectanswers: {
             type: DataTypes.INTEGER
         },
-        numberOfWrongAnswers: {
+        numberofwronganswers: {
             type: DataTypes.INTEGER
         },
-        hitRatio: {
+        hitratio: {
             type: DataTypes.DECIMAL
         },
         created_at: {

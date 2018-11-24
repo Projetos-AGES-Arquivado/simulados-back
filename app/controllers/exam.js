@@ -58,10 +58,17 @@ exports.create = async (req, res) => {
 exports.mount = async (req, res) => {
     try {
         const areas = JSON.parse(req.body.areas)
-        const totalQuestions = 80        
+        let totalQuestions = 80        
         const questionsPerArea = Math.round(totalQuestions/areas.length)
         let questions = []
 
+        let total = areas.length*questionsPerArea
+        if(total > totalQuestions){
+            let spare = total-totalQuestions
+            let questionToremove = Math.ceil(spare/areas.length)
+            totalQuestions = questionsPerArea-questionToremove
+        }
+    
         let selectedQuestions = []
         let query = ""
         for(let i=0; i < areas.length; i++){

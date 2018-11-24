@@ -36,10 +36,10 @@ foreign key (area_id) references areas(id);
 drop table if exists users;
 create table users (
   id int(11) not null auto_increment,
-  name varchar(255) default null,
-  username text,
-  about text,
-  email varchar(255) default null,
+  name varchar(255) not null,
+  username text not null,
+  about text default null,
+  email varchar(255) not null,
   password varchar(255) not null,
   last_login datetime default null,
   status enum('active','inactive') default 'active',
@@ -55,9 +55,9 @@ create table users (
 drop table if exists administrators;
 create table administrators (
   id int(11) not null auto_increment,
-  email varchar(255) default null,
-  name varchar(255) default null,
-  password varchar(255) default null,
+  email varchar(255) not null,
+  name varchar(255) not null,
+  password varchar(255) not null,
   created_at datetime default null,
   updated_at datetime default null,
   user_id int(11) not null,
@@ -144,7 +144,7 @@ foreign key (subarea_id) references subareas(id);
 drop table if exists profiles;
 create table profiles (
   id int(11) not null auto_increment,
-  type varchar(255) default null,
+  type varchar(255) not null,
   created_at datetime default null,
   updated_at datetime default null,
   constraint pk_profiles primary key(id)
@@ -158,9 +158,9 @@ drop table if exists students;
 create table students (
   id int(11) not null auto_increment,
   profile_id int(11) not null,
-  email varchar(255) default null,
-  name varchar(255) default null,
-  password varchar(255) default null,
+  email varchar(255) not null,
+  name varchar(255) not null,
+  password varchar(255) not null,
   active tinyint(1) default '1',
   created_at datetime default null,
   updated_at datetime default null,
@@ -183,7 +183,6 @@ foreign key (user_id) references users(id);
 drop table if exists practise_exams;
 create table practise_exams (
   id int(11) not null auto_increment,
-  name varchar(255) default null,
   is_aob_exam tinyint(1) default '0',
   aob_exam_year int(11) default null,
   aob_exam_serial int(11) default null,

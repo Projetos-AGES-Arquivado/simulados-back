@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             notEmpty: true
         },
-        rightAlternative: {
+        right_alternative: {
             type: DataTypes.CHAR(1),
             allowNull: false,
         },

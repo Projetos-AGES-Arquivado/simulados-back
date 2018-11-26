@@ -59,27 +59,28 @@ exports.mount = async (req, res) => {
     try {
         const areas = JSON.parse(req.body.areas)
         let totalQuestions = 80        
-        const questionsPerArea = Math.round(totalQuestions/areas.length)
+        const questionsPerArea = Math.ceil(totalQuestions/areas.length)
         let questions = []
+        let areasLimits = []
+    
+        for(let i=0; i < areas.length; i++)
+            areasLimits.push({'area':areas[i], 'limit':questionsPerArea})
 
         let total = areas.length*questionsPerArea
         if(total > totalQuestions){
             let spare = total-totalQuestions
-            let questionToremove = Math.ceil(spare/areas.length)
-            totalQuestions = questionsPerArea-questionToremove
-        }
-    
-        let selectedQuestions = []
-        let query = ""
-        for(let i=0; i < areas.length; i++){
-            query = `SELECT * FROM questions WHERE subarea_id in (SELECT id FROM subareas WHERE area_id IN (${areas[i]})) LIMIT ${questionsPerArea};`
-            selectedQuestions = await db.sequelize.query(query, { type: db.sequelize.QueryTypes.SELECT })
-            questions = questions.concat(selectedQuestions)
+            for(let i=0; i < spare; i++)
+                areasLimits[i]['limit'] -= 1
         }
 
-        if(questions.length > totalQuestions){
-            let end = questions.length - totalQuestions
-            questions = questions.slice(0, end)
+        let selectedQuestions = []
+        let query = ''
+        for(let i=0; i < areasLimits.length; i++){
+            query = `SELECT * FROM questions WHERE subarea_id in (
+                        SELECT id FROM subareas WHERE area_id IN (${areasLimits[i]['area']})
+                    ) LIMIT ${areasLimits[i]['limit']};`
+            selectedQuestions = await db.sequelize.query(query, { type: db.sequelize.QueryTypes.SELECT })
+            questions = questions.concat(selectedQuestions)
         }
  
         let date = new Date()
@@ -96,8 +97,8 @@ exports.mount = async (req, res) => {
 
         // Calls the Participation controller to create a participation on database
         // These two lines should be removed once the front-end points to the correct route
-        req.body.exam_id = exam.id;
-        let participation = await participationController.createParticipationProv(req, res);
+        req.body.exam_id = exam.id
+        let participation = await participationController.createParticipationProv(req, res)
 
         res.status(201).json({
             success: true,

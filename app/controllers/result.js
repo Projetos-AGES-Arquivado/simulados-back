@@ -94,7 +94,9 @@ exports.questionDetail = async function(req, res) {
           })
       } else {
         let query = `SELECT DISTINCT q.id, q.statement, q.comment, 
-                                q.studyMaterials, al.description
+                                q.studyMaterials, al.description as alternative,
+                                al.letter as letter,
+                                al.id as alternativeId
                                 FROM participations p
                                 INNER JOIN answers aw 
                                     ON p.id = aw.participation_id

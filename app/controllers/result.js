@@ -93,7 +93,7 @@ exports.questionDetail = async function(req, res) {
             error: 'Participação não encontrada na base de dados!',
           })
       } else {
-        let query = `SELECT DISTINCT q.statement, q.comment, 
+        let query = `SELECT DISTINCT q.id, q.statement, q.comment, 
                                 q.studyMaterials, al.description
                                 FROM participations p
                                 INNER JOIN answers aw 
@@ -115,7 +115,7 @@ exports.questionDetail = async function(req, res) {
         res.status(200).json({
           success: true,
           message: 'Detalhes da questão buscados com sucesso!',
-          result: questionDetail,
+          questionDetail: questionDetail,
         })
       }
     }

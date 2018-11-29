@@ -7,4 +7,5 @@ module.exports = function (app) {
     // Returns result data by given participation id
     //app.get('/result/:participationId?', passport.authenticate('jwt', {session:false}), resultController.calcResult);
     app.get('/result/:participationId?', resultController.calcResult);
+    app.get('/result/question/:participationId?/:questionId?', resultController.questionDetail);
 }

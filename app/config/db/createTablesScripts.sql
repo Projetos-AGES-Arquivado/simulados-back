@@ -259,7 +259,7 @@ create table practiseexam_questions (
   id int(11) not null auto_increment,
   question_id int(11) not null,
   practise_exam_id int(11) not null,
-  serial_number int(11) not null,
+  serial_number int(11),
   created_at datetime default null,
   updated_at datetime default null,
   constraint pk_practiseexam_questions primary key(id)

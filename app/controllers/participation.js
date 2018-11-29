@@ -33,8 +33,8 @@ const validateParameters = async (body, res) => {
         })
     }
 
-    if (!await StudentModel.findOne({ where: { id: body.question_id } })) {
-        return res.status(404).json({ success: false, error: 'Participação não encontrada na base de dados!' });
+    if (!await StudentModel.findOne({ where: { id: body.student_id } })) {
+        return res.status(404).json({ success: false, error: 'Estudante não encontrada na base de dados!' });
     }    
 }
 

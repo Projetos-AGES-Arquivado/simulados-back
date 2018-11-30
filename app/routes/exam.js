@@ -12,4 +12,7 @@ module.exports = function(app) {
 
     // Create a new exam
     app.post('/exam', /*passport.authenticate('jwt', {session:false}),*/ examController.create)
+
+    //Mount exam
+    app.post('/exam/mount', /*passport.authenticate('jwt', {session:false}),*/ examController.mount)
 }

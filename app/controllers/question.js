@@ -21,7 +21,7 @@ exports.findAll = async (req, res) => {
 
 exports.getQuestionsWithPagination = async (req, res) => {
 
-    const { examId, lastQuestion = 0, amount = 10 } = req.params
+    const { examId, lastQuestion = 0, amount = 80 } = req.params
 
     if (!examId)
         return res.status(400).json({ success: false, error: 'Simulado não informado!' })

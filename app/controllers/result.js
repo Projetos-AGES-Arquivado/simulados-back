@@ -42,7 +42,7 @@ exports.calcResult = async function(req, res) {
                             INNER JOIN alternatives alt
                                 ON quest.id = alt.id 
                             INNER JOIN subareas subA
-                                ON quest. subarea_id = subA.id
+                                ON quest.subarea_id = subA.id
                             INNER JOIN areas
                                 ON subA.area_id = areas.id
                             Where part.id = ${participationId}

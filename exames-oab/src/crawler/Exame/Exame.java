@@ -13,39 +13,37 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static Coleta.ColetaExamesOAB.filePath;
-
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
+import static crawler.Coleta.ColetaExamesOAB.filePath;
+
 public class Exame {
 
-    public Exame (int numero, URL urlExame, URL urlGabarito, Date data) {
+    public Exame(int numero, URL urlExame, URL urlGabarito, Date data, int modelo) {
         this.numero = numero;
         this.urlExame = urlExame;
+        this.filePathExame = "";
         this.urlGabarito = urlGabarito;
+        this.filePathGabarito = "";
         this.data = data;
+        this.modelo = modelo;
         this.questoes = new ArrayList<Questao>();
+        this.exameTXT = "";
     }
 
     private int numero;
-
-    private Date data;
-
     private URL urlExame;
-
     private String filePathExame;
-
     private URL urlGabarito;
-
     private String filePathGabarito;
-
+    private Date data;
+    private int modelo;
     private ArrayList<Questao> questoes;
 
     public int getNumero() {
         return numero;
     }
-
     public void setNumero(int numero) {
         this.numero = numero;
     }
@@ -53,43 +51,69 @@ public class Exame {
     public URL getUrlExame() {
         return urlExame;
     }
-
     public void setUrlExame(URL urlExame) {
         this.urlExame = urlExame;
+    }
+
+    public String getFilePathExame() {
+        return filePathExame;
+    }
+    public void setFilePathExame(String filePathExame) {
+        this.filePathExame = filePathExame;
     }
 
     public URL getUrlGabarito() {
         return urlGabarito;
     }
-
     public void setUrlGabarito(URL urlGabarito) {
         this.urlGabarito = urlGabarito;
+    }
+
+    public String getFilePathGabarito() {
+        return filePathGabarito;
+    }
+    public void setFilePathGabarito(String filePathGabarito) {
+        this.filePathGabarito = filePathGabarito;
     }
 
     public Date getData() {
         return data;
     }
-
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public int getModelo() {
+        return modelo;
+    }
+    public void setModelo(int modelo) {
+        this.modelo = modelo;
     }
 
     public ArrayList<Questao> getQuestoes() {
         return questoes;
     }
-
-    private void adicionaQuestao (Questao questao) {
+    private void adicionaQuestao(Questao questao) {
         questoes.add(questao);
     }
 
+    protected String exameTXT;
 
-    private boolean download(URL file, String outputFilePath) {
-        // Realiza o download.
+    public boolean download(String outputFilePath) {
         try {
-            File outputFile = new File(outputFilePath);
-            if (!outputFile.exists()) {
-                ReadableByteChannel channel = Channels.newChannel(file.openStream());
-                FileOutputStream outputStream = new FileOutputStream(outputFilePath);
+            this.filePathExame = outputFilePath + ".pdf";
+            File outputExameFile = new File(this.filePathExame);
+            if (!outputExameFile.exists()) {
+                ReadableByteChannel channel = Channels.newChannel(this.getUrlExame().openStream());
+                FileOutputStream outputStream = new FileOutputStream(this.filePathExame);
+                outputStream.getChannel().transferFrom(channel, 0, Long.MAX_VALUE);
+                outputStream.close();
+            }
+            this.filePathGabarito = outputFilePath + "_gabarito.pdf";
+            File outputGabaritoFile = new File(this.filePathGabarito);
+            if (!outputGabaritoFile.exists()) {
+                ReadableByteChannel channel = Channels.newChannel(this.getUrlGabarito().openStream());
+                FileOutputStream outputStream = new FileOutputStream(this.filePathGabarito);
                 outputStream.getChannel().transferFrom(channel, 0, Long.MAX_VALUE);
                 outputStream.close();
             }
@@ -101,21 +125,13 @@ public class Exame {
         return false;
     }
 
-    public void coleta () {
-        String exameFilePath = filePath + this.getUrlExame().getFile().toString().substring(this.getUrlExame().getFile().toString().lastIndexOf("/") + 1, this.getUrlExame().getFile().toString().length());
-        if (this.download(this.getUrlExame(), exameFilePath)) {
-            this.parse(exameFilePath);
-        }
-    }
-
-    public void parse(String exameFilePath) {
+    public void parseQuestoes() {
 
         PDDocument examePDF;
-        String exameTXT = "";
         try {
-            File exameFile = new File(exameFilePath);
+            File exameFile = new File(this.filePathExame);
             examePDF = PDDocument.load(exameFile);
-            exameTXT = new PDFTextStripper().getText(examePDF); // Converte o exame de PDF para TXT.
+            this.exameTXT = new PDFTextStripper().getText(examePDF); // Converte o exame de PDF para TXT.
             examePDF.close();
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -124,9 +140,29 @@ public class Exame {
         try {
 
             // Remove quebras de linha e espaços em branco adicionais.
-            exameTXT = exameTXT.replaceAll(" \\r\\n", "\r\n");
-            exameTXT = exameTXT.replaceAll("(\\r\\n)+", "\r\n");
-            exameTXT = exameTXT.replaceAll("( )+", " ");
+            this.exameTXT = this.exameTXT.replaceAll(" \\r\\n", "\r\n");
+            this.exameTXT = this.exameTXT.replaceAll("(\\r\\n)+", "\r\n");
+            this.exameTXT = this.exameTXT.replaceAll("( )+", " ");
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+
+    }
+
+}
+
+public class ExameModelo1 extends Exame {
+
+    public ExameModelo1(int numero, URL urlExame, URL urlGabarito, Date data, int modelo) {
+        super(numero, urlExame, urlGabarito, data, modelo);
+    }
+
+    public void parseQuestoes() {
+
+        super.parseQuestoes();
+
+        try {
 
             // Remove rodapés de páginas.
             List<String> list = new ArrayList<String>();
@@ -137,8 +173,6 @@ public class Exame {
                     exameTXT = exameTXT.replace(matchRodape.group(), "");
                 }
             }
-
-            // Processa gabarito.
 
             // Processa questões.
             ArrayList<String> questoesTXT = new ArrayList<String>();
@@ -172,12 +206,12 @@ public class Exame {
                                 String letraOpcao = opcao.substring(0, 1);
                                 Matcher matchQuestionario = Pattern.compile("\\. QUESTIONÁRIO .+$").matcher(opcao);
                                 if (matchQuestionario.find()) {
-                                    opcao = opcao.replace(matchQuestionario.group(), "." );
+                                    opcao = opcao.replace(matchQuestionario.group(), ".");
                                 }
                                 String textoOpcao = opcao.substring(3, opcao.length());
                                 this.getQuestoes().get(numQuestao - 1).adicionaOpcao(new Opcao(letraOpcao, textoOpcao));
                             }
-                         } else { // Encerra o processamento das questões após a 4a opção da última questão.
+                        } else { // Encerra o processamento das questões após a 4a opção da última questão.
                             break;
                         }
                     }
